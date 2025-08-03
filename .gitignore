@@ -1,0 +1,15 @@
+# Quartus-generated folders and files
+db/
+incremental_db/
+output_files/
+
+# Lock files and temp artifacts
+*.rdr.flock
+*.rdr
+*.smsg
+*.bak
+*.lck
+*.log
+
+# Backup or autosave
+*~
