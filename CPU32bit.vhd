@@ -6,7 +6,6 @@ use ieee.numeric_std.all;
 
 entity CPU32bit is
 	port(
-		INPUT : in std_logic_vector(31 downto 0); --32 bit input, will later be taken from ROM
 		clk : in std_logic;
 		reset : in std_logic);
 end CPU32bit;
@@ -45,12 +44,12 @@ architecture structure of CPU32bit is
 	
 	component programCounter
 		port(
-			INPUT: in std_logic_vector(31 downto 0);
+			immediate: in std_logic_vector(31 downto 0);
 			clk: in std_logic;
 			PC_INC: in std_logic;
 			PC_LD: in std_logic;
 			reset: in std_logic;
-			PC: out std_logic_vector(31 downto 0));
+			PC: out std_logic_vector(13 downto 0));
 	end component;
 	
 	component aluController
@@ -64,9 +63,18 @@ architecture structure of CPU32bit is
 			PC_INC : out std_logic;
 			PC_LD : out std_logic;
 			S : out std_logic_vector(2 downto 0); --mux select lines for ALU
-			output : out std_logic_vector(31 downto 0)); --used to output immediate values
+			immediate : out std_logic_vector(31 downto 0); --used to output immediate values
+			we : out std_logic);
 	end component;
 	
+	component CPUROM
+		port(
+			address		: IN STD_LOGIC_VECTOR (13 DOWNTO 0);
+			clock		: IN STD_LOGIC  := '1';
+			q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0));
+	end component;
+	
+	signal INPUT : std_logic_vector(31 downto 0); --input taken from ROM
 	signal IR_internal : std_logic_vector(31 downto 0);
 	signal IR_LD_internal : std_logic;
 	signal rr1_internal : std_logic_vector(4 downto 0);
@@ -82,14 +90,21 @@ architecture structure of CPU32bit is
 	signal cin_internal : std_logic;
 	signal immediate_internal : std_logic_vector(31 downto 0);
 	signal we_internal : std_logic;
-	signal PC_internal : std_logic_vector(31 downto 0); --will be fed into ROM to get instructions when ROM implemented
+	signal PC_internal : std_logic_vector(13 downto 0); --will be fed into ROM to get instructions
 	
 	begin
 		InstructionRegister32 : instructionRegister port map(INPUT => INPUT, IR_LD => IR_LD_internal, clk => clk, reset => reset, IR => IR_internal);
+		
 		Controller : aluController port map(IR => IR_internal, Q => Q_internal, writeReg => wr_internal, readReg1 => rr1_internal,
-							readReg2 => rr2_internal, IR_LD => IR_LD_internal, PC_INC => PC_INC_internal, PC_LD => PC_LD_internal, S => S_internal, output => immediate_internal);
+							readReg2 => rr2_internal, IR_LD => IR_LD_internal, PC_INC => PC_INC_internal, PC_LD => PC_LD_internal, S => S_internal, immediate => immediate_internal, we => we_internal);
+							
 		ALU : alu32bit port map(reg1 => reg1_internal, reg2 => reg2_internal, cin => cin_internal, s => s_internal, output => output_internal);
+		
 		Registers : registerFile port map(clk => clk, we => we_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, 
 							writeData => output_internal, readData1 => reg1_internal, readData2 => reg2_internal);
-		ProgramCounter32 : programCounter port map(INPUT => INPUT, clk => clk, PC_INC => PC_INC_internal, PC_LD => PC_LD_internal, reset => reset, PC => PC_internal);
+							
+		ProgramCounter32 : programCounter port map(immediate => immediate_internal, clk => clk, 
+							PC_INC => PC_INC_internal, PC_LD => PC_LD_internal, reset => reset, PC => PC_internal);
+		
+		ROM : CPUROM port map(address => pc_internal, clock => clk, q => INPUT);
 end structure;
