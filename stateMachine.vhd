@@ -6,12 +6,20 @@ use ieee.numeric_std.all;
 
 entity stateMachine is
 	port(
-		isBranch <= in std_logic;
-		Q <= in std_logic_vector(4 downto 0); --current state, starting off with max 12 states, can expand if not enough
-		immediate <= in std_logic_vector(31 downto 0);
-		PC <= in std_logic_vector(31 downto 0); --used in JAL instruction to store PC
-		ALU_output <= in std_logic_vector(31 downto 0);
-		PCOffsetFlag <= out std_logic;
-		D <= out std_logic_vector(4 downto 0); --next state
-		writeData <= out std_logic_vector(31 downto 0));
+		isBranch : in std_logic;
+		Q : in std_logic_vector(4 downto 0); --current state, starting off with max 12 states, can expand if not enough
+		immediate : in std_logic_vector(31 downto 0);
+		PC : in std_logic_vector(31 downto 0); --used in JAL instruction to store PC
+		ALU_output : in std_logic_vector(31 downto 0);
+		IR_LD : out std_logic;
+		PCOffsetFlag : out std_logic;
+		D : out std_logic_vector(4 downto 0); --next state
+		writeData : out std_logic_vector(31 downto 0); --data to write to register
+		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
+		useRAM : out std_logic); --ram is only enabled as long as useRAM = '1' and RAMAddress[14] = 1
 end stateMachine;
+
+architecture behavior of stateMachine is
+begin
+
+end behavior;

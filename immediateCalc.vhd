@@ -17,13 +17,14 @@ architecture behavior of immediateCalc is
 signal immediate_internal : std_logic_vector(31 downto 0);
 begin
 	process(instructionType, IR)
+	begin
 		case instructionType is
 			when "000" => --R type, no immediate
 				immediate_internal <= (others => '0');
 			when "001" => --I type
 				immediate_internal <= std_logic_vector(resize(signed(IR(31 downto 20)), 32));
 			when "010" => --S type
-				immediate_internal <= std_logic_vector(resize(signed(IR(31 downto 25) & IR(11 downto 7), 32)));
+				immediate_internal <= std_logic_vector(resize(signed(IR(31 downto 25) & IR(11 downto 7)), 32));
 			when "011" => --SB type
 				immediate_internal <= std_logic_vector(resize(signed(IR(31) & IR(7) & IR(30 downto 25) & IR(11 downto 8) & '0'), 32));
 			when "100" => --U type

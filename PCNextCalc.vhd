@@ -20,9 +20,9 @@ begin
 	process(PC, PCOffsetFlag, JALRFlag, immediate, reg1)
 	begin
 		if JALRFlag = '1' then
-				PC_next <= std_logic_vector((unsigned(reg1) + signed(immediate)) and x"FFFFFFFE");
+				PC_next <= std_logic_vector((unsigned(reg1) + unsigned(immediate)) and x"FFFFFFFE");
 		elsif PCOffsetFlag = '1' then
-			PC_next <= std_logic_vector(unsigned(PC) + signed(immediate));
+			PC_next <= std_logic_vector(unsigned(PC) + unsigned(immediate));
 		else
 			PC_next <= std_logic_vector(unsigned(PC) + 4);
 		end if;

@@ -15,10 +15,10 @@ entity instructionDecoder is
 		we : out std_logic; --write enable, if return register is altered will be true
 		isBranch : out std_logic; --0 if branch instruction not executed or branch not taken, 1 if branch taken
 		JALRFlag : out std_logic; --only 1 if instruction executed is JALR
-		instructionType : out std_logic_vector(2 downto 0));
+		instructionType : out std_logic_vector(2 downto 0);
 		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
 		shamt : out std_logic_vector(4 downto 0);
-		--add a RAM_write output later when RAM is added
+		UpdateRAMAddress : out std_logic);
 end instructionDecoder;
 
 architecture behavior of instructionDecoder is
@@ -43,6 +43,7 @@ begin
 		we <= '1';
 		JALRFlag <= '0'; --only true if JALR executed, default to false
 		isBranch <= '0'; --only true if is branch instruction
+		UpdateRAMAddress <= '0'; --only true if load or store instruction is selected
 		case opcode is
 			when "0110111" => --LUI rd, imm
 				readReg1 <= (others => '0');
@@ -73,19 +74,20 @@ begin
 					when "001" => --BNE rs1, rs2, imm
 						S <= "1000"; --if rs1 xor rs2 /= 0, they are not equal. check if output is not 0 in state machine to determine if branch
 					when "100" => --BLT rs1, rs2, imm
-						S <= "1100"
+						S <= "1100";
 					when "101" => --BGE rs1, rs2, imm
 						--rs1 > rs2 is the same as rs2 < rs1
 						readReg1 <= IR(24 downto 20);
 						readReg2 <= IR(19 downto 15);
-						S <= "1100"
+						S <= "1100";
 					when "110" => --BLTU rs1, rs2, imm
-						S <= "1101"
+						S <= "1101";
 					when "111" => --BGEU rs1, rs2, imm
 						--rs1 > rs2 is the same as rs2 < rs1
 						readReg1 <= IR(24 downto 20);
 						readReg2 <= IR(19 downto 15);
-						S <= "1101"
+						S <= "1101";
+					when others =>
 				end case;
 			when "0000011" => --load instructions
 				case func3 is
@@ -94,6 +96,7 @@ begin
 					when "010" => --LW rd, rs1, imm
 					when "100" => --LBU rd, rs1, imm
 					when "101" => --LHU rd, rs1, imm
+					when others =>
 				end case;
 			when "0100011" => --store instructions
 				case func3 is
@@ -142,13 +145,13 @@ begin
 					when "110" => --OR rd, rs1, rs2
 					when "111" => --AND rd, rs1, rs2
 				end case;
-			when "0001111" --fence instructions
+			when "0001111" => --fence instructions
 				case func3 is
 					when "000" => --FENCE
 					when "001" => --FENCE.I
 					when others =>
 				end case;
-			when "1110011" --other instructions, to add later
+			when "1110011" => --other instructions, to add later
 			when others =>
 				writeReg <= (others => '0');
 				readReg1 <= (others => '0');
