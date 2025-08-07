@@ -58,7 +58,6 @@ set_global_assignment -name VHDL_FILE alu32bit.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
 set_global_assignment -name VHDL_FILE registerFile.vhd
 set_global_assignment -name VHDL_FILE instructionRegister.vhd
-set_global_assignment -name VHDL_FILE aluController.vhd
 set_global_assignment -name VHDL_FILE programCounter.vhd
 set_global_assignment -name VHDL_FILE CPU32bit.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
@@ -67,3 +66,7 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name MIF_FILE CPUMIF.mif
 set_global_assignment -name QIP_FILE CPUROM.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VHDL_FILE PCNextCalc.vhd
+set_global_assignment -name VHDL_FILE immediateCalc.vhd
+set_global_assignment -name VHDL_FILE stateMachine.vhd
+set_global_assignment -name VHDL_FILE instructionDecoder.vhd

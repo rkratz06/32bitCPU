@@ -1,6 +1,4 @@
 --32 bit alu
---currently has add, sub, and, or, and not
---some ideas to add: shift reg1 and reg2 left and right, xor
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -11,45 +9,45 @@ entity alu32bit is
 		reg1 : in std_logic_vector(31 downto 0);
 		reg2 : in std_logic_vector(31 downto 0);
 		cin : in std_logic; --carry in for addition
-		s : in std_logic_vector (2 downto 0); --mux select lines, will be used to pick the operation that will be performed
+		s : in std_logic_vector (3 downto 0); --mux select lines, will be used to pick the operation that will be performed
+		shamt : in std_logic_vector(4 downto 0);; --shift amount, only used for shift instructions
 		output : out std_logic_vector(31 downto 0));
 end alu32bit;
 
 architecture behavior of alu32bit is
-signal resultSum : std_logic_vector(31 downto 0);
-signal resultAnd : std_logic_vector(31 downto 0);
-signal resultOr : std_logic_vector(31 downto 0);
-signal resultSub : std_logic_vector(31 downto 0);
-signal resultNot1 : std_logic_vector(31 downto 0);
-signal resultNot2 : std_logic_vector(31 downto 0);
-
-signal unsignedReg1 : unsigned(31 downto 0);
-signal unsignedReg2 : unsigned(31 downto 0);
-signal unsignedCin : unsigned(31 downto 0); --sign extended cin
+Cin32Bit : std_logic_vector(31 downto 0);
 
 begin
-	unsignedReg1 <= unsigned(reg1);
-	unsignedReg2 <= unsigned(reg2);
-	unsignedCin <= (31 downto 1 => '0') & cin;
+	Cin32Bit <= (31 downto 1 => '0') & cin;
 	
-	resultSum <= std_logic_vector(unsignedReg1 + unsignedReg2 + unsignedCin);
-	resultAnd <= reg1 and reg2;
-	resultOr <= reg1 or reg2;
-	resultSub <= std_logic_vector(unsignedReg1 - unsignedReg2);
-	resultNot1 <= not reg1;
-	resultNot2 <= not reg2;
-	
-	process(s, resultSum, resultAnd, resultOr, resultSub, resultNot1, resultNot2)
+	process(s, reg1, reg2, Cin32Bit, shamt)
 	begin
 		case s is 
-			when "000" => output <= reg1;
-			when "001" => output <= reg2;
-			when "010" => output <= resultAnd;
-			when "011" => output <= resultOr;
-			when "100" => output <= resultSum;
-			when "101" => output <= resultSub;
-			when "110" => output <= resultNot1;
-			when "111" => output <= resultNot2;
+			when "0000" => output <= reg1; --reg1 to output
+			when "0001" => output <= reg2; --reg2 to output
+			when "0010" => output <= reg1 and reg2; --reg1 and reg2
+			when "0011" => output <= reg1 or reg2; --reg1 or reg2
+			when "0100" => output <= std_logic_vector(signed(reg1) + signed(reg2) + signed(Cin32Bit)); --signed addition
+			when "0101" => output <= std_logic_vector(signed(reg1) - signed(reg2)); --signed subtraction
+			when "0110" => output <= not reg1; --not reg1
+			when "0111" => output <= not reg2; --not reg2
+			when "1000" => output <= reg1 xor reg2; --reg1 xor reg2
+			when "1001" => output <= std_logic_vector(shift_left(unsigned(reg1), shamt)); --left shift shamt times
+			when "1010" => output <= std_logic_vector(shift_right(unsigned(reg1), shamt)); --logical right shift shamt times
+			when "1011" => output <= std_logic_vector(shift_right(signed(reg1), shamt)); --arithmetic right shift shamt time
+			when "1100" =>  --less than operation signed
+				if (signed(reg1) < signed(reg2)) then
+					output <= "00000000000000000000000000000001";
+				else
+					output <= "00000000000000000000000000000000";
+				end if;
+			when "1101" => --less than operation unsigned
+				if (unsigned(reg1) < unsigned(reg2)) then
+					output <= "00000000000000000000000000000001";
+				else
+					output <= "00000000000000000000000000000000";
+				end if;
+			when others => output <= (others => '0');
 		end case;
 	end process;
 end;

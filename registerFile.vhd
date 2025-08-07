@@ -21,11 +21,11 @@ architecture behavior of registerFile is
 	signal regs : regfile_array := (others => (others => '0')); --initalizes signal regs to contain registers of 0
 	
 	begin
-		
+		regs(0) <= "00000000000000000000000000000000";
 		process(clk)
 		begin
 			if rising_edge(clk) then
-				if we = '1' then
+				if (we = '1' and to_integer(unsigned(writeReg)) /= 0) then
 					regs(to_integer(unsigned(writeReg))) <= writeData;
 				end if;
 			end if;
