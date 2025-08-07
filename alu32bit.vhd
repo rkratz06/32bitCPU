@@ -10,7 +10,7 @@ entity alu32bit is
 		reg2 : in std_logic_vector(31 downto 0);
 		cin : in std_logic; --carry in for addition
 		s : in std_logic_vector (3 downto 0); --mux select lines, will be used to pick the operation that will be performed
-		shamt : in std_logic_vector(4 downto 0); --shift amount, only used for shift instructions
+		shamt : in std_logic_vector(31 downto 0); --shift amount, only used for shift instructions
 		output : out std_logic_vector(31 downto 0));
 end alu32bit;
 
