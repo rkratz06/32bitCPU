@@ -7,6 +7,7 @@ use ieee.numeric_std.all;
 entity PCNextCalc is 
 	port(
 		PC : in std_logic_vector(31 downto 0);
+		
 		PCOffsetFlag : in std_logic; --if true, branch was taken, PC_next <- PC + immediate, otherwise PC_next <- PC + 4
 		JALRFlag : in std_logic; --if flag = '1', JALR was executed
 		Immediate : in std_logic_vector(31 downto 0); --byte aligned immediate

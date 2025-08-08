@@ -13,10 +13,10 @@ entity instructionDecoder is
 		JALRFlag : out std_logic; --only 1 if instruction executed is JALR
 		instructionType : out std_logic_vector(2 downto 0);
 		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
-		opcode <= std_logic_vector(6 downto 0);
-		func3 : std_logic_vector(2 downto 0);
-		func7 : std_logic_vector(6 downto 0);
-		shamt : out std_logic_vector(31 downto 0););
+		opcode : out std_logic_vector(6 downto 0);
+		func3 : out std_logic_vector(2 downto 0);
+		func7 : out std_logic_vector(6 downto 0);
+		shamt : out std_logic_vector(4 downto 0));
 end instructionDecoder;
 
 architecture behavior of instructionDecoder is
@@ -26,21 +26,18 @@ signal func7_internal : std_logic_vector(6 downto 0);
 begin
 	--add pipelining later
 	
-	opcode <= IR(6 downto 0);
-	func3 <= IR(14 downto 12); --default position of func3
-	func7 <= IR(31 downto 25); --default position of func7
+	opcode_internal <= IR(6 downto 0);
+	func3_internal <= IR(14 downto 12); --default position of func3
+	func7_internal <= IR(31 downto 25); --default position of func7
 	
-	process(opcode, IR, func3, func7)
+	process(opcode_internal, IR, func3_internal, func7_internal)
 	begin
 		writeReg <=	IR(11 downto 7); --default potision of return register
 		readReg1 <= IR(19 downto 15); --default position of rs1
 		readReg2 <= IR(24 downto 20); --default position of rs2
 		shamt <= (others => '0');
-		S <= "0000"; --default reg1 to output on ALU
 		JALRFlag <= '0'; --only true if JALR executed, default to false
-		isBranch <= '0'; --only true if is branch instruction
-		UpdateRAMAddress <= '0'; --only true if load or store instruction is selected
-		case opcode is
+		case opcode_internal is
 			when "0110111" => --LUI rd, imm
 				readReg1 <= (others => '0');
 				readReg2 <= (others => '0');
@@ -62,102 +59,27 @@ begin
 				JALRFlag <= '1';
 			when "1100011" => --branch instructions
 				instructionType <= "011";
-				isBranch <= '1';
 				writeReg <= (others => '0');
-				we <= '0';
-				case func3 is
-					when "000" => --BEQ rs1, rs2, imm
-						S <= "1000"; --if rs1 xor rs2 = 0, they are equal. check if output is 0 in state machine to determine if branch
-					when "001" => --BNE rs1, rs2, imm
-						S <= "1000"; --if rs1 xor rs2 /= 0, they are not equal. check if output is not 0 in state machine to determine if branch
-					when "100" => --BLT rs1, rs2, imm
-						S <= "1100";
-					when "101" => --BGE rs1, rs2, imm
-						--rs1 > rs2 is the same as rs2 < rs1
-						S <= "1100";
-					when "110" => --BLTU rs1, rs2, imm
-						S <= "1101";
-					when "111" => --BGEU rs1, rs2, imm
-						--rs1 > rs2 is the same as rs2 < rs1
-						S <= "1101";
-					when others =>
-				end case;
 			when "0000011" => --load instructions
-				UpdateRAMAddress <= '1';
 				InstructionType <= "001";
 				readReg2 <= (others => '0');
 			when "0100011" => --store instructions
-				UpdateRAMAddress <= '1';
 				InstructionType <= "010";
 				writeReg <= (others => '0');
-				we <= '0';
 			when "0010011" => --arithmetic operations with immediates
 				InstructionType <= "001";
 				readReg2 <= (others => '0');
-				--use state machine to set reg2 input of ALU to immediate
-				case func3 is 
-					when "000" => --ADDI rd, rs1, imm
-						S <= "0100";
-					when "010" => --SLTI rd, rs1, imm
-						S <= "1100";
-					when "011" => -- SLTIU rd, rs1, imm
-						S <= "1101";
-					when "100" => --XORI rd, rs1, imm
-						S <= "1000";
-					when "110" => --ORI rd, rs1, imm
-						S <= "0011";
-					when "111" => --ANDI rd, rs1, imm
-						S <= "0010";
+				case func3_internal is
 					when "001" => --SLLI rd, rs1, shamt
-						shamt <= (31 downto 5 => '0') & IR(24 downto 20);
-						S <= "1001";
+						shamt <= IR(24 downto 20);
 					when "101" => --right shift instructions
-						shamt <= (31 downto 5 => '0') & IR(24 downto 20);
-						case func7 is
-							when "0000000" => --SRLI rd, rs11, shamt
-								S <= "1010";
-							when "0100000" => --SRAI rd, rs1, shamt
-								S <= "1011";
-							when others => 
-						end case;
+						shamt <= IR(24 downto 20);
 					when others =>
 				end case;
 			when "0110011" => --arithmetic with 2 registers
 				InstructionType <= "000";
-				case func3 is
-					when "000" => --ADD/SUB
-						case func7 is
-							when "0000000" => -- ADD rd, rs1, rs2
-								S <= "0100";
-							when "0100000" => -- SUB rd, rs1, rs2
-								S <= "0101";
-							when others =>
-						end case;
-					when "001" => --SLL rd rs1, rs2
-						S <= "1001";
-						--use state machine to set shamt to value at reg 2
-					when "010" => --SLT rd, rs1, rs2
-						S <= "1100";
-					when "011" => --SLTU rd, rs1, rs2
-						S <= "1101";
-					when "100" => --XOR rd, rs1, rs2
-						S <= "1000";
-					when "101" => --right shift instructions
-						--use state machine to set shamy to value at reg 2
-						case func7 is
-							when "0000000" => --SRL rd, rs1, rs2
-								S <= "1010";
-							when "0100000" => --SRA rd, rs1, rs2
-								S <= "1011";
-							when others =>
-						end case;
-					when "110" => --OR rd, rs1, rs2
-						S <= "0011";
-					when "111" => --AND rd, rs1, rs2
-						S <= "0010";
-				end case;
 			when "0001111" => --fence instructions
-				case func3 is
+				case func3_internal is
 					when "000" => --FENCE
 					when "001" => --FENCE.I
 					when others =>
@@ -167,7 +89,6 @@ begin
 				writeReg <= (others => '0');
 				readReg1 <= (others => '0');
 				readReg2 <= (others => '0');
-				we <= '0';
 		end case;
 	end process;
 	opcode <= opcode_internal;

@@ -54,19 +54,17 @@ architecture structure of CPU32bit is
 	
 	component instructionDecoder
 		port(
-			IR : in std_logic_vector(31 downto 0); --instruction, comes from instruction register
-			writeReg : out std_logic_vector(4 downto 0);
-			readReg1 : out std_logic_vector(4 downto 0);
-			readReg2 : out std_logic_vector(4 downto 0);
-			PC_LD : out std_logic;
-			S : out std_logic_vector(3 downto 0); --mux select lines for ALU
-			we : out std_logic; --write enable, if return register is altered will be true
-			isBranch : out std_logic; --0 if branch instruction not executed or branch not taken, 1 if branch taken
-			JALRFlag : out std_logic; --only 1 if instruction executed is JALR
-			instructionType : out std_logic_vector(2 downto 0);
-			--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
-			shamt : out std_logic_vector(4 downto 0);
-			UpdateRAMAddress : out std_logic);
+		IR : in std_logic_vector(31 downto 0); --instruction, comes from instruction register
+		writeReg : out std_logic_vector(4 downto 0);
+		readReg1 : out std_logic_vector(4 downto 0);
+		readReg2 : out std_logic_vector(4 downto 0);
+		JALRFlag : out std_logic; --only 1 if instruction executed is JALR
+		instructionType : out std_logic_vector(2 downto 0);
+		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
+		opcode : out std_logic_vector(6 downto 0);
+		func3 : out std_logic_vector(2 downto 0);
+		func7 : out std_logic_vector(6 downto 0);
+		shamt : out std_logic_vector(4 downto 0));
 	end component;
 	
 	component PCNextCalc is 
@@ -89,16 +87,31 @@ architecture structure of CPU32bit is
 	
 	component stateMachine is
 	port(
-		isBranch : in std_logic;
 		Q : in std_logic_vector(4 downto 0); --current state, starting off with max 12 states, can expand if not enough
 		immediate : in std_logic_vector(31 downto 0);
+		reg1 : in std_logic_vector(31 downto 0);
+		reg2 : in std_logic_vector(31 downto 0);
 		PC : in std_logic_vector(31 downto 0); --used in JAL instruction to store PC
 		ALU_output : in std_logic_vector(31 downto 0);
+		opcode : in std_logic_vector(6 downto 0);
+		func3 : in std_logic_vector(2 downto 0);
+		func7 : in std_logic_vector(6 downto 0);
+		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
+		shamt : in std_logic_vector(4 downto 0);
+		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
 		D : out std_logic_vector(4 downto 0); --next state
-		IR_LD : out std_logic;
 		writeData : out std_logic_vector(31 downto 0); --data to write to register
+		writeRAMData : out std_logic_vector(31 downto 0);
+		RegWE : out std_logic;
 		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
+		PC_LD : out std_logic;
+		UpdateRAMAddress : out std_logic;
+		S : out std_logic_vector(3 downto 0);
+		ALU_input1 : out std_logic_vector(31 downto 0);
+		ALU_input2 : out std_logic_vector(31 downto 0);
+		shamt_out : out std_logic_vector(4 downto 0);
+		RAMbyteEN : out std_logic_vector(3 downto 0);
 		useRAM : out std_logic); --ram is only enabled as long as useRAM = '1' and RAMAddress[14] = 1
 	end component;
 	
@@ -150,7 +163,7 @@ architecture structure of CPU32bit is
 	signal reg2_internal : std_logic_vector(31 downto 0); --value at register 2
 	signal cin_internal : std_logic; --uses a cin if provided, later hold COUT after add and use that as cin?
 	signal immediate_internal : std_logic_vector(31 downto 0); --holds immediate value
-	signal we_internal : std_logic;
+	signal RegWE_internal : std_logic;
 	signal PC_internal : std_logic_vector(31 downto 0); --will be fed into ROM to get instructions
 	signal UpdateRAMAddress_internal : std_logic;
 	signal isBranch_internal : std_logic;
@@ -166,24 +179,56 @@ architecture structure of CPU32bit is
 	signal RAMAddress_internal : std_logic_vector(31 downto 0);
 	signal RAMEnable : std_logic_vector(3 downto 0);
 	signal RAMOutput_internal : std_logic_vector(31 downto 0);
+	signal opcode_internal : std_logic_vector(6 downto 0);
+	signal func3_internal : std_logic_vector(2 downto 0);
+	signal func7_internal : std_logic_vector(6 downto 0);
+	signal ALU_input1_internal : std_logic_vector(31 downto 0);
+	signal ALU_input2_internal : std_logic_vector(31 downto 0);
+	signal shamt_out_internal :std_logic_vector(4 downto 0);
+	signal writeRAMData_internal : std_logic_vector(31 downto 0);
+	signal RAMbyteEN_internal : std_logic_vector(3 downto 0);
 	
 	
 	begin
 		InstructionRegister32 : instructionRegister port map(INPUT => INPUT, IR_LD => IR_LD_internal, clk => clk, reset => reset, IR => IR_internal);
 		
-		decoder : instructionDecoder port map(IR => IR_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal,
-															PC_LD => PC_LD_internal, S => S_internal, we => we_internal, isBranch => isBranch_internal, 
-															JALRFlag => JALRFlag_internal, instructionType => instructionType_internal, shamt => shamt_internal, UpdateRAMAddress => UpdateRAMAddress_internal);
+		decoder : instructionDecoder port map(IR => IR_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, JALRFlag => JALRFlag_internal, instructionType => instructionType_internal,
+		opcode => opcode_internal, func3 => func3_internal, func7 => func7_internal, shamt => shamt_internal);
 		
-		ALU : alu32bit port map(reg1 => reg1_internal, reg2 => reg2_internal, cin => cin_internal, S => S_internal, shamt => shamt_internal, output => ALUOutput_internal);
+		ALU : alu32bit port map(reg1 => ALU_input1_internal, reg2 => ALU_input2_internal, cin => cin_internal, S => S_internal, shamt => shamt_out_internal, output => ALUOutput_internal);
 		
-		Registers : registerFile port map(clk => clk, we => we_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, 
+		Registers : registerFile port map(clk => clk, we => RegWE_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, 
 							writeData => writeData_internal, readData1 => reg1_internal, readData2 => reg2_internal);
 							
 		ProgramCounter32 : programCounter port map(PC_next => PC_next_internal, clk => clk, PC_LD => PC_LD_internal, reset => reset, PC => PC_internal);
 		
-		FSM : stateMachine port map(isBranch => isBranch_internal, Q => Q_internal, immediate => immediate_internal, PC => PC_internal, ALU_output => ALUOutput_internal, IR_LD => IR_LD_internal, 
-											PCOffsetFlag => PCOffsetFlag_internal, D => D_internal, writeData => writeData_internal, RAMwe => RAMwe_internal, useRAM => useRAM_internal);
+		FSM : stateMachine port map(
+			Q => Q_internal,
+			immediate => immediate_internal,
+			reg1 => reg1_internal,
+			reg2 => reg2_internal,
+			PC => PC_internal,
+			ALU_output => ALUOutput_internal,
+			opcode => opcode_internal,
+			func3 => func3_internal,
+			func7 => func7_internal,
+			RAMData => RAMOutput_internal,
+			shamt => shamt_internal,
+			IR_LD => IR_LD_internal,
+			PCOffsetFlag => PCOffsetFlag_internal, 
+			D => D_internal,
+			writeData => writeData_internal, 
+			writeRAMData => writeRAMData_internal,
+			RegWE => RegWE_internal,
+			RAMwe => RAMwe_internal,
+			PC_LD => PC_LD_internal,
+			UpdateRAMAddress => UpdateRAMAddress_internal,
+			S => S_internal,
+			ALU_input1 => ALU_input1_internal,
+			ALU_input2 => ALU_input2_internal, 
+			shamt_out => shamt_out_internal,
+			RAMbyteEN => RAMbyteEN_internal,
+			useRAM => useRAM_internal);
 		
 		stateReg : stateRegister port map(D => D_internal, Q => Q_internal, clk => clk, reset => reset);
 		
@@ -193,9 +238,16 @@ architecture structure of CPU32bit is
 		
 		RAMAddr : RAMAddress port map(clk => clk, reset => reset, updateAddress => UpdateRAMAddress_internal, newAddress => ALUOutput_internal, Address => RAMAddress_internal);
 		
-		RAMEnable <= (others => useRAM_internal and RAMAddress_internal(14));
+		process(useRAM_internal, RAMAddress_internal, RAMbyteEN_internal)
+		begin
+			 if useRAM_internal = '1' and RAMAddress_internal(14) = '1' then
+				  RAMEnable <= RAMbyteEN_internal;
+			 else
+				  RAMEnable <= "0000";
+			 end if;
+		end process;
 		
-		RAM : CPURAM port map (address => RAMAddress_internal(13 downto 0), byteena => RAMEnable, clock => clk, data => reg2_internal, wren => RAMwe_internal, q => RAMOutput_internal);
+		RAM : CPURAM port map (address => RAMAddress_internal(13 downto 0), byteena => RAMEnable, clock => clk, data => writeRAMData_internal, wren => RAMwe_internal, q => RAMOutput_internal);
 		
 		ROM : CPUROM port map(address => pc_internal(15 downto 2), clock => clk, q => INPUT);
 end structure;
