@@ -7,7 +7,14 @@ use ieee.numeric_std.all;
 entity CPU32bit is
 	port(
 		clk : in std_logic;
-		reset : in std_logic);
+		reset : in std_logic;
+		--below outputs are used for testing
+		PC, IR, readData1, readData2, writeData, ALU_input1, ALU_input2, ALU_output, immediate, RAMin, RAMout, RAMAddressOut : out std_logic_vector(31 downto 0);
+		opcode, func7 : out std_logic_vector(6 downto 0);
+		func3 : out std_logic_vector(2 downto 0);
+		readReg1, readReg2, writeReg, Q : out std_logic_vector(4 downto 0);
+		IR_LD, PC_LD, RegWE, RAMwe, useRAM, ALUZero, ALULT, ALULTU : out std_logic
+		);
 end CPU32bit;
 
 architecture structure of CPU32bit is
@@ -31,6 +38,7 @@ architecture structure of CPU32bit is
 			cin : in std_logic; --carry in for addition
 			s : in std_logic_vector (3 downto 0); --mux select lines, will be used to pick the operation that will be performed
 			shamt : in std_logic_vector(4 downto 0); --shift amount, only used for shift instructions
+			ALUZero, ALULT, ALULTU : out std_logic;
 			output : out std_logic_vector(31 downto 0));
 	end component;
 	
@@ -97,6 +105,7 @@ architecture structure of CPU32bit is
 		func3 : in std_logic_vector(2 downto 0);
 		func7 : in std_logic_vector(6 downto 0);
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
+		ALUZero, ALULT, ALULTU : in std_logic;
 		shamt : in std_logic_vector(4 downto 0);
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
@@ -187,6 +196,9 @@ architecture structure of CPU32bit is
 	signal shamt_out_internal :std_logic_vector(4 downto 0);
 	signal writeRAMData_internal : std_logic_vector(31 downto 0);
 	signal RAMbyteEN_internal : std_logic_vector(3 downto 0);
+	signal ALUZero_internal : std_logic;
+	signal ALULT_internal : std_logic;
+	signal ALULTU_internal : std_logic;
 	
 	
 	begin
@@ -195,7 +207,8 @@ architecture structure of CPU32bit is
 		decoder : instructionDecoder port map(IR => IR_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, JALRFlag => JALRFlag_internal, instructionType => instructionType_internal,
 		opcode => opcode_internal, func3 => func3_internal, func7 => func7_internal, shamt => shamt_internal);
 		
-		ALU : alu32bit port map(reg1 => ALU_input1_internal, reg2 => ALU_input2_internal, cin => cin_internal, S => S_internal, shamt => shamt_out_internal, output => ALUOutput_internal);
+		ALU : alu32bit port map(reg1 => ALU_input1_internal, reg2 => ALU_input2_internal, cin => cin_internal, S => S_internal, shamt => shamt_out_internal, output => ALUOutput_internal, 
+										ALUZero => ALUZero_internal, ALULT => ALULT_internal, ALULTU => ALULTU_internal);
 		
 		Registers : registerFile port map(clk => clk, we => RegWE_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, 
 							writeData => writeData_internal, readData1 => reg1_internal, readData2 => reg2_internal);
@@ -214,6 +227,9 @@ architecture structure of CPU32bit is
 			func7 => func7_internal,
 			RAMData => RAMOutput_internal,
 			shamt => shamt_internal,
+			ALUZero => ALUZero_internal,
+			ALULT => ALULT_internal,
+			ALULTU => ALULTU_internal,
 			IR_LD => IR_LD_internal,
 			PCOffsetFlag => PCOffsetFlag_internal, 
 			D => D_internal,
@@ -249,5 +265,33 @@ architecture structure of CPU32bit is
 		
 		RAM : CPURAM port map (address => RAMAddress_internal(13 downto 0), byteena => RAMEnable, clock => clk, data => writeRAMData_internal, wren => RAMwe_internal, q => RAMOutput_internal);
 		
-		ROM : CPUROM port map(address => pc_internal(15 downto 2), clock => clk, q => INPUT);
+		ROM : CPUROM port map(address => PC_internal(15 downto 2), clock => clk, q => INPUT);
+		
+		PC <= PC_internal;
+		IR <= IR_internal;
+		readData1 <= reg1_internal;
+		readData2 <= reg2_internal;
+		writeData <= writeData_internal;
+		ALU_input1 <= ALU_input1_internal;
+		ALU_input2 <= ALU_input2_internal;
+		immediate <= immediate_internal;
+		RAMin <= writeRAMData_internal;
+		RAMout <= RAMOutput_internal;
+		RAMAddressOut <= RAMAddress_internal;
+		opcode <= opcode_internal;
+		func7 <= func7_internal;
+		func3 <= func3_internal;
+		readReg1 <= rr1_internal;
+		readReg2 <= rr2_internal;
+		writeReg <= wr_internal;
+		Q <= Q_internal;
+		IR_LD <= IR_LD_internal;
+		PC_LD <= PC_LD_internal;
+		RegWE <= RegWE_internal;
+		RAMwe <= RAMwe_internal;
+		useRAM <= useRAM_internal;
+		ALUZero <= ALUZero_internal;
+		ALULT <= ALULT_internal;
+		ALULTU <= ALULTU_internal;
+		
 end structure;

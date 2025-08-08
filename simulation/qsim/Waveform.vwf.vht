@@ -19,9 +19,9 @@
 -- the top level entity of the current Quartus project .The user can use this   
 -- testbench to simulate his design using a third-party simulation tool .       
 -- *****************************************************************************
--- Generated on "08/03/2025 03:22:28"
+-- Generated on "08/07/2025 23:34:34"
                                                              
--- Vhdl Test Bench(with test vectors) for design  :          alu32bit
+-- Vhdl Test Bench(with test vectors) for design  :          CPU32bit
 -- 
 -- Simulation tool : 3rd Party
 -- 
@@ -29,459 +29,119 @@
 LIBRARY ieee;                                               
 USE ieee.std_logic_1164.all;                                
 
-ENTITY alu32bit_vhd_vec_tst IS
-END alu32bit_vhd_vec_tst;
-ARCHITECTURE alu32bit_arch OF alu32bit_vhd_vec_tst IS
+ENTITY CPU32bit_vhd_vec_tst IS
+END CPU32bit_vhd_vec_tst;
+ARCHITECTURE CPU32bit_arch OF CPU32bit_vhd_vec_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL cin : STD_LOGIC;
-SIGNAL output : STD_LOGIC_VECTOR(31 DOWNTO 0);
-SIGNAL reg1 : STD_LOGIC_VECTOR(31 DOWNTO 0);
-SIGNAL reg2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
-SIGNAL s : STD_LOGIC_VECTOR(2 DOWNTO 0);
-COMPONENT alu32bit
+SIGNAL ALU_input1 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL ALU_input2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL ALU_output : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL ALULT : STD_LOGIC;
+SIGNAL ALULTU : STD_LOGIC;
+SIGNAL ALUZero : STD_LOGIC;
+SIGNAL clk : STD_LOGIC;
+SIGNAL func3 : STD_LOGIC_VECTOR(2 DOWNTO 0);
+SIGNAL func7 : STD_LOGIC_VECTOR(6 DOWNTO 0);
+SIGNAL immediate : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL IR : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL IR_LD : STD_LOGIC;
+SIGNAL opcode : STD_LOGIC_VECTOR(6 DOWNTO 0);
+SIGNAL PC : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL PC_LD : STD_LOGIC;
+SIGNAL Q : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL RAMAddressOut : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL RAMin : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL RAMout : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL RAMwe : STD_LOGIC;
+SIGNAL readData1 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL readData2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL readReg1 : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL readReg2 : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL RegWE : STD_LOGIC;
+SIGNAL reset : STD_LOGIC;
+SIGNAL useRAM : STD_LOGIC;
+SIGNAL writeData : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL writeReg : STD_LOGIC_VECTOR(4 DOWNTO 0);
+COMPONENT CPU32bit
 	PORT (
-	cin : IN STD_LOGIC;
-	output : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-	reg1 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	reg2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	s : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
+	ALU_input1 : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	ALU_input2 : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	ALU_output : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	ALULT : BUFFER STD_LOGIC;
+	ALULTU : BUFFER STD_LOGIC;
+	ALUZero : BUFFER STD_LOGIC;
+	clk : IN STD_LOGIC;
+	func3 : BUFFER STD_LOGIC_VECTOR(2 DOWNTO 0);
+	func7 : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
+	immediate : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	IR : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	IR_LD : BUFFER STD_LOGIC;
+	opcode : BUFFER STD_LOGIC_VECTOR(6 DOWNTO 0);
+	PC : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	PC_LD : BUFFER STD_LOGIC;
+	Q : BUFFER STD_LOGIC_VECTOR(4 DOWNTO 0);
+	RAMAddressOut : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	RAMin : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	RAMout : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	RAMwe : BUFFER STD_LOGIC;
+	readData1 : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	readData2 : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	readReg1 : BUFFER STD_LOGIC_VECTOR(4 DOWNTO 0);
+	readReg2 : BUFFER STD_LOGIC_VECTOR(4 DOWNTO 0);
+	RegWE : BUFFER STD_LOGIC;
+	reset : IN STD_LOGIC;
+	useRAM : BUFFER STD_LOGIC;
+	writeData : BUFFER STD_LOGIC_VECTOR(31 DOWNTO 0);
+	writeReg : BUFFER STD_LOGIC_VECTOR(4 DOWNTO 0)
 	);
 END COMPONENT;
 BEGIN
-	i1 : alu32bit
+	i1 : CPU32bit
 	PORT MAP (
 -- list connections between master ports and signals
-	cin => cin,
-	output => output,
-	reg1 => reg1,
-	reg2 => reg2,
-	s => s
+	ALU_input1 => ALU_input1,
+	ALU_input2 => ALU_input2,
+	ALU_output => ALU_output,
+	ALULT => ALULT,
+	ALULTU => ALULTU,
+	ALUZero => ALUZero,
+	clk => clk,
+	func3 => func3,
+	func7 => func7,
+	immediate => immediate,
+	IR => IR,
+	IR_LD => IR_LD,
+	opcode => opcode,
+	PC => PC,
+	PC_LD => PC_LD,
+	Q => Q,
+	RAMAddressOut => RAMAddressOut,
+	RAMin => RAMin,
+	RAMout => RAMout,
+	RAMwe => RAMwe,
+	readData1 => readData1,
+	readData2 => readData2,
+	readReg1 => readReg1,
+	readReg2 => readReg2,
+	RegWE => RegWE,
+	reset => reset,
+	useRAM => useRAM,
+	writeData => writeData,
+	writeReg => writeReg
 	);
--- reg1[31]
-t_prcs_reg1_31: PROCESS
-BEGIN
-	reg1(31) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_31;
--- reg1[30]
-t_prcs_reg1_30: PROCESS
-BEGIN
-	reg1(30) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_30;
--- reg1[29]
-t_prcs_reg1_29: PROCESS
-BEGIN
-	reg1(29) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_29;
--- reg1[28]
-t_prcs_reg1_28: PROCESS
-BEGIN
-	reg1(28) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_28;
--- reg1[27]
-t_prcs_reg1_27: PROCESS
-BEGIN
-	reg1(27) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_27;
--- reg1[26]
-t_prcs_reg1_26: PROCESS
-BEGIN
-	reg1(26) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_26;
--- reg1[25]
-t_prcs_reg1_25: PROCESS
-BEGIN
-	reg1(25) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_25;
--- reg1[24]
-t_prcs_reg1_24: PROCESS
-BEGIN
-	reg1(24) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_24;
--- reg1[23]
-t_prcs_reg1_23: PROCESS
-BEGIN
-	reg1(23) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_23;
--- reg1[22]
-t_prcs_reg1_22: PROCESS
-BEGIN
-	reg1(22) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_22;
--- reg1[21]
-t_prcs_reg1_21: PROCESS
-BEGIN
-	reg1(21) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_21;
--- reg1[20]
-t_prcs_reg1_20: PROCESS
-BEGIN
-	reg1(20) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_20;
--- reg1[19]
-t_prcs_reg1_19: PROCESS
-BEGIN
-	reg1(19) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_19;
--- reg1[18]
-t_prcs_reg1_18: PROCESS
-BEGIN
-	reg1(18) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_18;
--- reg1[17]
-t_prcs_reg1_17: PROCESS
-BEGIN
-	reg1(17) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_17;
--- reg1[16]
-t_prcs_reg1_16: PROCESS
-BEGIN
-	reg1(16) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_16;
--- reg1[15]
-t_prcs_reg1_15: PROCESS
-BEGIN
-	reg1(15) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_15;
--- reg1[14]
-t_prcs_reg1_14: PROCESS
-BEGIN
-	reg1(14) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_14;
--- reg1[13]
-t_prcs_reg1_13: PROCESS
-BEGIN
-	reg1(13) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_13;
--- reg1[12]
-t_prcs_reg1_12: PROCESS
-BEGIN
-	reg1(12) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_12;
--- reg1[11]
-t_prcs_reg1_11: PROCESS
-BEGIN
-	reg1(11) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_11;
--- reg1[10]
-t_prcs_reg1_10: PROCESS
-BEGIN
-	reg1(10) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_10;
--- reg1[9]
-t_prcs_reg1_9: PROCESS
-BEGIN
-	reg1(9) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_9;
--- reg1[8]
-t_prcs_reg1_8: PROCESS
-BEGIN
-	reg1(8) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_8;
--- reg1[7]
-t_prcs_reg1_7: PROCESS
-BEGIN
-	reg1(7) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_7;
--- reg1[6]
-t_prcs_reg1_6: PROCESS
-BEGIN
-	reg1(6) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_6;
--- reg1[5]
-t_prcs_reg1_5: PROCESS
-BEGIN
-	reg1(5) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_5;
--- reg1[4]
-t_prcs_reg1_4: PROCESS
-BEGIN
-	reg1(4) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_4;
--- reg1[3]
-t_prcs_reg1_3: PROCESS
-BEGIN
-	reg1(3) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_3;
--- reg1[2]
-t_prcs_reg1_2: PROCESS
-BEGIN
-	reg1(2) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_2;
--- reg1[1]
-t_prcs_reg1_1: PROCESS
-BEGIN
-	reg1(1) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_1;
--- reg1[0]
-t_prcs_reg1_0: PROCESS
-BEGIN
-	reg1(0) <= '1';
-WAIT;
-END PROCESS t_prcs_reg1_0;
--- reg2[31]
-t_prcs_reg2_31: PROCESS
-BEGIN
-	reg2(31) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_31;
--- reg2[30]
-t_prcs_reg2_30: PROCESS
-BEGIN
-	reg2(30) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_30;
--- reg2[29]
-t_prcs_reg2_29: PROCESS
-BEGIN
-	reg2(29) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_29;
--- reg2[28]
-t_prcs_reg2_28: PROCESS
-BEGIN
-	reg2(28) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_28;
--- reg2[27]
-t_prcs_reg2_27: PROCESS
-BEGIN
-	reg2(27) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_27;
--- reg2[26]
-t_prcs_reg2_26: PROCESS
-BEGIN
-	reg2(26) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_26;
--- reg2[25]
-t_prcs_reg2_25: PROCESS
-BEGIN
-	reg2(25) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_25;
--- reg2[24]
-t_prcs_reg2_24: PROCESS
-BEGIN
-	reg2(24) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_24;
--- reg2[23]
-t_prcs_reg2_23: PROCESS
-BEGIN
-	reg2(23) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_23;
--- reg2[22]
-t_prcs_reg2_22: PROCESS
-BEGIN
-	reg2(22) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_22;
--- reg2[21]
-t_prcs_reg2_21: PROCESS
-BEGIN
-	reg2(21) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_21;
--- reg2[20]
-t_prcs_reg2_20: PROCESS
-BEGIN
-	reg2(20) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_20;
--- reg2[19]
-t_prcs_reg2_19: PROCESS
-BEGIN
-	reg2(19) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_19;
--- reg2[18]
-t_prcs_reg2_18: PROCESS
-BEGIN
-	reg2(18) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_18;
--- reg2[17]
-t_prcs_reg2_17: PROCESS
-BEGIN
-	reg2(17) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_17;
--- reg2[16]
-t_prcs_reg2_16: PROCESS
-BEGIN
-	reg2(16) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_16;
--- reg2[15]
-t_prcs_reg2_15: PROCESS
-BEGIN
-	reg2(15) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_15;
--- reg2[14]
-t_prcs_reg2_14: PROCESS
-BEGIN
-	reg2(14) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_14;
--- reg2[13]
-t_prcs_reg2_13: PROCESS
-BEGIN
-	reg2(13) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_13;
--- reg2[12]
-t_prcs_reg2_12: PROCESS
-BEGIN
-	reg2(12) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_12;
--- reg2[11]
-t_prcs_reg2_11: PROCESS
-BEGIN
-	reg2(11) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_11;
--- reg2[10]
-t_prcs_reg2_10: PROCESS
-BEGIN
-	reg2(10) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_10;
--- reg2[9]
-t_prcs_reg2_9: PROCESS
-BEGIN
-	reg2(9) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_9;
--- reg2[8]
-t_prcs_reg2_8: PROCESS
-BEGIN
-	reg2(8) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_8;
--- reg2[7]
-t_prcs_reg2_7: PROCESS
-BEGIN
-	reg2(7) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_7;
--- reg2[6]
-t_prcs_reg2_6: PROCESS
-BEGIN
-	reg2(6) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_6;
--- reg2[5]
-t_prcs_reg2_5: PROCESS
-BEGIN
-	reg2(5) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_5;
--- reg2[4]
-t_prcs_reg2_4: PROCESS
-BEGIN
-	reg2(4) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_4;
--- reg2[3]
-t_prcs_reg2_3: PROCESS
-BEGIN
-	reg2(3) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_3;
--- reg2[2]
-t_prcs_reg2_2: PROCESS
-BEGIN
-	reg2(2) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_2;
--- reg2[1]
-t_prcs_reg2_1: PROCESS
-BEGIN
-	reg2(1) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_1;
--- reg2[0]
-t_prcs_reg2_0: PROCESS
-BEGIN
-	reg2(0) <= '0';
-WAIT;
-END PROCESS t_prcs_reg2_0;
 
--- cin
-t_prcs_cin: PROCESS
+-- clk
+t_prcs_clk: PROCESS
 BEGIN
-	cin <= '0';
+	clk <= '0';
 WAIT;
-END PROCESS t_prcs_cin;
--- s[2]
-t_prcs_s_2: PROCESS
+END PROCESS t_prcs_clk;
+
+-- reset
+t_prcs_reset: PROCESS
 BEGIN
-	FOR i IN 1 TO 12
-	LOOP
-		s(2) <= '0';
-		WAIT FOR 40000 ps;
-		s(2) <= '1';
-		WAIT FOR 40000 ps;
-	END LOOP;
-	s(2) <= '0';
+	reset <= '0';
 WAIT;
-END PROCESS t_prcs_s_2;
--- s[1]
-t_prcs_s_1: PROCESS
-BEGIN
-LOOP
-	s(1) <= '0';
-	WAIT FOR 20000 ps;
-	s(1) <= '1';
-	WAIT FOR 20000 ps;
-	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
-END LOOP;
-END PROCESS t_prcs_s_1;
--- s[0]
-t_prcs_s_0: PROCESS
-BEGIN
-LOOP
-	s(0) <= '0';
-	WAIT FOR 10000 ps;
-	s(0) <= '1';
-	WAIT FOR 10000 ps;
-	IF (NOW >= 1000000 ps) THEN WAIT; END IF;
-END LOOP;
-END PROCESS t_prcs_s_0;
-END alu32bit_arch;
+END PROCESS t_prcs_reset;
+END CPU32bit_arch;

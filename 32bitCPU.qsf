@@ -60,9 +60,6 @@ set_global_assignment -name VHDL_FILE registerFile.vhd
 set_global_assignment -name VHDL_FILE instructionRegister.vhd
 set_global_assignment -name VHDL_FILE programCounter.vhd
 set_global_assignment -name VHDL_FILE CPU32bit.vhd
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name MIF_FILE CPUMIF.mif
 set_global_assignment -name QIP_FILE CPUROM.qip
 set_global_assignment -name VHDL_FILE PCNextCalc.vhd
@@ -72,4 +69,56 @@ set_global_assignment -name VHDL_FILE instructionDecoder.vhd
 set_global_assignment -name QIP_FILE CPURAM.qip
 set_global_assignment -name VHDL_FILE RAMAddress.vhd
 set_global_assignment -name VHDL_FILE stateRegister.vhd
+set_global_assignment -name VHDL_FILE CPU32bit_tb.vhd
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH CPU32bit_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME CPU32bit_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME CPU32bit_tb -section_id CPU32bit_tb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit_tb.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE .gitignore -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE 32bitCPU.qpf -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE 32bitCPU.qsf -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE 32bitCPU_nativelink_simulation.rpt -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE alu32bit.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE alu32bit.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE c5_pin_model_dump.txt -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit_tb.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPUMIF.mif -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPUMIF.mif.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.bsf -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.cmp -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.qip -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.bsf -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.cmp -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.qip -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE immediateCalc.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE immediateCalc.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE instructionDecoder.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE instructionDecoder.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE instructionRegister.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE instructionRegister.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE PCNextCalc.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE PCNextCalc.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE programCounter.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE programCounter.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE RAMAddress.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE RAMAddress.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE README.md -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE registerFile.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE registerFile.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE stateMachine.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE stateMachine.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE stateRegister.vhd -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE stateRegister.vhd.bak -section_id CPU32bit_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE Waveform.vwf -section_id CPU32bit_tb

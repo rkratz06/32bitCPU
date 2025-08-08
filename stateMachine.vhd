@@ -17,6 +17,7 @@ entity stateMachine is
 		func7 : in std_logic_vector(6 downto 0);
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
 		shamt : in std_logic_vector(4 downto 0);
+		ALUZero, ALULT, ALULTU : in std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
 		D : out std_logic_vector(4 downto 0); --next state
@@ -69,33 +70,27 @@ begin
 				when "1100011" => --branch instructions
 					case func3 is
 						when "000" =>
-							S <= "1000";
-							if ALU_output = x"00000000" then
+							if ALUZero = '1' then
 								PCOffsetFlag <= '1';
 						end if;
 						when "001" =>
-							S <= "1000";
-							if ALU_output /= x"00000000" then
+							if ALUZero = '0' then
 								PCOffsetFlag <= '1';
 							end if;
 						when "100" =>
-							S <= "1100";
-							if ALU_output = x"00000001" then
+							if ALULT = '1' then
 								PCOffsetFlag <= '1';
 							end if;
 						when "101" =>
-							S <= "1100";
-							if ALU_output = x"00000000" then
+							if ALULT = '0' then
 								PCOffsetFlag <= '1';
 							end if;
 						when "110" =>
-							S <= "1101";
-							if ALU_output = x"00000001" then
+							if ALULTU = '1' then
 								PCOffsetFlag <= '1';
 							end if;
 						when "111" =>
-							S <= "1101";
-							if ALU_output = x"00000000" then
+							if ALULTU = '0' then
 								PCOffsetFlag <= '1';
 							end if;
 						when others =>
@@ -177,7 +172,8 @@ begin
 						S <= "0011";
 					when "111" => --AND rd, rs1, rs2
 						S <= "0010";
-				end case;
+					when others =>
+					end case;
 				when others =>
 			end case;
 		when "00010" => --PC Update
