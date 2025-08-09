@@ -63,6 +63,7 @@ vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/inst
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd}
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd}
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd}
+vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd}
 
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd}
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd}

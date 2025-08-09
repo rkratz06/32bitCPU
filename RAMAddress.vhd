@@ -14,7 +14,7 @@ entity RAMAddress is
 end RAMAddress;
 
 architecture behavior of RAMAddress is
-signal Address_internal : std_logic_vector(31 downto 0);
+signal Address_internal : std_logic_vector(31 downto 0) := (others => '0');
 begin
 	process(clk, reset)
 	begin
@@ -26,4 +26,5 @@ begin
 			end if;
 		end if;
 	end process;
+	Address <= Address_internal;
 end behavior;

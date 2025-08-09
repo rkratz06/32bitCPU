@@ -18,6 +18,7 @@ entity stateMachine is
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
 		shamt : in std_logic_vector(4 downto 0);
 		ALUZero, ALULT, ALULTU : in std_logic;
+		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
 		D : out std_logic_vector(4 downto 0); --next state
@@ -37,7 +38,7 @@ end stateMachine;
 
 architecture behavior of stateMachine is
 begin
-	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt)
+	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt, ALUZero, ALULT, ALULTU)
 	begin
 		IR_LD <= '0';
 		PCOffsetFlag <= '0';
@@ -53,10 +54,12 @@ begin
 		ALU_input2 <= x"00000000";
 		shamt_out <= shamt;
 		RAMbyteEN <= (others => '0');
+		updateWritebackReg <= '0';
 		case Q is
 		when "00000" => --instruction fetch
 			IR_LD <= '1';
 			PC_LD <= '1';
+			D <= "00001";
 		when "00001" =>  --decode/execute phase
 			case opcode is
 				when "1100111" =>
@@ -68,6 +71,7 @@ begin
 				when "1101111" =>
 					 D <= "00010";
 				when "1100011" => --branch instructions
+					updateWritebackReg <= '1';
 					case func3 is
 						when "000" =>
 							if ALUZero = '1' then
@@ -95,6 +99,7 @@ begin
 							end if;
 						when others =>
 					end case;
+					writeData <= ALU_output;
 					D <= "00010"; --update PC next state;
 				when "0000011" => --load instructions
 					ALU_input1 <= reg1;
@@ -109,6 +114,7 @@ begin
 					UpdateRAMAddress <= '1';
 					D <= "00100"; --RAM write state
 				when "0010011" => --arithmetic with immediate
+					updateWritebackReg <= '1';
 					ALU_input1 <= reg1;
 					ALU_input2 <= immediate;
 					D <= "00101";
@@ -137,7 +143,9 @@ begin
 							end case;
 						when others =>
 					end case;
+					writeData <= ALU_output;
 				when "0110011" =>
+					updateWritebackReg <= '1';
 					ALU_input1 <= reg1;
 					ALU_input2 <= reg2;
 					D <= "00101";
@@ -176,10 +184,12 @@ begin
 					end case;
 				when others =>
 			end case;
+			writeData <= ALU_output;
 		when "00010" => --PC Update
 			PC_LD <= '1';
 		when "00011" => --RAM read state
 			useRAM <= '1';
+			updateWritebackReg <= '1';
 			D <= "00101"; --to writeback state
 			case func3 is
 				when "000" =>
@@ -211,23 +221,6 @@ begin
 		when "00101" => --writeback state
 			RegWE <= '1';
 			D <= "00000";
-			if opcode = "0000011" then
-				case func3 is
-					when "000" =>
-						writeData <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
-					when "001" =>
-						writeData <= std_logic_vector(resize(signed(RAMData(15 downto 0)), 32));
-					when "010" => 
-						writeData <= RAMData;
-					when "100" =>
-						writeData <= std_logic_vector(resize(unsigned(RAMData(7 downto 0)), 32));
-					when "101" =>
-						writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
-					when others =>
-				end case;
-			else
-				writeData <= ALU_output;
-			end if;
 		when others =>
 		end case;
 	end process;
