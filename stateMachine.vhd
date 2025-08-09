@@ -58,49 +58,84 @@ begin
 		case Q is
 		when "00000" => --instruction fetch
 			IR_LD <= '1';
-			PC_LD <= '1';
 			D <= "00001";
 		when "00001" =>  --decode/execute phase
 			case opcode is
-				when "1100111" =>
-					 D <= "00010";
-				when "0110111" => 
-					 D <= "00010";
-				when "0010111" =>
-					 D <= "00010";
-				when "1101111" =>
-					 D <= "00010";
-				when "1100011" => --branch instructions
+				when "0110111" => --LUI
+					ALU_input1 <= immediate;
 					updateWritebackReg <= '1';
+					writeData <= ALU_output;
+					S <= "0000";
+					D <= "00101";
+				when "0010111" => --	AUIPC
+					ALU_input1 <= immediate;
+					ALU_input2 <= PC;
+					updateWritebackReg <= '1';
+					writeData <= ALU_output;
+					S <= "0100";
+					D <= "00101";
+				when "1101111" => --JAL	
+					ALU_input1 <= PC;
+					ALU_input2 <= x"00000004";
+					writeData <= ALU_output;
+					S <= "0100";
+					updateWritebackReg <= '1';
+					PCOffsetFlag <= '1';
+					 D <= "00111"; --goto state that sets PCOffsetFlag true and writeback and update PC
+				when "1100111" => --JALR
+					--JALRFlag set in decoder
+					ALU_input1 <= PC;
+					ALU_input2 <= x"00000004";
+					writeData <= ALU_output;
+					S <= "0100";
+					updateWritebackReg <= '1';
+					D <= "00101";
+				when "1100011" => --branch instructions
 					case func3 is
 						when "000" =>
 							if ALUZero = '1' then
 								PCOffsetFlag <= '1';
+								D <= "00110"; --update PC with offset
+							else
+								D <= "00010"; --update PC without offset
 						end if;
 						when "001" =>
 							if ALUZero = '0' then
 								PCOffsetFlag <= '1';
+								D <= "00110"; --update PC with offset
+							else
+								D <= "00010"; --update PC without offset
 							end if;
 						when "100" =>
 							if ALULT = '1' then
 								PCOffsetFlag <= '1';
+								D <= "00110"; --update PC with offset
+							else
+								D <= "00010"; --update PC without offset
 							end if;
 						when "101" =>
 							if ALULT = '0' then
 								PCOffsetFlag <= '1';
+								D <= "00110"; --update PC with offset
+							else
+								D <= "00010"; --update PC without offset
 							end if;
 						when "110" =>
 							if ALULTU = '1' then
 								PCOffsetFlag <= '1';
+								D <= "00110"; --update PC with offset
+							else
+								D <= "00010"; --update PC without offset
 							end if;
 						when "111" =>
 							if ALULTU = '0' then
 								PCOffsetFlag <= '1';
+								D <= "00110"; --update PC with offset
+							else
+								D <= "00010"; --update PC without offset
 							end if;
 						when others =>
 					end case;
-					writeData <= ALU_output;
-					D <= "00010"; --update PC next state;
 				when "0000011" => --load instructions
 					ALU_input1 <= reg1;
 					ALU_input2 <= immediate;
@@ -182,11 +217,12 @@ begin
 						S <= "0010";
 					when others =>
 					end case;
+					writeData <= ALU_output;
 				when others =>
 			end case;
-			writeData <= ALU_output;
-		when "00010" => --PC Update
+		when "00010" => --update pc, no writeback
 			PC_LD <= '1';
+			D <= "00000";
 		when "00011" => --RAM read state
 			useRAM <= '1';
 			updateWritebackReg <= '1';
@@ -206,6 +242,7 @@ begin
 			end case;
 		when "00100" => --RAM Write state
 			useRAM <= '1';
+			PC_LD <= '1';
 			D <= "00000";
 			RAMwe <= '1';
 			writeRAMData <= reg2;
@@ -218,8 +255,18 @@ begin
 					RAMbyteEN <= "1111";
 				when others =>
 			end case;
-		when "00101" => --writeback state
+		when "00101" => --writeback state (includes updating PC)
 			RegWE <= '1';
+			PC_LD <= '1';
+			D <= "00000";
+		when "00110" => --update PC with offset
+			PC_LD <= '1';
+			PCOffsetFlag <= '1';
+			D <= "00000";
+		when "00111" => --writeback, update pc, with offset
+			RegWE <= '1';
+			PC_LD <= '1';
+			PCOffsetFlag <= '1';
 			D <= "00000";
 		when others =>
 		end case;
