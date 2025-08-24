@@ -14,7 +14,7 @@ entity CPU32bit is
 		func3 : out std_logic_vector(2 downto 0);
 		readReg1, readReg2, writeReg, Q : out std_logic_vector(4 downto 0);
 		S : out std_logic_vector(3 downto 0);
-		IR_LD, PC_LD, RegWE, RAMwe, useRAM, ALUZero, ALULT, ALULTU, updateWritebackReg : out std_logic
+		IR_LD, PC_LD, RegWE, RAMwe, RAMen, ALUZero, ALULT, ALULTU, updateWritebackReg : out std_logic
 		);
 end CPU32bit;
 
@@ -78,6 +78,9 @@ architecture structure of CPU32bit is
 	component PCNextCalc is 
 	port(
 		PC : in std_logic_vector(31 downto 0);
+		clk : in std_logic;
+		updatePCNext : in std_logic;
+		reset : in std_logic; --when reset is true, set PC to 0
 		PCOffsetFlag : in std_logic; --if true, branch was taken, PC_next <- PC + immediate, otherwise PC_next <- PC + 4
 		JALRFlag : in std_logic; --if flag = '1', JALR was executed
 		Immediate : in std_logic_vector(31 downto 0); --byte aligned immediate
@@ -105,8 +108,8 @@ architecture structure of CPU32bit is
 		func3 : in std_logic_vector(2 downto 0);
 		func7 : in std_logic_vector(6 downto 0);
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
-		ALUZero, ALULT, ALULTU : in std_logic;
 		shamt : in std_logic_vector(4 downto 0);
+		ALUZero, ALULT, ALULTU, reset : in std_logic;
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
@@ -116,13 +119,14 @@ architecture structure of CPU32bit is
 		RegWE : out std_logic;
 		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
 		PC_LD : out std_logic;
+		updatePCNext : out std_logic;
 		UpdateRAMAddress : out std_logic;
 		S : out std_logic_vector(3 downto 0);
 		ALU_input1 : out std_logic_vector(31 downto 0);
 		ALU_input2 : out std_logic_vector(31 downto 0);
 		shamt_out : out std_logic_vector(4 downto 0);
 		RAMbyteEN : out std_logic_vector(3 downto 0);
-		useRAM : out std_logic); --ram is only enabled as long as useRAM = '1' and RAMAddress[14] = 1
+		RAMen : out std_logic); --ram is only enabled as long as RAMen = '1' and RAMAddress[14] = 1
 	end component;
 	
 	component stateRegister is
@@ -193,7 +197,7 @@ architecture structure of CPU32bit is
 	signal PCOffsetFlag_internal : std_logic;
 	signal writeData_internal : std_logic_vector(31 downto 0);
 	signal RAMwe_internal : std_logic;
-	signal useRAM_internal : std_logic;
+	signal RAMen_internal : std_logic;
 	signal RAMAddress_internal : std_logic_vector(31 downto 0);
 	signal RAMEnable : std_logic_vector(3 downto 0);
 	signal RAMOutput_internal : std_logic_vector(31 downto 0);
@@ -210,6 +214,7 @@ architecture structure of CPU32bit is
 	signal ALULTU_internal : std_logic;
 	signal newWritebackData_internal : std_logic_vector(31 downto 0);
 	signal updateWritebackReg_internal : std_logic;
+	signal updatePCNext_internal : std_logic;
 	
 	
 	begin
@@ -227,7 +232,9 @@ architecture structure of CPU32bit is
 		ProgramCounter32 : programCounter port map(PC_next => PC_next_internal, clk => clk, PC_LD => PC_LD_internal, reset => reset, PC => PC_internal);
 		
 		FSM : stateMachine port map(
+			reset => reset, 
 			Q => Q_internal,
+			updatePCNext => updatePCNext_internal,
 			immediate => immediate_internal,
 			reg1 => reg1_internal,
 			reg2 => reg2_internal,
@@ -256,21 +263,21 @@ architecture structure of CPU32bit is
 			shamt_out => shamt_out_internal,
 			RAMbyteEN => RAMbyteEN_internal,
 			updateWritebackReg => updateWritebackReg_internal,
-			useRAM => useRAM_internal);
+			RAMen => RAMen_internal);
 		
 		stateReg : stateRegister port map(D => D_internal, Q => Q_internal, clk => clk, reset => reset);
 		
 		immediates : immediateCalc port map(instructionType => instructionType_internal, IR => IR_internal, immediate => immediate_internal);
 		
-		PCnext : PCNextCalc port map(PC => PC_internal, PCOffsetFlag => PCOffsetFlag_internal, JALRFlag => JALRFlag_internal, Immediate => immediate_internal, reg1 => reg1_internal, PC_next => PC_next_internal);
+		PCnext : PCNextCalc port map(clk => clk, updatePCNext => updatePCNext_internal, reset => reset, PC => PC_internal, PCOffsetFlag => PCOffsetFlag_internal, JALRFlag => JALRFlag_internal, Immediate => immediate_internal, reg1 => reg1_internal, PC_next => PC_next_internal);
 		
 		RAMAddr : RAMAddress port map(clk => clk, reset => reset, updateAddress => UpdateRAMAddress_internal, newAddress => ALUOutput_internal, Address => RAMAddress_internal);
 		
 		writebackReg : writebackRegister port map(clk => clk, newData => newWritebackData_internal, writebackData => writeData_internal, reset => reset, updateWritebackReg => updateWritebackReg_internal);
 		
-		process(useRAM_internal, RAMAddress_internal, RAMbyteEN_internal)
+		process(RAMen_internal, RAMAddress_internal, RAMbyteEN_internal)
 		begin
-			 if useRAM_internal = '1' and RAMAddress_internal(14) = '1' then
+			 if RAMen_internal = '1' and RAMAddress_internal(14) = '1' then
 				  RAMEnable <= RAMbyteEN_internal;
 			 else
 				  RAMEnable <= "0000";
@@ -304,7 +311,7 @@ architecture structure of CPU32bit is
 		PC_LD <= PC_LD_internal;
 		RegWE <= RegWE_internal;
 		RAMwe <= RAMwe_internal;
-		useRAM <= useRAM_internal;
+		RAMen <= RAMen_internal;
 		ALUZero <= ALUZero_internal;
 		ALULT <= ALULT_internal;
 		ALULTU <= ALULTU_internal;

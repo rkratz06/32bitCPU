@@ -24,8 +24,6 @@ signal opcode_internal : std_logic_vector(6 downto 0);
 signal func3_internal : std_logic_vector(2 downto 0);
 signal func7_internal : std_logic_vector(6 downto 0);
 begin
-	--add pipelining later
-	
 	opcode_internal <= IR(6 downto 0);
 	func3_internal <= IR(14 downto 12); --default position of func3
 	func7_internal <= IR(31 downto 25); --default position of func7
@@ -61,13 +59,17 @@ begin
 				instructionType <= "011";
 				writeReg <= (others => '0');
 			when "0000011" => --load instructions
-				InstructionType <= "001";
+				instructionType <= "001";
+				writeReg <= IR(11 downto 7);
+				readReg1 <= IR(19 downto 15);
 				readReg2 <= (others => '0');
 			when "0100011" => --store instructions
-				InstructionType <= "010";
+				instructionType <= "010";
 				writeReg <= (others => '0');
+				readReg1 <= IR(19 downto 15); 
+				readReg2 <= IR(24 downto 20);
 			when "0010011" => --arithmetic operations with immediates
-				InstructionType <= "001";
+				instructionType <= "001";
 				readReg2 <= (others => '0');
 				case func3_internal is
 					when "001" => --SLLI rd, rs1, shamt
@@ -77,7 +79,10 @@ begin
 					when others =>
 				end case;
 			when "0110011" => --arithmetic with 2 registers
-				InstructionType <= "000";
+				writeReg <=	IR(11 downto 7); 
+				readReg1 <= IR(19 downto 15); 
+				readReg2 <= IR(24 downto 20); 
+				instructionType <= "000";
 			when "0001111" => --fence instructions
 				case func3_internal is
 					when "000" => --FENCE

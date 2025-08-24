@@ -17,7 +17,7 @@ entity stateMachine is
 		func7 : in std_logic_vector(6 downto 0);
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
 		shamt : in std_logic_vector(4 downto 0);
-		ALUZero, ALULT, ALULTU : in std_logic;
+		ALUZero, ALULT, ALULTU, reset : in std_logic;
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
@@ -27,18 +27,29 @@ entity stateMachine is
 		RegWE : out std_logic;
 		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
 		PC_LD : out std_logic;
+		updatePCNext : out std_logic;
 		UpdateRAMAddress : out std_logic;
 		S : out std_logic_vector(3 downto 0);
 		ALU_input1 : out std_logic_vector(31 downto 0);
 		ALU_input2 : out std_logic_vector(31 downto 0);
 		shamt_out : out std_logic_vector(4 downto 0);
 		RAMbyteEN : out std_logic_vector(3 downto 0);
-		useRAM : out std_logic); --ram is only enabled as long as useRAM = '1' and RAMAddress[14] = 1
+		RAMen : out std_logic); --ram is only enabled as long as RAMen = '1' and RAMAddress[14] = 1
 end stateMachine;
 
 architecture behavior of stateMachine is
+--states listed below
+constant FETCH : std_logic_vector(4 downto 0) := "00000";
+constant DECODE : std_logic_vector(4 downto 0) := "00001";
+constant RAM_ADDR : std_logic_vector(4 downto 0) := "00011";
+constant RAM_WRITE : std_logic_vector(4 downto 0) := "00100";
+constant WRITEBACK : std_logic_vector(4 downto 0) := "00101";
+constant BRANCH_TAKEN : std_logic_vector(4 downto 0) := "00110";
+constant RAM_WAIT : std_logic_vector(4 downto 0) := "00010";
+constant EXECUTE : std_logic_vector(4 downto 0) := "01000";
+
 begin
-	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt, ALUZero, ALULT, ALULTU)
+	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt, ALUZero, ALULT, ALULTU, reset)
 	begin
 		IR_LD <= '0';
 		PCOffsetFlag <= '0';
@@ -49,226 +60,205 @@ begin
 		PC_LD <= '0';
 		UpdateRAMAddress <= '0';
 		S <= "0000";
-		useRAM <= '0';
+		RAMen <= '0';
 		ALU_input1 <= x"00000000";
 		ALU_input2 <= x"00000000";
 		shamt_out <= shamt;
 		RAMbyteEN <= (others => '0');
 		updateWritebackReg <= '0';
-		case Q is
-		when "00000" => --instruction fetch
-			IR_LD <= '1';
-			D <= "00001";
-		when "00001" =>  --decode/execute phase
-			case opcode is
-				when "0110111" => --LUI
-					ALU_input1 <= immediate;
-					updateWritebackReg <= '1';
-					writeData <= ALU_output;
-					S <= "0000";
-					D <= "00101";
-				when "0010111" => --	AUIPC
-					ALU_input1 <= immediate;
-					ALU_input2 <= PC;
-					updateWritebackReg <= '1';
-					writeData <= ALU_output;
-					S <= "0100";
-					D <= "00101";
-				when "1101111" => --JAL	
-					ALU_input1 <= PC;
-					ALU_input2 <= x"00000004";
-					writeData <= ALU_output;
-					S <= "0100";
-					updateWritebackReg <= '1';
-					PCOffsetFlag <= '1';
-					 D <= "00111"; --goto state that sets PCOffsetFlag true and writeback and update PC
-				when "1100111" => --JALR
-					--JALRFlag set in decoder
-					ALU_input1 <= PC;
-					ALU_input2 <= x"00000004";
-					writeData <= ALU_output;
-					S <= "0100";
-					updateWritebackReg <= '1';
-					D <= "00101";
-				when "1100011" => --branch instructions
-					case func3 is
-						when "000" =>
-							if ALUZero = '1' then
-								PCOffsetFlag <= '1';
-								D <= "00110"; --update PC with offset
-							else
-								D <= "00010"; --update PC without offset
-						end if;
-						when "001" =>
-							if ALUZero = '0' then
-								PCOffsetFlag <= '1';
-								D <= "00110"; --update PC with offset
-							else
-								D <= "00010"; --update PC without offset
-							end if;
-						when "100" =>
-							if ALULT = '1' then
-								PCOffsetFlag <= '1';
-								D <= "00110"; --update PC with offset
-							else
-								D <= "00010"; --update PC without offset
-							end if;
-						when "101" =>
-							if ALULT = '0' then
-								PCOffsetFlag <= '1';
-								D <= "00110"; --update PC with offset
-							else
-								D <= "00010"; --update PC without offset
-							end if;
-						when "110" =>
-							if ALULTU = '1' then
-								PCOffsetFlag <= '1';
-								D <= "00110"; --update PC with offset
-							else
-								D <= "00010"; --update PC without offset
-							end if;
-						when "111" =>
-							if ALULTU = '0' then
-								PCOffsetFlag <= '1';
-								D <= "00110"; --update PC with offset
-							else
-								D <= "00010"; --update PC without offset
-							end if;
-						when others =>
-					end case;
-				when "0000011" => --load instructions
-					ALU_input1 <= reg1;
-					ALU_input2 <= immediate;
-					S <= "0100";
-					UpdateRAMAddress <= '1';
-					D <= "00011"; --go to memory access state
-				when "0100011" => --store instructions
-					ALU_input1 <= reg1;
-					ALU_input2 <= immediate;
-					S <= "0100";
-					UpdateRAMAddress <= '1';
-					D <= "00100"; --RAM write state
-				when "0010011" => --arithmetic with immediate
-					updateWritebackReg <= '1';
-					ALU_input1 <= reg1;
-					ALU_input2 <= immediate;
-					D <= "00101";
-					case func3 is 
-						when "000" => --ADDI rd, rs1, imm
-							S <= "0100";
-						when "010" => --SLTI rd, rs1, imm
-							S <= "1100";
-						when "011" => -- SLTIU rd, rs1, imm
-							S <= "1101";
-						when "100" => --XORI rd, rs1, imm
-							S <= "1000";
-						when "110" => --ORI rd, rs1, imm
-							S <= "0011";
-						when "111" => --ANDI rd, rs1, imm
-							S <= "0010";
-						when "001" => --SLLI rd, rs1, shamt
-							S <= "1001";
-						when "101" => --right shift instructions
-							case func7 is
-								when "0000000" => --SRLI rd, rs11, shamt
-									S <= "1010";
-								when "0100000" => --SRAI rd, rs1, shamt
-									S <= "1011";
-								when others => 
-							end case;
-						when others =>
-					end case;
-					writeData <= ALU_output;
-				when "0110011" =>
-					updateWritebackReg <= '1';
-					ALU_input1 <= reg1;
-					ALU_input2 <= reg2;
-					D <= "00101";
-					case func3 is
-					when "000" => --ADD/SUB
-						case func7 is
-							when "0000000" => -- ADD rd, rs1, rs2
-								S <= "0100";
-							when "0100000" => -- SUB rd, rs1, rs2
-								S <= "0101";
-							when others =>
-						end case;
-					when "001" => --SLL rd rs1, rs2
-						S <= "1001";
-						shamt_out <= reg2(4 downto 0);
-					when "010" => --SLT rd, rs1, rs2
-						S <= "1100";
-					when "011" => --SLTU rd, rs1, rs2
-						S <= "1101";
-					when "100" => --XOR rd, rs1, rs2
-						S <= "1000";
-					when "101" => --right shift instructions
-						shamt_out <= reg2(4 downto 0);
-						case func7 is
-							when "0000000" => --SRL rd, rs1, rs2
-								S <= "1010";
-							when "0100000" => --SRA rd, rs1, rs2
-								S <= "1011";
-							when others =>
-						end case;
-					when "110" => --OR rd, rs1, rs2
-						S <= "0011";
-					when "111" => --AND rd, rs1, rs2
-						S <= "0010";
+		updatePCNext <= '0';
+		if reset = '1' then --reset state, force PC to be 0
+			PC_LD <= '1';
+		else
+			case Q is
+			when FETCH => --instruction fetch
+				PC_LD <= '1';
+				IR_LD <= '1';
+				D <= DECODE;
+			when DECODE =>  --decode phase, instruction decoder runs in background, values are stable after clock cycle
+				case opcode is 
+					when "0000011" | "0100011"	=>
+						D <= RAM_ADDR;
+					when "0110111" | "0010111" | "1101111" | "1100111" | "1100011" | "0010011" | "0110011" =>
+						D <= EXECUTE;
 					when others =>
-					end case;
-					writeData <= ALU_output;
-				when others =>
+						D <= FETCH;
+				end case;
+			when EXECUTE =>
+				updatePCNext <= '1';
+				case opcode is
+					when "0110111" => --LUI
+						ALU_input1 <= immediate;
+						updateWritebackReg <= '1';
+						writeData <= ALU_output;
+						S <= "0000";
+						D <= WRITEBACK;
+					when "0010111" => --	AUIPC
+						ALU_input1 <= immediate;
+						ALU_input2 <= PC;
+						updateWritebackReg <= '1';
+						writeData <= ALU_output;
+						S <= "0100";
+						D <= WRITEBACK;
+					when "1101111" => --JAL
+						PCOffsetFlag <= '1';
+						D <= FETCH;
+					when "1100111" => --JALR
+						--JALRFlag set in decoder
+						writeData <= PC;
+						updateWritebackReg <= '1';
+						PCOffsetFlag <= '1';
+						D <= WRITEBACK;
+					when "1100011" => --branch instructions
+					D <= FETCH;
+						case func3 is
+							when "000" =>
+								if ALUZero = '1' then
+									PCOffsetFlag <= '1';
+							end if;
+							when "001" =>
+								if ALUZero = '0' then
+									PCOffsetFlag <= '1';
+								end if;
+							when "100" =>
+								if ALULT = '1' then
+									PCOffsetFlag <= '1';
+								end if;
+							when "101" =>
+								if ALULT = '0' then
+									PCOffsetFlag <= '1';
+								end if;
+							when "110" =>
+								if ALULTU = '1' then
+									PCOffsetFlag <= '1';
+								end if;
+							when "111" =>
+								if ALULTU = '0' then
+									PCOffsetFlag <= '1';
+								end if;
+							when others =>
+						end case;
+					when "0010011" => --arithmetic with immediate
+						updateWritebackReg <= '1'; --output of ALU will be registered to be used in writeback state
+						ALU_input1 <= reg1;
+						ALU_input2 <= immediate;
+						D <= WRITEBACK;
+						case func3 is 
+							when "000" => --ADDI rd, rs1, imm
+								S <= "0100";
+							when "010" => --SLTI rd, rs1, imm
+								S <= "1100";
+							when "011" => -- SLTIU rd, rs1, imm
+								S <= "1101";
+							when "100" => --XORI rd, rs1, imm
+								S <= "1000";
+							when "110" => --ORI rd, rs1, imm
+								S <= "0011";
+							when "111" => --ANDI rd, rs1, imm
+								S <= "0010";
+							when "001" => --SLLI rd, rs1, shamt
+								S <= "1001";
+							when "101" => --right shift instructions
+								case func7 is
+									when "0000000" => --SRLI rd, rs11, shamt
+										S <= "1010";
+									when "0100000" => --SRAI rd, rs1, shamt
+										S <= "1011";
+									when others => 
+								end case;
+							when others =>
+						end case;
+						writeData <= ALU_output;
+					when "0110011" => --arithmetic with 2 registers
+						updateWritebackReg <= '1'; --output of ALU will be registered to be used in writeback state
+						ALU_input1 <= reg1;
+						ALU_input2 <= reg2;
+						D <= WRITEBACK;
+						case func3 is
+						when "000" => --ADD/SUB
+							case func7 is
+								when "0000000" => -- ADD rd, rs1, rs2
+									S <= "0100";
+								when "0100000" => -- SUB rd, rs1, rs2
+									S <= "0101";
+								when others =>
+							end case;
+						when "001" => --SLL rd rs1, rs2
+							S <= "1001";
+							shamt_out <= reg2(4 downto 0);
+						when "010" => --SLT rd, rs1, rs2
+							S <= "1100";
+						when "011" => --SLTU rd, rs1, rs2
+							S <= "1101";
+						when "100" => --XOR rd, rs1, rs2
+							S <= "1000";
+						when "101" => --right shift instructions
+							shamt_out <= reg2(4 downto 0);
+							case func7 is
+								when "0000000" => --SRL rd, rs1, rs2
+									S <= "1010";
+								when "0100000" => --SRA rd, rs1, rs2
+									S <= "1011";
+								when others =>
+							end case;
+						when "110" => --OR rd, rs1, rs2
+							S <= "0011";
+						when "111" => --AND rd, rs1, rs2
+							S <= "0010";
+						when others =>
+						end case;
+						writeData <= ALU_output;
+					when others =>
+				end case;
+			when RAM_WAIT => --waits a clock cycle for synchronous RAM access
+				updateWritebackReg <= '1';
+				D <= WRITEBACK;
+				case func3 is
+					when "000" =>
+						writeData <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
+					when "001" =>
+						writeData <= std_logic_vector(resize(signed(RAMData(15 downto 0)), 32));
+					when "010" => 
+						writeData <= RAMData;
+					when "100" =>
+						writeData <= std_logic_vector(resize(unsigned(RAMData(7 downto 0)), 32));
+					when "101" =>
+						writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
+					when others =>
+				end case;
+			when RAM_ADDR => --state to get ram address
+				updatePCNext <= '1'; --sets PC to increment
+				ALU_input1 <= reg1;
+				ALU_input2 <= immediate;
+				S <= "0100";
+				RAMen <= '1';
+				if opcode = "0000011" then --if load
+					D <= RAM_WAIT;
+				else
+					D <= RAM_WRITE;
+				end if;
+			when RAM_WRITE => --RAM Write state
+				RAMen <= '1';
+				D <= FETCH;
+				RAMwe <= '1';
+				writeRAMData <= reg2;
+				case func3 is
+					when "000" =>
+						RAMbyteEN <= "0001";
+					when "001" =>
+						RAMbyteEN <= "0011";
+					when "010" =>
+						RAMbyteEN <= "1111";
+					when others =>
+				end case;
+			when WRITEBACK => --writeback state
+				RegWE <= '1';
+				D <= FETCH;
+			when BRANCH_TAKEN => --update PC with offset
+				PCOffsetFlag <= '1';
+				D <= FETCH;
+			when others =>
 			end case;
-		when "00010" => --update pc, no writeback
-			PC_LD <= '1';
-			D <= "00000";
-		when "00011" => --RAM read state
-			useRAM <= '1';
-			updateWritebackReg <= '1';
-			D <= "00101"; --to writeback state
-			case func3 is
-				when "000" =>
-					writeData <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
-				when "001" =>
-					writeData <= std_logic_vector(resize(signed(RAMData(15 downto 0)), 32));
-				when "010" => 
-					writeData <= RAMData;
-				when "100" =>
-					writeData <= std_logic_vector(resize(unsigned(RAMData(7 downto 0)), 32));
-				when "101" =>
-					writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
-				when others =>
-			end case;
-		when "00100" => --RAM Write state
-			useRAM <= '1';
-			PC_LD <= '1';
-			D <= "00000";
-			RAMwe <= '1';
-			writeRAMData <= reg2;
-			case func3 is
-				when "000" =>
-					RAMbyteEN <= "0001";
-				when "001" =>
-					RAMbyteEN <= "0011";
-				when "010" =>
-					RAMbyteEN <= "1111";
-				when others =>
-			end case;
-		when "00101" => --writeback state (includes updating PC)
-			RegWE <= '1';
-			PC_LD <= '1';
-			D <= "00000";
-		when "00110" => --update PC with offset
-			PC_LD <= '1';
-			PCOffsetFlag <= '1';
-			D <= "00000";
-		when "00111" => --writeback, update pc, with offset
-			RegWE <= '1';
-			PC_LD <= '1';
-			PCOffsetFlag <= '1';
-			D <= "00000";
-		when others =>
-		end case;
+		end if;
 	end process;
 end behavior;
