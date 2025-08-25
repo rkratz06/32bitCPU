@@ -1,4 +1,4 @@
---32-bit CPU
+--32-bit CPU top level design
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -48,6 +48,14 @@ architecture structure of CPU32bit is
 			IR_LD : in std_logic;
 			clk: in std_logic;
 			reset: in std_logic;
+			JALRFlag_reg : out std_logic;
+			instructionType_reg : out std_logic_vector(2 downto 0);
+			func3_reg          : out std_logic_vector(2 downto 0);
+			func7_reg          : out std_logic_vector(6 downto 0);
+			shamt_reg          : out std_logic_vector(4 downto 0);
+			immediate_reg      : out std_logic_vector(31 downto 0);
+			opcode_reg : out std_logic_vector(6 downto 0);
+			readReg1, readReg2, writeReg : out std_logic_vector(4 downto 0);
 			IR: out std_logic_vector(31 downto 0));
 	end component;
 	
@@ -59,22 +67,7 @@ architecture structure of CPU32bit is
 			reset: in std_logic;
 			PC: out std_logic_vector(31 downto 0));
 	end component;
-	
-	component instructionDecoder
-		port(
-		IR : in std_logic_vector(31 downto 0); --instruction, comes from instruction register
-		writeReg : out std_logic_vector(4 downto 0);
-		readReg1 : out std_logic_vector(4 downto 0);
-		readReg2 : out std_logic_vector(4 downto 0);
-		JALRFlag : out std_logic; --only 1 if instruction executed is JALR
-		instructionType : out std_logic_vector(2 downto 0);
-		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
-		opcode : out std_logic_vector(6 downto 0);
-		func3 : out std_logic_vector(2 downto 0);
-		func7 : out std_logic_vector(6 downto 0);
-		shamt : out std_logic_vector(4 downto 0));
-	end component;
-	
+
 	component PCNextCalc is 
 	port(
 		PC : in std_logic_vector(31 downto 0);
@@ -87,15 +80,7 @@ architecture structure of CPU32bit is
 		reg1 : in std_logic_vector(31 downto 0); --used for JALR instruction
 		PC_next : out std_logic_vector(31 downto 0));
 	end component;
-	
-	component immediateCalc is 
-	port(
-		instructionType : in std_logic_vector(2 downto 0); --6 main instruction types
-		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
-		IR : in std_logic_vector(31 downto 0);
-		immediate : out std_logic_vector(31 downto 0)); --byte aligned immediate
-	end component;
-	
+
 	component stateMachine is
 	port(
 		Q : in std_logic_vector(4 downto 0); --current state, starting off with max 12 states, can expand if not enough
@@ -218,16 +203,15 @@ architecture structure of CPU32bit is
 	
 	
 	begin
-		InstructionRegister32 : instructionRegister port map(INPUT => INPUT, IR_LD => IR_LD_internal, clk => clk, reset => reset, IR => IR_internal);
-		
-		decoder : instructionDecoder port map(IR => IR_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, JALRFlag => JALRFlag_internal, instructionType => instructionType_internal,
-		opcode => opcode_internal, func3 => func3_internal, func7 => func7_internal, shamt => shamt_internal);
-		
+		InstructionRegister32 : instructionRegister port map(INPUT => INPUT, IR_LD => IR_LD_internal, clk => clk, reset => reset, IR => IR_internal, readReg1 => rr1_internal, 
+			readReg2 => rr2_internal, writeReg => wr_internal, JALRFlag_reg => JALRFlag_internal, func3_reg => func3_internal, func7_reg => func7_internal, 
+			immediate_reg => immediate_internal, instructionType_reg => instructionType_internal, shamt_reg => shamt_internal, opcode_reg => opcode_internal);
+	
 		ALU : alu32bit port map(reg1 => ALU_input1_internal, reg2 => ALU_input2_internal, S => S_internal, shamt => shamt_out_internal, output => ALUOutput_internal, 
-										ALUZero => ALUZero_internal, ALULT => ALULT_internal, ALULTU => ALULTU_internal);
+			ALUZero => ALUZero_internal, ALULT => ALULT_internal, ALULTU => ALULTU_internal);
 		
 		Registers : registerFile port map(clk => clk, we => RegWE_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, 
-							writeData => writeData_internal, readData1 => reg1_internal, readData2 => reg2_internal);
+			writeData => writeData_internal, readData1 => reg1_internal, readData2 => reg2_internal);
 							
 		ProgramCounter32 : programCounter port map(PC_next => PC_next_internal, clk => clk, PC_LD => PC_LD_internal, reset => reset, PC => PC_internal);
 		
@@ -266,8 +250,6 @@ architecture structure of CPU32bit is
 			RAMen => RAMen_internal);
 		
 		stateReg : stateRegister port map(D => D_internal, Q => Q_internal, clk => clk, reset => reset);
-		
-		immediates : immediateCalc port map(instructionType => instructionType_internal, IR => IR_internal, immediate => immediate_internal);
 		
 		PCnext : PCNextCalc port map(clk => clk, updatePCNext => updatePCNext_internal, reset => reset, PC => PC_internal, PCOffsetFlag => PCOffsetFlag_internal, JALRFlag => JALRFlag_internal, Immediate => immediate_internal, reg1 => reg1_internal, PC_next => PC_next_internal);
 		
