@@ -6,7 +6,7 @@ use ieee.numeric_std.all;
 
 entity stateMachine is
 	port(
-		Q : in std_logic_vector(4 downto 0); --current state, starting off with max 12 states, can expand if not enough
+		Q : in std_logic_vector(2 downto 0); --current state, starting off with max 12 states, can expand if not enough
 		immediate : in std_logic_vector(31 downto 0);
 		reg1 : in std_logic_vector(31 downto 0);
 		reg2 : in std_logic_vector(31 downto 0);
@@ -21,7 +21,7 @@ entity stateMachine is
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
-		D : out std_logic_vector(4 downto 0); --next state
+		D : out std_logic_vector(2 downto 0); --next state
 		writeData : out std_logic_vector(31 downto 0); --data to write to register
 		writeRAMData : out std_logic_vector(31 downto 0);
 		RegWE : out std_logic;
@@ -38,14 +38,11 @@ end stateMachine;
 
 architecture behavior of stateMachine is
 --states listed below
-constant FETCH : std_logic_vector(4 downto 0) := "00000";
-constant DECODE : std_logic_vector(4 downto 0) := "00001";
-constant RAM_ADDR : std_logic_vector(4 downto 0) := "00011";
-constant RAM_WRITE : std_logic_vector(4 downto 0) := "00100";
-constant WRITEBACK : std_logic_vector(4 downto 0) := "00101";
-constant RAM_WAIT : std_logic_vector(4 downto 0) := "00010";
-constant EXECUTE : std_logic_vector(4 downto 0) := "01000";
-constant FETCH_AFTER_PC : std_logic_vector(4 downto 0) := "00111";
+constant FETCH : std_logic_vector(2 downto 0) := "000";
+constant DECODE : std_logic_vector(2 downto 0) := "001";
+constant EXECUTE : std_logic_vector(2 downto 0) := "010";
+constant MEM : std_logic_vector(2 downto 0) := "011";
+constant WRITEBACK : std_logic_vector(2 downto 0) := "100";
 
 begin
 	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt, ALUZero, ALULT, ALULTU, reset)
@@ -69,74 +66,56 @@ begin
 		else
 			case Q is
 			when FETCH => --instruction fetch
-				PC_LD <= '1';
-				D <= DECODE;
-			when DECODE =>  --decode phase, instruction decoder runs in background, values are stable after clock cycle
 				IR_LD <= '1';
+				D <= DECODE;
+			when DECODE =>  --decode phase, add decoder as a component to be used in this state when pipelining added, for now decoder runs in background
 				D <= EXECUTE;
 			when EXECUTE =>
+				PC_LD <= '1';
+				D <= MEM;
 				case opcode is
 					when "0110111" => --LUI
 						ALU_input1 <= immediate;
 						updateWritebackReg <= '1';
 						writeData <= ALU_output;
 						S <= "0000";
-						D <= WRITEBACK;
 					when "0010111" => --	AUIPC
 						ALU_input1 <= immediate;
 						ALU_input2 <= PC;
 						updateWritebackReg <= '1';
 						writeData <= ALU_output;
 						S <= "0100";
-						D <= WRITEBACK;
 					when "1101111" => --JAL
 						PCOffsetFlag <= '1';
-						PC_LD <= '1';
-						D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 					when "1100111" => --JALR
 						--JALRFlag set in decoder
 						writeData <= PC;
 						updateWritebackReg <= '1';
-						PC_LD <= '1';
-						D <= WRITEBACK;
 					when "1100011" => --branch instructions
-					D <= FETCH;
 						case func3 is
 							when "000" =>
 								if ALUZero = '1' then
 									PCOffsetFlag <= '1';
-									PC_LD <= '1';
-									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 							end if;
 							when "001" =>
 								if ALUZero = '0' then
 									PCOffsetFlag <= '1';
-									PC_LD <= '1';
-									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "100" =>
 								if ALULT = '1' then
 									PCOffsetFlag <= '1';
-									PC_LD <= '1';
-									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "101" =>
 								if ALULT = '0' then
 									PCOffsetFlag <= '1';
-									PC_LD <= '1';
-									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "110" =>
 								if ALULTU = '1' then
 									PCOffsetFlag <= '1';
-									PC_LD <= '1';
-									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "111" =>
 								if ALULTU = '0' then
 									PCOffsetFlag <= '1';
-									PC_LD <= '1';
-									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when others =>
 						end case;
@@ -146,19 +125,16 @@ begin
 						S <= "0100";
 						updateRAMAddress <= '1';
 						RAMen <= '1';
-						D <= RAM_WAIT;
 					when "0100011" => --store instructions, calculate RAM address
 						ALU_input1 <= reg1;
 						ALU_input2 <= immediate;
 						S <= "0100";
 						updateRAMAddress <= '1';
 						RAMen <= '1';
-						D <= RAM_WRITE;
 					when "0010011" => --arithmetic with immediate
 						updateWritebackReg <= '1'; --output of ALU will be registered to be used in writeback state
 						ALU_input1 <= reg1;
 						ALU_input2 <= immediate;
-						D <= WRITEBACK;
 						case func3 is 
 							when "000" => --ADDI rd, rs1, imm
 								S <= "0100";
@@ -189,7 +165,6 @@ begin
 						updateWritebackReg <= '1'; --output of ALU will be registered to be used in writeback state
 						ALU_input1 <= reg1;
 						ALU_input2 <= reg2;
-						D <= WRITEBACK;
 						case func3 is
 						when "000" => --ADD/SUB
 							case func7 is
@@ -226,46 +201,49 @@ begin
 						writeData <= ALU_output;
 					when others =>
 				end case;
-			when RAM_WAIT => --waits a clock cycle for synchronous RAM access
-				RAMen <= '1';
-				updateWritebackReg <= '1';
+			when MEM =>
 				D <= WRITEBACK;
-				case func3 is
-					when "000" =>
-						writeData <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
-					when "001" =>
-						writeData <= std_logic_vector(resize(signed(RAMData(15 downto 0)), 32));
-					when "010" => 
-						writeData <= RAMData;
-					when "100" =>
-						writeData <= std_logic_vector(resize(unsigned(RAMData(7 downto 0)), 32));
-					when "101" =>
-						writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
-					when others =>
-				end case;
-			when RAM_WRITE => --RAM Write state
-				RAMen <= '1';
-				D <= FETCH;
-				RAMwe <= '1';
-				writeRAMData <= reg2;
-				case func3 is
-					when "000" =>
-						RAMbyteEN <= "0001";
-					when "001" =>
-						RAMbyteEN <= "0011";
-					when "010" =>
-						RAMbyteEN <= "1111";
-					when others =>
-				end case;
-			when WRITEBACK => --writeback state
-				RegWE <= '1';
-				if JALRFlag = '1' then
-					D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
-				else
-					D <= FETCH; --every instruction other than JALR can proceed back to fetch
+				if opcode = "0000011" then --load instruction
+					RAMen <= '1';
+					updateWritebackReg <= '1';
+					case func3 is
+						when "000" =>
+							writeData <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
+						when "001" =>
+							writeData <= std_logic_vector(resize(signed(RAMData(15 downto 0)), 32));
+						when "010" => 
+							writeData <= RAMData;
+						when "100" =>
+							writeData <= std_logic_vector(resize(unsigned(RAMData(7 downto 0)), 32));
+						when "101" =>
+							writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
+						when others =>
+					end case;
+				elsif opcode = "0100011" then --store instruction
+					RAMen <= '1';
+					RAMwe <= '1';
+					writeRAMData <= reg2;
+					case func3 is
+						when "000" =>
+							RAMbyteEN <= "0001";
+						when "001" =>
+							RAMbyteEN <= "0011";
+						when "010" =>
+							RAMbyteEN <= "1111";
+						when others =>
+					end case;
 				end if;
-			when FETCH_AFTER_PC => --fetch state with no PC_LD
-				D <= DECODE;
+			when WRITEBACK => --writeback state
+				if opcode = "0110111" or 
+				opcode = "0010111" or 
+				opcode = "1101111" or 
+				opcode = "1100111" or 
+				opcode = "0000011" or 
+				opcode = "0010011" or 
+				opcode = "0110011" then
+					RegWE <= '1';
+				end if;
+				D <= FETCH;
 			when others =>
 			end case;
 		end if;

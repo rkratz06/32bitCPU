@@ -22,7 +22,7 @@ begin
 				PC_internal <= (others => '0');
 		elsif rising_edge(clk) then
 			if PC_LD = '1' then
-				PC_internal <= PC_next; --loads lower bits with input
+				PC_internal <= PC_next;
 			end if;
 		end if;
 	end process;

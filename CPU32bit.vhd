@@ -11,8 +11,8 @@ entity CPU32bit is
 		--below outputs are used for testing
 		PC, IR, reg1, reg2, writeData, ALU_input1, ALU_input2, ALU_output, immediate, RAMin, RAMout, RAMAddressOut, newWritebackData : out std_logic_vector(31 downto 0);
 		opcode, func7 : out std_logic_vector(6 downto 0);
-		func3, instructionType : out std_logic_vector(2 downto 0);
-		readReg1, readReg2, writeReg, Q : out std_logic_vector(4 downto 0);
+		func3, instructionType, Q : out std_logic_vector(2 downto 0);
+		readReg1, readReg2, writeReg : out std_logic_vector(4 downto 0);
 		S : out std_logic_vector(3 downto 0);
 		IR_LD, PC_LD, RegWE, RAMwe, RAMen, ALUZero, ALULT, ALULTU, updateWritebackReg : out std_logic
 		);
@@ -80,7 +80,7 @@ architecture structure of CPU32bit is
 
 	component stateMachine is
 	port(
-		Q : in std_logic_vector(4 downto 0); --current state, starting off with max 12 states, can expand if not enough
+		Q : in std_logic_vector(2 downto 0); --current state, starting off with max 12 states, can expand if not enough
 		immediate : in std_logic_vector(31 downto 0);
 		reg1 : in std_logic_vector(31 downto 0);
 		reg2 : in std_logic_vector(31 downto 0);
@@ -95,7 +95,7 @@ architecture structure of CPU32bit is
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
-		D : out std_logic_vector(4 downto 0); --next state
+		D : out std_logic_vector(2 downto 0); --next state
 		writeData : out std_logic_vector(31 downto 0); --data to write to register
 		writeRAMData : out std_logic_vector(31 downto 0);
 		RegWE : out std_logic;
@@ -112,10 +112,10 @@ architecture structure of CPU32bit is
 	
 	component stateRegister is
 		port(
-			D : in std_logic_vector(4 downto 0);
+			D : in std_logic_vector(2 downto 0);
 			reset : in std_logic;
 			clk : in std_logic;
-			Q : out std_logic_vector(4 downto 0));
+			Q : out std_logic_vector(2 downto 0));
 	end component;
 	
 	component RAMAddress
@@ -159,7 +159,7 @@ architecture structure of CPU32bit is
 	signal rr1_internal : std_logic_vector(4 downto 0); --value holding register 1 number (0 - 31)
 	signal rr2_internal : std_logic_vector(4 downto 0); --value holding register 2 number (0 - 31)
 	signal wr_internal : std_logic_vector(4 downto 0); --value holding register to write to number (0 - 31)
-	signal Q_internal : std_logic_vector(4 downto 0); --internal state bits
+	signal Q_internal : std_logic_vector(2 downto 0); --internal state bits
 	signal PC_LD_internal : std_logic; --If PC_LD is true, INPUT => PC
 	signal S_internal : std_logic_vector(3 downto 0); --internal mux select lines
 	signal ALUOutput_internal : std_logic_vector(31 downto 0); --internal output for ALU controller, can be fed into ALU inputs
@@ -174,7 +174,7 @@ architecture structure of CPU32bit is
 	signal instructionType_internal : std_logic_vector(2 downto 0);
 	signal shamt_internal : std_logic_vector(4 downto 0);
 	signal PC_next_internal : std_logic_vector(31 downto 0);
-	signal D_internal : std_logic_vector(4 downto 0);
+	signal D_internal : std_logic_vector(2 downto 0);
 	signal PCOffsetFlag_internal : std_logic;
 	signal writeData_internal : std_logic_vector(31 downto 0);
 	signal RAMwe_internal : std_logic;
