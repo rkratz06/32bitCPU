@@ -11,7 +11,7 @@ entity CPU32bit is
 		--below outputs are used for testing
 		PC, IR, reg1, reg2, writeData, ALU_input1, ALU_input2, ALU_output, immediate, RAMin, RAMout, RAMAddressOut, newWritebackData : out std_logic_vector(31 downto 0);
 		opcode, func7 : out std_logic_vector(6 downto 0);
-		func3 : out std_logic_vector(2 downto 0);
+		func3, instructionType : out std_logic_vector(2 downto 0);
 		readReg1, readReg2, writeReg, Q : out std_logic_vector(4 downto 0);
 		S : out std_logic_vector(3 downto 0);
 		IR_LD, PC_LD, RegWE, RAMwe, RAMen, ALUZero, ALULT, ALULTU, updateWritebackReg : out std_logic
@@ -71,9 +71,6 @@ architecture structure of CPU32bit is
 	component PCNextCalc is 
 	port(
 		PC : in std_logic_vector(31 downto 0);
-		clk : in std_logic;
-		updatePCNext : in std_logic;
-		reset : in std_logic; --when reset is true, set PC to 0
 		PCOffsetFlag : in std_logic; --if true, branch was taken, PC_next <- PC + immediate, otherwise PC_next <- PC + 4
 		JALRFlag : in std_logic; --if flag = '1', JALR was executed
 		Immediate : in std_logic_vector(31 downto 0); --byte aligned immediate
@@ -94,7 +91,7 @@ architecture structure of CPU32bit is
 		func7 : in std_logic_vector(6 downto 0);
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
 		shamt : in std_logic_vector(4 downto 0);
-		ALUZero, ALULT, ALULTU, reset : in std_logic;
+		ALUZero, ALULT, ALULTU, reset, JALRFlag : in std_logic;
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
@@ -104,7 +101,6 @@ architecture structure of CPU32bit is
 		RegWE : out std_logic;
 		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
 		PC_LD : out std_logic;
-		updatePCNext : out std_logic;
 		UpdateRAMAddress : out std_logic;
 		S : out std_logic_vector(3 downto 0);
 		ALU_input1 : out std_logic_vector(31 downto 0);
@@ -218,7 +214,6 @@ architecture structure of CPU32bit is
 		FSM : stateMachine port map(
 			reset => reset, 
 			Q => Q_internal,
-			updatePCNext => updatePCNext_internal,
 			immediate => immediate_internal,
 			reg1 => reg1_internal,
 			reg2 => reg2_internal,
@@ -232,6 +227,7 @@ architecture structure of CPU32bit is
 			ALUZero => ALUZero_internal,
 			ALULT => ALULT_internal,
 			ALULTU => ALULTU_internal,
+			JALRFlag => JALRFlag_internal,
 			IR_LD => IR_LD_internal,
 			PCOffsetFlag => PCOffsetFlag_internal, 
 			D => D_internal,
@@ -251,7 +247,7 @@ architecture structure of CPU32bit is
 		
 		stateReg : stateRegister port map(D => D_internal, Q => Q_internal, clk => clk, reset => reset);
 		
-		PCnext : PCNextCalc port map(clk => clk, updatePCNext => updatePCNext_internal, reset => reset, PC => PC_internal, PCOffsetFlag => PCOffsetFlag_internal, JALRFlag => JALRFlag_internal, Immediate => immediate_internal, reg1 => reg1_internal, PC_next => PC_next_internal);
+		PCnext : PCNextCalc port map(PC => PC_internal, PCOffsetFlag => PCOffsetFlag_internal, JALRFlag => JALRFlag_internal, Immediate => immediate_internal, reg1 => reg1_internal, PC_next => PC_next_internal);
 		
 		RAMAddr : RAMAddress port map(clk => clk, reset => reset, updateAddress => UpdateRAMAddress_internal, newAddress => ALUOutput_internal, Address => RAMAddress_internal);
 		
@@ -300,5 +296,6 @@ architecture structure of CPU32bit is
 		S <= S_internal;
 		updateWritebackReg <= updateWritebackReg_internal;
 		newWritebackData <= newWritebackData_internal;
+		instructionType <= instructionType_internal;
 		
 end structure;

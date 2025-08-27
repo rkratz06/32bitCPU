@@ -17,7 +17,7 @@ entity stateMachine is
 		func7 : in std_logic_vector(6 downto 0);
 		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
 		shamt : in std_logic_vector(4 downto 0);
-		ALUZero, ALULT, ALULTU, reset : in std_logic;
+		ALUZero, ALULT, ALULTU, reset, JALRFlag : in std_logic;
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
@@ -27,7 +27,6 @@ entity stateMachine is
 		RegWE : out std_logic;
 		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
 		PC_LD : out std_logic;
-		updatePCNext : out std_logic;
 		UpdateRAMAddress : out std_logic;
 		S : out std_logic_vector(3 downto 0);
 		ALU_input1 : out std_logic_vector(31 downto 0);
@@ -44,16 +43,16 @@ constant DECODE : std_logic_vector(4 downto 0) := "00001";
 constant RAM_ADDR : std_logic_vector(4 downto 0) := "00011";
 constant RAM_WRITE : std_logic_vector(4 downto 0) := "00100";
 constant WRITEBACK : std_logic_vector(4 downto 0) := "00101";
-constant BRANCH_TAKEN : std_logic_vector(4 downto 0) := "00110";
 constant RAM_WAIT : std_logic_vector(4 downto 0) := "00010";
 constant EXECUTE : std_logic_vector(4 downto 0) := "01000";
+constant FETCH_AFTER_PC : std_logic_vector(4 downto 0) := "00111";
 
 begin
 	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt, ALUZero, ALULT, ALULTU, reset)
 	begin
 		IR_LD <= '0';
 		PCOffsetFlag <= '0';
-		D <= "00000";
+		D <= FETCH;
 		writeData <= (others => '0');
 		RegWE <= '0';
 		RAMwe <= '0';
@@ -66,26 +65,16 @@ begin
 		shamt_out <= shamt;
 		RAMbyteEN <= (others => '0');
 		updateWritebackReg <= '0';
-		updatePCNext <= '0';
 		if reset = '1' then --reset state, force PC to be 0
-			PC_LD <= '1';
 		else
 			case Q is
 			when FETCH => --instruction fetch
 				PC_LD <= '1';
-				IR_LD <= '1';
 				D <= DECODE;
 			when DECODE =>  --decode phase, instruction decoder runs in background, values are stable after clock cycle
-				case opcode is 
-					when "0000011" | "0100011"	=>
-						D <= RAM_ADDR;
-					when "0110111" | "0010111" | "1101111" | "1100111" | "1100011" | "0010011" | "0110011" =>
-						D <= EXECUTE;
-					when others =>
-						D <= FETCH;
-				end case;
+				IR_LD <= '1';
+				D <= EXECUTE;
 			when EXECUTE =>
-				updatePCNext <= '1';
 				case opcode is
 					when "0110111" => --LUI
 						ALU_input1 <= immediate;
@@ -102,12 +91,13 @@ begin
 						D <= WRITEBACK;
 					when "1101111" => --JAL
 						PCOffsetFlag <= '1';
-						D <= FETCH;
+						PC_LD <= '1';
+						D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 					when "1100111" => --JALR
 						--JALRFlag set in decoder
 						writeData <= PC;
 						updateWritebackReg <= '1';
-						PCOffsetFlag <= '1';
+						PC_LD <= '1';
 						D <= WRITEBACK;
 					when "1100011" => --branch instructions
 					D <= FETCH;
@@ -115,29 +105,55 @@ begin
 							when "000" =>
 								if ALUZero = '1' then
 									PCOffsetFlag <= '1';
+									PC_LD <= '1';
+									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 							end if;
 							when "001" =>
 								if ALUZero = '0' then
 									PCOffsetFlag <= '1';
+									PC_LD <= '1';
+									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "100" =>
 								if ALULT = '1' then
 									PCOffsetFlag <= '1';
+									PC_LD <= '1';
+									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "101" =>
 								if ALULT = '0' then
 									PCOffsetFlag <= '1';
+									PC_LD <= '1';
+									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "110" =>
 								if ALULTU = '1' then
 									PCOffsetFlag <= '1';
+									PC_LD <= '1';
+									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when "111" =>
 								if ALULTU = '0' then
 									PCOffsetFlag <= '1';
+									PC_LD <= '1';
+									D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
 								end if;
 							when others =>
 						end case;
+					when "0000011" => --load instructions, calculate RAM address
+						ALU_input1 <= reg1;
+						ALU_input2 <= immediate;
+						S <= "0100";
+						updateRAMAddress <= '1';
+						RAMen <= '1';
+						D <= RAM_WAIT;
+					when "0100011" => --store instructions, calculate RAM address
+						ALU_input1 <= reg1;
+						ALU_input2 <= immediate;
+						S <= "0100";
+						updateRAMAddress <= '1';
+						RAMen <= '1';
+						D <= RAM_WRITE;
 					when "0010011" => --arithmetic with immediate
 						updateWritebackReg <= '1'; --output of ALU will be registered to be used in writeback state
 						ALU_input1 <= reg1;
@@ -211,6 +227,7 @@ begin
 					when others =>
 				end case;
 			when RAM_WAIT => --waits a clock cycle for synchronous RAM access
+				RAMen <= '1';
 				updateWritebackReg <= '1';
 				D <= WRITEBACK;
 				case func3 is
@@ -226,17 +243,6 @@ begin
 						writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
 					when others =>
 				end case;
-			when RAM_ADDR => --state to get ram address
-				updatePCNext <= '1'; --sets PC to increment
-				ALU_input1 <= reg1;
-				ALU_input2 <= immediate;
-				S <= "0100";
-				RAMen <= '1';
-				if opcode = "0000011" then --if load
-					D <= RAM_WAIT;
-				else
-					D <= RAM_WRITE;
-				end if;
 			when RAM_WRITE => --RAM Write state
 				RAMen <= '1';
 				D <= FETCH;
@@ -253,10 +259,13 @@ begin
 				end case;
 			when WRITEBACK => --writeback state
 				RegWE <= '1';
-				D <= FETCH;
-			when BRANCH_TAKEN => --update PC with offset
-				PCOffsetFlag <= '1';
-				D <= FETCH;
+				if JALRFlag = '1' then
+					D <= FETCH_AFTER_PC; --fetch state without PC_LD, avoids PC immediately incrementing
+				else
+					D <= FETCH; --every instruction other than JALR can proceed back to fetch
+				end if;
+			when FETCH_AFTER_PC => --fetch state with no PC_LD
+				D <= DECODE;
 			when others =>
 			end case;
 		end if;

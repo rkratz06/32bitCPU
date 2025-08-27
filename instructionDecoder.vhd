@@ -29,7 +29,7 @@ begin
 	begin
 		shamt <= (others => '0');
 		JALRFlag <= '0'; --only true if JALR executed, default to false
-		case opcode_internal is
+		case IR(6 downto 0) is
 			when "0110111" => --LUI rd, imm
 				instructionType <= "100";
 				--state machine module will load write register with immediate from immediateCalc module

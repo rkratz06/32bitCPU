@@ -11,7 +11,7 @@ signal clk_tb : std_logic := '0';
 signal reset_tb : std_logic := '1';
 signal PC_tb, IR_tb, reg1_tb, reg2_tb, writeData_tb, ALU_input1_tb, ALU_input2_tb, ALU_output_tb, immediate_tb, RAMin_tb, RAMout_tb, RAMAddressOut_tb, newWritebackData_tb : std_logic_vector(31 downto 0);
 signal opcode_tb, func7_tb : std_logic_vector(6 downto 0);
-signal func3_tb : std_logic_vector(2 downto 0);
+signal func3_tb, instructionType_tb : std_logic_vector(2 downto 0);
 signal readReg1_tb, readReg2_tb, writeReg_tb, Q_tb : std_logic_vector(4 downto 0);
 signal S_tb : std_logic_vector(3 downto 0);
 signal IR_LD_tb, PC_LD_tb, RegWE_tb, RAMwe_tb, RAMen_tb, ALUZero_tb, ALULT_tb, ALULTU_tb, updateWritebackReg_tb : std_logic;
@@ -50,7 +50,8 @@ begin
             ALULTU => ALULTU_tb,
 				S => S_tb,
 				updateWritebackReg => updateWritebackReg_tb,
-				newWritebackData => newWritebackData_tb
+				newWritebackData => newWritebackData_tb,
+				instructionType => instructionType_tb
         );
 
 		  clk_tb <= not clk_tb after 1ns;
