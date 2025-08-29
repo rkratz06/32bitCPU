@@ -22,7 +22,7 @@ begin
 			Address_internal <= (others => '0');
 		elsif rising_edge(clk) then
 			if updateAddress = '1' then
-				Address_internal <= (31 downto 15 => '0') & newAddress(14 downto 0);
+				Address_internal <= (31 downto 15 => '0') & newAddress(14 downto 0); --ram only has 15 address pins. ALU does not byte align new address
 			end if;
 		end if;
 	end process;

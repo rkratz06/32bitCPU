@@ -1,5 +1,6 @@
 --Immediate value calculator
 --takes an instruction, instruction type, and returns a byte-aligned immidiate
+--different instruction in RISCV RV32I have different locations of immediate bits, 
 
 library ieee;
 use ieee.std_logic_1164.all;

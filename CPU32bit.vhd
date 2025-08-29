@@ -23,21 +23,21 @@ architecture structure of CPU32bit is
 	component registerFile
 		port(
 			clk : in std_logic;
-			we : in std_logic; --write enable, writes when true, reads when false
+			we : in std_logic; 
 			writeReg : in std_logic_vector(4 downto 0);
 			readReg1 : in std_logic_vector(4 downto 0); 
 			readReg2 : in std_logic_vector(4 downto 0); 
-			writeData : in std_logic_vector(31 downto 0); --data to write to register
-			readData1 : out std_logic_vector(31 downto 0); --data contained in chosen register 1
-			readData2 : out std_logic_vector(31 downto 0)); --data contained in chosen register 2
+			writeData : in std_logic_vector(31 downto 0); 
+			readData1 : out std_logic_vector(31 downto 0); 
+			readData2 : out std_logic_vector(31 downto 0));
 	end component;
 	
 	component alu32bit
 		port(
 			reg1 : in std_logic_vector(31 downto 0);
 			reg2 : in std_logic_vector(31 downto 0);
-			s : in std_logic_vector (3 downto 0); --mux select lines, will be used to pick the operation that will be performed
-			shamt : in std_logic_vector(4 downto 0); --shift amount, only used for shift instructions
+			s : in std_logic_vector (3 downto 0); 
+			shamt : in std_logic_vector(4 downto 0);
 			ALUZero, ALULT, ALULTU : out std_logic;
 			output : out std_logic_vector(31 downto 0));
 	end component;
@@ -71,35 +71,35 @@ architecture structure of CPU32bit is
 	component PCNextCalc is 
 	port(
 		PC : in std_logic_vector(31 downto 0);
-		PCOffsetFlag : in std_logic; --if true, branch was taken, PC_next <- PC + immediate, otherwise PC_next <- PC + 4
-		JALRFlag : in std_logic; --if flag = '1', JALR was executed
-		Immediate : in std_logic_vector(31 downto 0); --byte aligned immediate
-		reg1 : in std_logic_vector(31 downto 0); --used for JALR instruction
+		PCOffsetFlag : in std_logic; 
+		JALRFlag : in std_logic; 
+		Immediate : in std_logic_vector(31 downto 0);
+		reg1 : in std_logic_vector(31 downto 0);
 		PC_next : out std_logic_vector(31 downto 0));
 	end component;
 
 	component stateMachine is
 	port(
-		Q : in std_logic_vector(2 downto 0); --current state, starting off with max 12 states, can expand if not enough
+		Q : in std_logic_vector(2 downto 0); 
 		immediate : in std_logic_vector(31 downto 0);
 		reg1 : in std_logic_vector(31 downto 0);
 		reg2 : in std_logic_vector(31 downto 0);
-		PC : in std_logic_vector(31 downto 0); --used in JAL instruction to store PC
+		PC : in std_logic_vector(31 downto 0);
 		ALU_output : in std_logic_vector(31 downto 0);
 		opcode : in std_logic_vector(6 downto 0);
 		func3 : in std_logic_vector(2 downto 0);
 		func7 : in std_logic_vector(6 downto 0);
-		RAMData : in std_logic_vector(31 downto 0); --data output from RAM
+		RAMData : in std_logic_vector(31 downto 0); 
 		shamt : in std_logic_vector(4 downto 0);
 		ALUZero, ALULT, ALULTU, reset, JALRFlag : in std_logic;
 		updateWritebackReg : out std_logic;
 		IR_LD : out std_logic;
 		PCOffsetFlag : out std_logic;
-		D : out std_logic_vector(2 downto 0); --next state
-		writeData : out std_logic_vector(31 downto 0); --data to write to register
+		D : out std_logic_vector(2 downto 0); 
+		writeData : out std_logic_vector(31 downto 0); 
 		writeRAMData : out std_logic_vector(31 downto 0);
 		RegWE : out std_logic;
-		RAMwe : out std_logic; --ram write enable, '1' if RAM written, '0' if RAM read
+		RAMwe : out std_logic; 
 		PC_LD : out std_logic;
 		UpdateRAMAddress : out std_logic;
 		S : out std_logic_vector(3 downto 0);
@@ -107,7 +107,7 @@ architecture structure of CPU32bit is
 		ALU_input2 : out std_logic_vector(31 downto 0);
 		shamt_out : out std_logic_vector(4 downto 0);
 		RAMbyteEN : out std_logic_vector(3 downto 0);
-		RAMen : out std_logic); --ram is only enabled as long as RAMen = '1' and RAMAddress[14] = 1
+		RAMen : out std_logic); 
 	end component;
 	
 	component stateRegister is
@@ -122,7 +122,7 @@ architecture structure of CPU32bit is
 		port(
 			clk : in std_logic;
 			reset : in std_logic;
-			updateAddress : in std_logic; --only update address if load or store has been executed
+			updateAddress : in std_logic; 
 			newAddress : in std_logic_vector(31 downto 0);
 			Address : out std_logic_vector(31 downto 0));
 		end component;
@@ -153,21 +153,22 @@ architecture structure of CPU32bit is
 		writebackData : out std_logic_vector(31 downto 0));
 	end component;
 	
+	--internal inputs to be fed between components
 	signal INPUT : std_logic_vector(31 downto 0); --input taken from ROM
-	signal IR_internal : std_logic_vector(31 downto 0); --internal instruction register
-	signal IR_LD_internal : std_logic; --If load is true, INPUT => IR
-	signal rr1_internal : std_logic_vector(4 downto 0); --value holding register 1 number (0 - 31)
-	signal rr2_internal : std_logic_vector(4 downto 0); --value holding register 2 number (0 - 31)
-	signal wr_internal : std_logic_vector(4 downto 0); --value holding register to write to number (0 - 31)
-	signal Q_internal : std_logic_vector(2 downto 0); --internal state bits
-	signal PC_LD_internal : std_logic; --If PC_LD is true, INPUT => PC
-	signal S_internal : std_logic_vector(3 downto 0); --internal mux select lines
-	signal ALUOutput_internal : std_logic_vector(31 downto 0); --internal output for ALU controller, can be fed into ALU inputs
-	signal reg1_internal : std_logic_vector(31 downto 0); --value at register 1
-	signal reg2_internal : std_logic_vector(31 downto 0); --value at register 2
-	signal immediate_internal : std_logic_vector(31 downto 0); --holds immediate value
+	signal IR_internal : std_logic_vector(31 downto 0); 
+	signal IR_LD_internal : std_logic; 
+	signal rr1_internal : std_logic_vector(4 downto 0); 
+	signal rr2_internal : std_logic_vector(4 downto 0); 
+	signal wr_internal : std_logic_vector(4 downto 0); 
+	signal Q_internal : std_logic_vector(2 downto 0); 
+	signal PC_LD_internal : std_logic; 
+	signal S_internal : std_logic_vector(3 downto 0); 
+	signal ALUOutput_internal : std_logic_vector(31 downto 0);
+	signal reg1_internal : std_logic_vector(31 downto 0); 
+	signal reg2_internal : std_logic_vector(31 downto 0); 
+	signal immediate_internal : std_logic_vector(31 downto 0); 
 	signal RegWE_internal : std_logic;
-	signal PC_internal : std_logic_vector(31 downto 0); --will be fed into ROM to get instructions
+	signal PC_internal : std_logic_vector(31 downto 0); 
 	signal UpdateRAMAddress_internal : std_logic;
 	signal isBranch_internal : std_logic;
 	signal JALRFlag_internal : std_logic;
@@ -199,18 +200,26 @@ architecture structure of CPU32bit is
 	
 	
 	begin
+		--instruction register updates instruction with input from ROM if IR_LD is true. built in decoder with registered outputs
 		InstructionRegister32 : instructionRegister port map(INPUT => INPUT, IR_LD => IR_LD_internal, clk => clk, reset => reset, IR => IR_internal, readReg1 => rr1_internal, 
 			readReg2 => rr2_internal, writeReg => wr_internal, JALRFlag_reg => JALRFlag_internal, func3_reg => func3_internal, func7_reg => func7_internal, 
 			immediate_reg => immediate_internal, instructionType_reg => instructionType_internal, shamt_reg => shamt_internal, opcode_reg => opcode_internal);
-	
+		
+		--ALU takes 2 32 bit values as an input, select line determines operation. includes 3 flags for when the outputs is zero, rs1 < rs2 unsigned, and rs1 < rs2 signed. flags are not registered
 		ALU : alu32bit port map(reg1 => ALU_input1_internal, reg2 => ALU_input2_internal, S => S_internal, shamt => shamt_out_internal, output => ALUOutput_internal, 
 			ALUZero => ALUZero_internal, ALULT => ALULT_internal, ALULTU => ALULTU_internal);
 		
+		--a module containing 32 32 bit general registers. when RegWE is true, the register at index writeReg will be written with writeData on the next clock cycle
+		--supports asynchronous read of 2 registers, outputs the data in registers readReg1 and readReg2
 		Registers : registerFile port map(clk => clk, we => RegWE_internal, writeReg => wr_internal, readReg1 => rr1_internal, readReg2 => rr2_internal, 
 			writeData => writeData_internal, readData1 => reg1_internal, readData2 => reg2_internal);
-							
+					
+		--registered program counter than is updated with PC_next when PC_LD is true		
 		ProgramCounter32 : programCounter port map(PC_next => PC_next_internal, clk => clk, PC_LD => PC_LD_internal, reset => reset, PC => PC_internal);
 		
+		--state machine module is purely combinatorial. sequential logic is handled in the stateRegister module
+		--5 stages included : FETCH, DECODE, EXECUTE, MEM, WRITEBACK. every instruction visits each stage, so each instruction takes 5 clock cycles.
+		--state machine designed to assist in the implementation of pipelining later on
 		FSM : stateMachine port map(
 			reset => reset, 
 			Q => Q_internal,
@@ -245,27 +254,25 @@ architecture structure of CPU32bit is
 			updateWritebackReg => updateWritebackReg_internal,
 			RAMen => RAMen_internal);
 		
+		--registers the state bits to be used in the stateMachine module
 		stateReg : stateRegister port map(D => D_internal, Q => Q_internal, clk => clk, reset => reset);
 		
+		--calculates the next program counter. If PCOffsetFlag is true, the next PC will be PC + immediate. If JALRFlag is true, the next PC will follow that calculation. Otherwise, increment PC by 4 (byte addressed ROM)
 		PCnext : PCNextCalc port map(PC => PC_internal, PCOffsetFlag => PCOffsetFlag_internal, JALRFlag => JALRFlag_internal, Immediate => immediate_internal, reg1 => reg1_internal, PC_next => PC_next_internal);
 		
+		--register for the RAM address calculated in the ALU as designated by the state machine
 		RAMAddr : RAMAddress port map(clk => clk, reset => reset, updateAddress => UpdateRAMAddress_internal, newAddress => ALUOutput_internal, Address => RAMAddress_internal);
 		
+		--registers the data to be written to the 32 bit general registers. allows for the data to be written to come from the ALU or RAM
 		writebackReg : writebackRegister port map(clk => clk, newData => newWritebackData_internal, writebackData => writeData_internal, reset => reset, updateWritebackReg => updateWritebackReg_internal);
 		
-		process(RAMen_internal, RAMAddress_internal, RAMbyteEN_internal)
-		begin
-			 if RAMen_internal = '1' and RAMAddress_internal(14) = '1' then
-				  RAMEnable <= RAMbyteEN_internal;
-			 else
-				  RAMEnable <= "0000";
-			 end if;
-		end process;
+		--RAM module created by quartus RAM creation wizard. byte enable used to handle storage of different numbers of bytes. stores data, not programs. reads from the RAMMIF file upon startup
+		RAM : CPURAM port map (address => RAMAddress_internal(13 downto 0), byteena => RAMbyteEN_internal, clock => clk, data => writeRAMData_internal, wren => RAMwe_internal, q => RAMOutput_internal);
 		
-		RAM : CPURAM port map (address => RAMAddress_internal(13 downto 0), byteena => RAMEnable, clock => clk, data => writeRAMData_internal, wren => RAMwe_internal, q => RAMOutput_internal);
-		
+		--ROM module created by quartus ROM creation wizard. stores program data. PC is byte aligned. reads from the CPUMIF file upon startup
 		ROM : CPUROM port map(address => PC_internal(15 downto 2), clock => clk, q => INPUT);
 		
+		--below outputs are set to be used in testbench
 		PC <= PC_internal;
 		IR <= IR_internal;
 		reg1 <= reg1_internal;

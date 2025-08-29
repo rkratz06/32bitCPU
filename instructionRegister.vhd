@@ -1,4 +1,6 @@
 --instruction register
+--when IR_LD is true, the instruction will be set to INPUT (comes from ROM in top level design)
+--instruction decoder is currently included as a component, the outputs of instruction decoder are registered and included as outputs
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -38,12 +40,12 @@ signal JALRFlag_dec : std_logic;
 signal opcode_dec : std_logic_vector(6 downto 0);
 signal opcode_internal : std_logic_vector(6 downto 0);
 
+--instruction decoder included to register outputs from decoder
 component instructionDecoder
 	port(
-		IR : in std_logic_vector(31 downto 0); --instruction, comes from instruction register
-		JALRFlag : out std_logic; --only 1 if instruction executed is JALR
+		IR : in std_logic_vector(31 downto 0); 
+		JALRFlag : out std_logic; 
 		instructionType : out std_logic_vector(2 downto 0);
-		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
 		opcode : out std_logic_vector(6 downto 0);
 		func3 : out std_logic_vector(2 downto 0);
 		func7 : out std_logic_vector(6 downto 0);
@@ -51,6 +53,7 @@ component instructionDecoder
 	);
 end component;
 
+--immediateCalc is used to get the immediate using information from the decoder
 component immediateCalc
 	port(
 		IR : in std_logic_vector(31 downto 0);

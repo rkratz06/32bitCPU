@@ -47,6 +47,7 @@ constant WRITEBACK : std_logic_vector(2 downto 0) := "100";
 begin
 	process(Q, immediate, reg1, reg2, PC, ALU_output, opcode, func3, func7, RAMData, shamt, ALUZero, ALULT, ALULTU, reset)
 	begin
+		--default values are set to 0, overrwritten in states where necessary
 		IR_LD <= '0';
 		PCOffsetFlag <= '0';
 		D <= FETCH;
@@ -59,6 +60,7 @@ begin
 		RAMen <= '0';
 		ALU_input1 <= x"00000000";
 		ALU_input2 <= x"00000000";
+		writeRAMData <= x"00000000";
 		shamt_out <= shamt;
 		RAMbyteEN <= (others => '0');
 		updateWritebackReg <= '0';
@@ -70,50 +72,59 @@ begin
 				D <= DECODE;
 			when DECODE =>  --decode phase, add decoder as a component to be used in this state when pipelining added, for now decoder runs in background
 				D <= EXECUTE;
-			when EXECUTE =>
-				PC_LD <= '1';
+			when EXECUTE => --execute stage
+				PC_LD <= '1'; --program counter is updated in execute stage as necessary flags will be calculated in execute stage
 				D <= MEM;
 				case opcode is
 					when "0110111" => --LUI
+						--immediate to ALU output to be registered in writeback register
 						ALU_input1 <= immediate;
 						updateWritebackReg <= '1';
 						writeData <= ALU_output;
 						S <= "0000";
 					when "0010111" => --	AUIPC
+						--adds an immediate to the program counter to be stored in rd. output is registered in writeback register
 						ALU_input1 <= immediate;
 						ALU_input2 <= PC;
 						updateWritebackReg <= '1';
 						writeData <= ALU_output;
 						S <= "0100";
 					when "1101111" => --JAL
+						--program counter updated with PC + immediate
 						PCOffsetFlag <= '1';
 					when "1100111" => --JALR
-						--JALRFlag set in decoder
-						writeData <= PC;
+						--JALRFlag set in decoder, used to calculate new PC
+						--saves PC + 4 to rd by calculating using ALU and registering output
+						ALU_input1 <= PC;
+						ALU_input2 <= x"00000004";
+						S <= "0100";
+						writeData <= ALU_output;
 						updateWritebackReg <= '1';
-					when "1100011" => --branch instructions
+					when "1100011" => --branch instructions, use ALU flags to determine if branch is taken. ALU output not used, only flags
+						ALU_input1 <= reg1;
+						ALU_input2 <= reg2;
 						case func3 is
-							when "000" =>
+							when "000" => --BEQ
 								if ALUZero = '1' then
-									PCOffsetFlag <= '1';
+									PCOffsetFlag <= '1'; 
 							end if;
-							when "001" =>
+							when "001" => --BNE
 								if ALUZero = '0' then
 									PCOffsetFlag <= '1';
 								end if;
-							when "100" =>
+							when "100" => --BLT
 								if ALULT = '1' then
 									PCOffsetFlag <= '1';
 								end if;
-							when "101" =>
+							when "101" => --BGE
 								if ALULT = '0' then
 									PCOffsetFlag <= '1';
 								end if;
-							when "110" =>
+							when "110" => --BLTU
 								if ALULTU = '1' then
 									PCOffsetFlag <= '1';
 								end if;
-							when "111" =>
+							when "111" => --BGEU
 								if ALULTU = '0' then
 									PCOffsetFlag <= '1';
 								end if;
@@ -124,13 +135,11 @@ begin
 						ALU_input2 <= immediate;
 						S <= "0100";
 						updateRAMAddress <= '1';
-						RAMen <= '1';
 					when "0100011" => --store instructions, calculate RAM address
 						ALU_input1 <= reg1;
 						ALU_input2 <= immediate;
 						S <= "0100";
 						updateRAMAddress <= '1';
-						RAMen <= '1';
 					when "0010011" => --arithmetic with immediate
 						updateWritebackReg <= '1'; --output of ALU will be registered to be used in writeback state
 						ALU_input1 <= reg1;
@@ -206,16 +215,17 @@ begin
 				if opcode = "0000011" then --load instruction
 					RAMen <= '1';
 					updateWritebackReg <= '1';
+					RAMbyteEN <= "1111";
 					case func3 is
-						when "000" =>
+						when "000" => --load byte
 							writeData <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
-						when "001" =>
+						when "001" => --load half word
 							writeData <= std_logic_vector(resize(signed(RAMData(15 downto 0)), 32));
-						when "010" => 
+						when "010" => --load word
 							writeData <= RAMData;
-						when "100" =>
+						when "100" => --load byte unsigned
 							writeData <= std_logic_vector(resize(unsigned(RAMData(7 downto 0)), 32));
-						when "101" =>
+						when "101" => --load half word unsigned
 							writeData <= std_logic_vector(resize(unsigned(RAMData(15 downto 0)), 32));
 						when others =>
 					end case;
@@ -224,11 +234,11 @@ begin
 					RAMwe <= '1';
 					writeRAMData <= reg2;
 					case func3 is
-						when "000" =>
+						when "000" => --store byte
 							RAMbyteEN <= "0001";
-						when "001" =>
+						when "001" => --store half word
 							RAMbyteEN <= "0011";
-						when "010" =>
+						when "010" => --store word
 							RAMbyteEN <= "1111";
 						when others =>
 					end case;
@@ -240,7 +250,7 @@ begin
 				opcode = "1100111" or 
 				opcode = "0000011" or 
 				opcode = "0010011" or 
-				opcode = "0110011" then
+				opcode = "0110011" then --if instruction writes to a register, set RegWE to true
 					RegWE <= '1';
 				end if;
 				D <= FETCH;

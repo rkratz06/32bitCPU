@@ -1,4 +1,5 @@
 --writeback register
+--registers data to be written to registers, allowing ALU and RAM outputs to be registered between states.
 
 library ieee;
 use ieee.std_logic_1164.all;

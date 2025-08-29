@@ -1,4 +1,5 @@
 --program counter
+--if PC_LD is true, set PC to PC_next, else hold the value of PC
 
 library ieee;
 use ieee.std_logic_1164.all;

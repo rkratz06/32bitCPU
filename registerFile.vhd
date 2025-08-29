@@ -17,14 +17,14 @@ entity registerFile is
 end registerFile;
 
 architecture behavior of registerFile is
-	type regfile_array is array (31 downto 0) of std_logic_vector(31 downto 0); --32 registers in a vector
+	type regfile_array is array (31 downto 0) of std_logic_vector(31 downto 0); --32 registers in an array
 	signal regs : regfile_array := (others => (others => '0')); --initalizes signal regs to contain registers of 0
 	
 	begin
 		process(clk)
 		begin
 			if rising_edge(clk) then
-				if (we = '1' and writeReg /= "00000") then
+				if (we = '1' and writeReg /= "00000") then --write enable must be true, and register x0 cannot be written to and will remain containing the value 0x00000000
 					regs(to_integer(unsigned(writeReg))) <= writeData;
 				end if;
 			end if;

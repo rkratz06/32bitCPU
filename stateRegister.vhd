@@ -1,4 +1,5 @@
 --state register
+--handles the sequential logic of the state machine by registering the state bits. input comes from combinatorial section of state machine
 
 library ieee;
 use ieee.std_logic_1164.all;

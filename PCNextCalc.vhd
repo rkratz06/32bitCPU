@@ -1,4 +1,7 @@
 --PC_Next calculator depending on branch conditions, offset, and target address
+--if JALRFlag is true, perform the JALR calculation (reg1 + immediate, set least significant bit to 0)
+--if PCOffsetFlag is true, set PC_next to PC + immediate. used in JAL and branches
+--otherwise, defaults to incrementing the PC by 4. ROM used is byte aligned, since each address contains 4 bytes increment by 4.
 
 library ieee;
 use ieee.std_logic_1164.all;

@@ -1,4 +1,7 @@
 --instruction decoder
+--returns the opcode, func3, and func7 of each instruction (not all instructions use func3 or func7, so may contain garbage data. 
+--however, state machine will not examine func3 or func7 in instructions that do not contain it)
+--instruction type is determined by the opcode and gives information such as the location of the bits of an immediate in the instruction
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -59,12 +62,6 @@ begin
 				end case;
 			when "0110011" => --arithmetic with 2 registers 
 				instructionType <= "000";
-			when "0001111" => --fence instructions
-				case func3_internal is
-					when "000" => --FENCE
-					when "001" => --FENCE.I
-					when others =>
-				end case;
 			when "1110011" => --other instructions, to add later
 			when others =>
 		end case;

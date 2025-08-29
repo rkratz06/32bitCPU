@@ -1,4 +1,19 @@
 --32 bit alu
+--operations are determined by select lines, s. for the following S values, the output is listed
+--0000 -> reg1
+--0001 -> reg2
+--0010 -> reg1 AND reg2
+--0011 -> reg1 OR reg2
+--0100 -> reg1 + reg2 (signed)
+--0101 -> reg1 - reg2 (signed)
+--0110 -> not reg1
+--0111 -> not reg2
+--1000 -> reg1 XOR reg2
+--1001 -> reg1 shift left shamt times
+--1010 -> reg1 logical shift right shamt times
+--1011 -> reg1 arithmetic shift right shamt times
+--1100 -> output = 1 if reg1 < reg 2 (signed), else output = 0
+--1101 -> output = 1 if reg1 < reg 2 (unsigned), else output = 0
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -10,7 +25,7 @@ entity alu32bit is
 		reg2 : in std_logic_vector(31 downto 0);
 		S : in std_logic_vector (3 downto 0); --mux select lines, will be used to pick the operation that will be performed
 		shamt : in std_logic_vector(4 downto 0); --shift amount, only used for shift instructions
-		ALUZero, ALULT, ALULTU : out std_logic;
+		ALUZero, ALULT, ALULTU : out std_logic; --zero flag, less than flag, unsigned less than flag
 		output : out std_logic_vector(31 downto 0));
 end alu32bit;
 
@@ -47,7 +62,7 @@ begin
 			when "1000" => output_internal <= reg1 xor reg2; --reg1 xor reg2
 			when "1001" => output_internal <= std_logic_vector(shift_left(unsigned(reg1), to_integer(unsigned(shamt)))); --left shift shamt times
 			when "1010" => output_internal <= std_logic_vector(shift_right(unsigned(reg1), to_integer(unsigned(shamt)))); --logical right shift shamt times
-			when "1011" => output_internal <= std_logic_vector(shift_right(signed(reg1), to_integer(unsigned(shamt))));
+			when "1011" => output_internal <= std_logic_vector(shift_right(signed(reg1), to_integer(unsigned(shamt))));--arithmetic right shift shamt time
 			when "1100" =>  --less than operation signed
 				if (signed(reg1) < signed(reg2)) then
 					output_internal <= "00000000000000000000000000000001";
@@ -59,7 +74,7 @@ begin
 					output_internal <= "00000000000000000000000000000001";
 				else
 					output_internal <= "00000000000000000000000000000000";
-				end if;	--arithmetic right shift shamt time
+				end if;	
 			when others => output_internal <= (others => '0');
 		end case;
 		if output_internal = x"00000000" then
