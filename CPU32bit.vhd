@@ -12,9 +12,9 @@ entity CPU32bit is
 		PC, IR, reg1, reg2, writeData, ALU_input1, ALU_input2, ALU_output, immediate, RAMin, RAMout, RAMAddressOut, newWritebackData : out std_logic_vector(31 downto 0);
 		opcode, func7 : out std_logic_vector(6 downto 0);
 		func3, instructionType, Q : out std_logic_vector(2 downto 0);
-		readReg1, readReg2, writeReg : out std_logic_vector(4 downto 0);
+		readReg1, readReg2, writeReg, shamt : out std_logic_vector(4 downto 0);
 		S : out std_logic_vector(3 downto 0);
-		IR_LD, PC_LD, RegWE, RAMwe, RAMen, ALUZero, ALULT, ALULTU, updateWritebackReg : out std_logic
+		IR_LD, PC_LD, RegWE, RAMwe, ALUZero, ALULT, ALULTU, updateWritebackReg : out std_logic
 		);
 end CPU32bit;
 
@@ -106,8 +106,7 @@ architecture structure of CPU32bit is
 		ALU_input1 : out std_logic_vector(31 downto 0);
 		ALU_input2 : out std_logic_vector(31 downto 0);
 		shamt_out : out std_logic_vector(4 downto 0);
-		RAMbyteEN : out std_logic_vector(3 downto 0);
-		RAMen : out std_logic); 
+		RAMbyteEN : out std_logic_vector(3 downto 0)); 
 	end component;
 	
 	component stateRegister is
@@ -179,7 +178,6 @@ architecture structure of CPU32bit is
 	signal PCOffsetFlag_internal : std_logic;
 	signal writeData_internal : std_logic_vector(31 downto 0);
 	signal RAMwe_internal : std_logic;
-	signal RAMen_internal : std_logic;
 	signal RAMAddress_internal : std_logic_vector(31 downto 0);
 	signal RAMEnable : std_logic_vector(3 downto 0);
 	signal RAMOutput_internal : std_logic_vector(31 downto 0);
@@ -188,7 +186,6 @@ architecture structure of CPU32bit is
 	signal func7_internal : std_logic_vector(6 downto 0);
 	signal ALU_input1_internal : std_logic_vector(31 downto 0);
 	signal ALU_input2_internal : std_logic_vector(31 downto 0);
-	signal shamt_out_internal :std_logic_vector(4 downto 0);
 	signal writeRAMData_internal : std_logic_vector(31 downto 0);
 	signal RAMbyteEN_internal : std_logic_vector(3 downto 0);
 	signal ALUZero_internal : std_logic;
@@ -197,6 +194,7 @@ architecture structure of CPU32bit is
 	signal newWritebackData_internal : std_logic_vector(31 downto 0);
 	signal updateWritebackReg_internal : std_logic;
 	signal updatePCNext_internal : std_logic;
+	signal shamt_out_internal : std_logic_vector(4 downto 0);
 	
 	
 	begin
@@ -251,8 +249,7 @@ architecture structure of CPU32bit is
 			ALU_input2 => ALU_input2_internal, 
 			shamt_out => shamt_out_internal,
 			RAMbyteEN => RAMbyteEN_internal,
-			updateWritebackReg => updateWritebackReg_internal,
-			RAMen => RAMen_internal);
+			updateWritebackReg => updateWritebackReg_internal);
 		
 		--registers the state bits to be used in the stateMachine module
 		stateReg : stateRegister port map(D => D_internal, Q => Q_internal, clk => clk, reset => reset);
@@ -296,7 +293,6 @@ architecture structure of CPU32bit is
 		PC_LD <= PC_LD_internal;
 		RegWE <= RegWE_internal;
 		RAMwe <= RAMwe_internal;
-		RAMen <= RAMen_internal;
 		ALUZero <= ALUZero_internal;
 		ALULT <= ALULT_internal;
 		ALULTU <= ALULTU_internal;
@@ -304,5 +300,6 @@ architecture structure of CPU32bit is
 		updateWritebackReg <= updateWritebackReg_internal;
 		newWritebackData <= newWritebackData_internal;
 		instructionType <= instructionType_internal;
+		shamt <= shamt_out_internal;
 		
 end structure;

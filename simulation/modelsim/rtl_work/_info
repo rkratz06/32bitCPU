@@ -7,26 +7,26 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/simulation/modelsim
+Z0 dC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/simulation/modelsim
 Ealu32bit
-Z1 w1756434478
+Z1 w1756598378
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z5 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd
-Z6 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd
+Z5 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd
+Z6 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd
 l0
 L22
 VlgEBCg3]VRK<G>^;FAUWB3
 !s100 ?^@3V@gl1=IYbERJI86m72
 Z7 OV;C;10.5b;63
 31
-Z8 !s110 1756435736
+Z8 !s110 1756611290
 !i10b 1
-Z9 !s108 1756435736.000000
-Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd|
-Z11 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd|
+Z9 !s108 1756611290.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd|
+Z11 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/alu32bit.vhd|
 !i113 1
 Z12 o-93 -work work
 Z13 tExplicit 1 CvgOpt 0
@@ -50,24 +50,24 @@ R11
 R12
 R13
 Ecpu32bit
-Z14 w1756434187
+Z14 w1756609943
 R2
 R3
 R4
 R0
-Z15 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd
-Z16 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd
+Z15 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd
+Z16 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd
 l0
 L7
-V;ZV2g9N2MVem>Sg;2^d0i0
-!s100 OblfQh5VnNS<fLi<nTlT;0
+Ve9B@J7m9I2LZ;Xn9XfoZQ0
+!s100 LkTAF[GzocAHWBV=_02CV1
 R7
 31
 R8
 !i10b 1
 R9
-Z17 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd|
-Z18 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd|
+Z17 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd|
+Z18 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit.vhd|
 !i113 1
 R12
 R13
@@ -75,11 +75,11 @@ Astructure
 R2
 R3
 R4
-Z19 DEx4 work 8 cpu32bit 0 22 ;ZV2g9N2MVem>Sg;2^d0i0
-l202
+Z19 DEx4 work 8 cpu32bit 0 22 e9B@J7m9I2LZ;Xn9XfoZQ0
+l200
 L21
-Vo5T:^QB0hzE92?X;KzNS03
-!s100 i45d>EDh0Z^UI]8LXoXa@1
+V5SNT=f36GNKGXgGLn3OL[2
+!s100 Rn5RB?IBR3HS3:=gLGMlF3
 R7
 31
 R8
@@ -91,12 +91,12 @@ R18
 R12
 R13
 Ecpu32bit_tb
-Z20 w1756334754
+Z20 w1756609939
 R3
 R4
 R0
-Z21 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd
-Z22 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd
+Z21 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd
+Z22 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd
 l0
 L6
 V;FHeSB:_]VHzPRPEZ_`<;1
@@ -106,8 +106,8 @@ R7
 R8
 !i10b 1
 R9
-Z23 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd|
-Z24 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd|
+Z23 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd|
+Z24 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPU32bit_tb.vhd|
 !i113 1
 R12
 R13
@@ -119,8 +119,8 @@ R4
 DEx4 work 11 cpu32bit_tb 0 22 ;FHeSB:_]VHzPRPEZ_`<;1
 l18
 L9
-VCI0NezB03U`XaG:hVe^DT3
-!s100 b;:ng@;64A?G[b5<N@V6L2
+VEe2o1W0PgljUIk1KhO:JZ1
+!s100 cb3;<?H0Oe4<HY<]j8c]52
 R7
 31
 R8
@@ -132,29 +132,29 @@ R24
 R12
 R13
 Ecpuram
-Z25 w1756430216
-Z26 DPx9 altera_mf 20 altera_mf_components 0 22 GX]PGX0dkGdbU698H0h^l0
+R1
+Z25 DPx9 altera_mf 20 altera_mf_components 0 22 GX]PGX0dkGdbU698H0h^l0
 R3
 R4
 R0
-Z27 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd
-Z28 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd
+Z26 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd
+Z27 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd
 l0
 L43
 VBY:1l2a]4PWcab[m9TR:O1
 !s100 k8P^JkVcNh_VBU0k[SiEj0
 R7
 31
-R8
+Z28 !s110 1756611291
 !i10b 1
-R9
-Z29 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd|
-Z30 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd|
+Z29 !s108 1756611291.000000
+Z30 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd|
+Z31 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPURAM.vhd|
 !i113 1
 R12
 R13
 Asyn
-R26
+R25
 R3
 R4
 DEx4 work 6 cpuram 0 22 BY:1l2a]4PWcab[m9TR:O1
@@ -164,38 +164,38 @@ VHbVf8960bEWUkjQW@3XWD3
 !s100 ;EgQ`>Y[GWdYzmbO_?9ae1
 R7
 31
-R8
+R28
 !i10b 1
-R9
 R29
 R30
+R31
 !i113 1
 R12
 R13
 Ecpurom
-Z31 w1755898132
-R26
+Z32 w1754280527
+R25
 R3
 R4
 R0
-Z32 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd
-Z33 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd
+Z33 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd
+Z34 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd
 l0
 L43
 V@98AH4Y88W^FIoUA^m=2c2
 !s100 SUaZe3C]4Y`HT3`IS@maN2
 R7
 31
-R8
+R28
 !i10b 1
-R9
-Z34 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd|
-Z35 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd|
+R29
+Z35 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd|
+Z36 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/CPUROM.vhd|
 !i113 1
 R12
 R13
 Asyn
-R26
+R25
 R3
 R4
 DEx4 work 6 cpurom 0 22 @98AH4Y88W^FIoUA^m=2c2
@@ -205,33 +205,33 @@ VcS:Jhb_jmjmn=j:n=mEmi3
 !s100 WBY_5_a:l?ADY??5me_`l2
 R7
 31
-R8
+R28
 !i10b 1
-R9
-R34
+R29
 R35
+R36
 !i113 1
 R12
 R13
 Eimmediatecalc
-Z36 w1756434846
+R1
 R2
 R3
 R4
 R0
-Z37 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd
-Z38 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd
+Z37 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd
+Z38 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd
 l0
 L9
 VFAf?C^MdFUn`bd3T0of[J2
 !s100 N_i9O=MnFRj@gJbNLLm0X2
 R7
 31
-R8
+R28
 !i10b 1
-R9
-Z39 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd|
-Z40 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd|
+R29
+Z39 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd|
+Z40 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/immediateCalc.vhd|
 !i113 1
 R12
 R13
@@ -246,33 +246,33 @@ Vff>l^3ZND8A4kk1RTX`AG2
 !s100 lKFU]37LG_?j@EUIZ5_4;3
 R7
 31
-R8
+R28
 !i10b 1
-R9
+R29
 R39
 R40
 !i113 1
 R12
 R13
 Einstructiondecoder
-Z41 w1756434987
+Z41 w1756611022
 R2
 R3
 R4
 R0
-Z42 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd
-Z43 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd
+Z42 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd
+Z43 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd
 l0
 L10
 V0<Rc7U0hHMofEXWPD_]I;2
 !s100 _Z@:?l5EM36Sk8dJ]`goc3
 R7
 31
-R8
+R28
 !i10b 1
-R9
-Z44 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd|
-Z45 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd|
+R29
+Z44 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd|
+Z45 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionDecoder.vhd|
 !i113 1
 R12
 R13
@@ -281,38 +281,38 @@ R2
 R3
 R4
 DEx4 work 18 instructiondecoder 0 22 0<Rc7U0hHMofEXWPD_]I;2
-l26
+l27
 L22
-VlbMzgD>ZRUlgUkLd4jo4^3
-!s100 ;YaBCI_]Kf?ShOA`>L=Mo2
+VSUOlJU[l;LBdTjK@4?eoM2
+!s100 OnBU^Q_=NA;LUHdK[WnG=2
 R7
 31
-R8
+R28
 !i10b 1
-R9
+R29
 R44
 R45
 !i113 1
 R12
 R13
 Einstructionregister
-Z46 w1756434661
+R1
 R3
 R4
 R0
-Z47 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd
-Z48 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd
+Z46 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd
+Z47 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd
 l0
 L8
 V2aCQ`LYY@4RiD4kTG7iUB0
 !s100 6EmScILM`_ZE3?kLS6YfH3
 R7
 31
-R8
+R28
 !i10b 1
-R9
-Z49 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd|
-Z50 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd|
+R29
+Z48 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd|
+Z49 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/instructionRegister.vhd|
 !i113 1
 R12
 R13
@@ -326,33 +326,33 @@ VAM`cGNcVBVd<Z_hDCb]bc1
 !s100 aZZcAV2LFf>=mL1^WXCfi3
 R7
 31
-R8
+R28
 !i10b 1
-R9
+R29
+R48
 R49
-R50
 !i113 1
 R12
 R13
 Epcnextcalc
-Z51 w1756434785
+R1
 R2
 R3
 R4
 R0
-Z52 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd
-Z53 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd
+Z50 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd
+Z51 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd
 l0
 L10
 V:635Cz2IfIoY@TiA?C1dA1
 !s100 R9H0SiZeEfY4>J@CJDcCl0
 R7
 31
-R8
+R28
 !i10b 1
-R9
-Z54 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd|
-Z55 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd|
+R29
+Z52 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd|
+Z53 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/PCNextCalc.vhd|
 !i113 1
 R12
 R13
@@ -367,33 +367,33 @@ VkVzmTMkcKcmX9`eHk>U4n0
 !s100 BcoYS^TnL=6^GM0>1LN`=3
 R7
 31
-R8
+R28
 !i10b 1
-R9
-R54
-R55
+R29
+R52
+R53
 !i113 1
 R12
 R13
 Eprogramcounter
-Z56 w1756434682
+R1
 R2
 R3
 R4
 R0
-Z57 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd
-Z58 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd
+Z54 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd
+Z55 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd
 l0
 L8
 V4IOYjYdVKTL;QJD4LPB^K1
 !s100 3FJ`URB@>06RFVL5J9_ed1
 R7
 31
-R8
+Z56 !s110 1756611292
 !i10b 1
-R9
-Z59 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd|
-Z60 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd|
+Z57 !s108 1756611292.000000
+Z58 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd|
+Z59 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/programCounter.vhd|
 !i113 1
 R12
 R13
@@ -408,33 +408,33 @@ VZ4jc:?3K6iWLUi8azJ;gH2
 !s100 ^k_Q?lNYaZTeVaQ_RFJga0
 R7
 31
-R8
+R56
 !i10b 1
-R9
+R57
+R58
 R59
-R60
 !i113 1
 R12
 R13
 Eramaddress
-Z61 w1756435055
+R1
 R2
 R3
 R4
 R0
-Z62 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd
-Z63 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd
+Z60 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd
+Z61 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd
 l0
 L7
 VjYa9DD_1kP:@h=9KU10F50
 !s100 31OJH4BB2=;:V@=^nzD6f2
 R7
 31
-R8
+R56
 !i10b 1
-R9
-Z64 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd|
-Z65 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd|
+R57
+Z62 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd|
+Z63 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/RAMAddress.vhd|
 !i113 1
 R12
 R13
@@ -449,33 +449,33 @@ VHeaQoMd3h?JmP``z49XO<3
 !s100 ai>PdEQgO_Z<=QjLb`kcI1
 R7
 31
-R8
+R56
 !i10b 1
-R9
-R64
-R65
+R57
+R62
+R63
 !i113 1
 R12
 R13
 Eregisterfile
-Z66 w1756434539
+R1
 R2
 R3
 R4
 R0
-Z67 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd
-Z68 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd
+Z64 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd
+Z65 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd
 l0
 L7
 VL8_?X^P?j2SB>V<<fQ9XR0
 !s100 48E6NC87BYa7K441g;RU70
 R7
 31
-Z69 !s110 1756435737
+R56
 !i10b 1
-Z70 !s108 1756435737.000000
-Z71 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd|
-Z72 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd|
+R57
+Z66 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd|
+Z67 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/registerFile.vhd|
 !i113 1
 R12
 R13
@@ -490,33 +490,33 @@ VMGKc]CYYkJ=33=gl96NPc3
 !s100 Bnio<ncF83_UAjLjiml=53
 R7
 31
-R69
+R56
 !i10b 1
-R70
-R71
-R72
+R57
+R66
+R67
 !i113 1
 R12
 R13
 Estatemachine
-Z73 w1756435711
+Z68 w1756611241
 R2
 R3
 R4
 R0
-Z74 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd
-Z75 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd
+Z69 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd
+Z70 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd
 l0
 L7
-V:NmVI6XoBnb`?i6d;_E5I1
-!s100 DEb;J_6SEXcQ;@OQP@zFE3
+V<5i3`;]?UGOA0j_dgV9ME2
+!s100 DCN6@o2S:KSWgFHgA9C?B1
 R7
 31
-R69
+R56
 !i10b 1
-R70
-Z76 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd|
-Z77 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd|
+R57
+Z71 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd|
+Z72 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateMachine.vhd|
 !i113 1
 R12
 R13
@@ -524,67 +524,67 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 12 statemachine 0 22 :NmVI6XoBnb`?i6d;_E5I1
-l47
-L39
-V8E[:K0ng:RHW[T1A8DMaT1
-!s100 3k^G:<5a4gh?hhLT;M6B70
+DEx4 work 12 statemachine 0 22 <5i3`;]?UGOA0j_dgV9ME2
+l46
+L38
+VGPhe?Ea3=g3W`WOc;JUA<3
+!s100 8J>UFL`3NWUWKN8PG2e7k1
 R7
 31
-R69
+R56
 !i10b 1
-R70
-R76
-R77
+R57
+R71
+R72
 !i113 1
 R12
 R13
 Estateregister
-Z78 w1756435102
+Z73 w1756598379
 R3
 R4
 R0
-Z79 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd
-Z80 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd
+Z74 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd
+Z75 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd
 l0
 L7
 VXlIk0XG7d=?B?]V11V34P0
 !s100 D`OGck3Rgm_?MiMF_aMTN2
 R7
 31
-R69
+R56
 !i10b 1
-R70
-Z81 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd|
-Z82 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd|
+R57
+Z76 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd|
+Z77 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/stateRegister.vhd|
 !i113 1
 R12
 R13
 Abehavior
 R3
 R4
-Z83 DEx4 work 13 stateregister 0 22 XlIk0XG7d=?B?]V11V34P0
+Z78 DEx4 work 13 stateregister 0 22 XlIk0XG7d=?B?]V11V34P0
 l17
 L15
-Z84 VzMGP5Z4fYKZe2Lk2hlXKJ3
-Z85 !s100 SYLDe`V`E;<6Yb;3>ZKd22
+Z79 VzMGP5Z4fYKZe2Lk2hlXKJ3
+Z80 !s100 SYLDe`V`E;<6Yb;3>ZKd22
 R7
 31
-R69
+R56
 !i10b 1
-R70
-R81
-R82
+R57
+R76
+R77
 !i113 1
 R12
 R13
 Ewritebackregister
-Z86 w1756435143
+R73
 R3
 R4
 R0
-Z87 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd
-Z88 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd
+Z81 8C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd
+Z82 FC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd
 l0
 L7
 VzYVM0naVg0N:NK0^nG[d=1
@@ -594,8 +594,8 @@ R7
 R8
 !i10b 1
 R9
-Z89 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd|
-Z90 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd|
+Z83 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd|
+Z84 !s107 C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/writebackRegister.vhd|
 !i113 1
 R12
 R13
@@ -612,8 +612,8 @@ R7
 R8
 !i10b 1
 R9
-R89
-R90
+R83
+R84
 !i113 1
 R12
 R13

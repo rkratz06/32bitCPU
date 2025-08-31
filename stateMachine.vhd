@@ -32,8 +32,7 @@ entity stateMachine is
 		ALU_input1 : out std_logic_vector(31 downto 0);
 		ALU_input2 : out std_logic_vector(31 downto 0);
 		shamt_out : out std_logic_vector(4 downto 0);
-		RAMbyteEN : out std_logic_vector(3 downto 0);
-		RAMen : out std_logic); --ram is only enabled as long as RAMen = '1' and RAMAddress[14] = 1
+		RAMbyteEN : out std_logic_vector(3 downto 0));
 end stateMachine;
 
 architecture behavior of stateMachine is
@@ -57,11 +56,10 @@ begin
 		PC_LD <= '0';
 		UpdateRAMAddress <= '0';
 		S <= "0000";
-		RAMen <= '0';
 		ALU_input1 <= x"00000000";
 		ALU_input2 <= x"00000000";
 		writeRAMData <= x"00000000";
-		shamt_out <= shamt;
+		shamt_out <= "00000";
 		RAMbyteEN <= (others => '0');
 		updateWritebackReg <= '0';
 		if reset = '1' then --reset state, force PC to be 0
@@ -91,7 +89,13 @@ begin
 						S <= "0100";
 					when "1101111" => --JAL
 						--program counter updated with PC + immediate
+						--saves PC + 4 to rd by calculating using ALU and registering output
 						PCOffsetFlag <= '1';
+						ALU_input1 <= PC;
+						ALU_input2 <= x"00000004";
+						S <= "0100";
+						writeData <= ALU_output;
+						updateWritebackReg <= '1';
 					when "1100111" => --JALR
 						--JALRFlag set in decoder, used to calculate new PC
 						--saves PC + 4 to rd by calculating using ALU and registering output
@@ -158,12 +162,15 @@ begin
 							when "111" => --ANDI rd, rs1, imm
 								S <= "0010";
 							when "001" => --SLLI rd, rs1, shamt
+								shamt_out <= shamt;
 								S <= "1001";
 							when "101" => --right shift instructions
 								case func7 is
 									when "0000000" => --SRLI rd, rs11, shamt
+										shamt_out <= shamt;
 										S <= "1010";
 									when "0100000" => --SRAI rd, rs1, shamt
+										shamt_out <= shamt;
 										S <= "1011";
 									when others => 
 								end case;
@@ -213,7 +220,6 @@ begin
 			when MEM =>
 				D <= WRITEBACK;
 				if opcode = "0000011" then --load instruction
-					RAMen <= '1';
 					updateWritebackReg <= '1';
 					RAMbyteEN <= "1111";
 					case func3 is
@@ -230,7 +236,6 @@ begin
 						when others =>
 					end case;
 				elsif opcode = "0100011" then --store instruction
-					RAMen <= '1';
 					RAMwe <= '1';
 					writeRAMData <= reg2;
 					case func3 is

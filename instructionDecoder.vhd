@@ -23,14 +23,15 @@ architecture behavior of instructionDecoder is
 signal opcode_internal : std_logic_vector(6 downto 0);
 signal func3_internal : std_logic_vector(2 downto 0);
 signal func7_internal : std_logic_vector(6 downto 0);
+signal shamt_internal :std_logic_vector(4 downto 0);
 begin
 	opcode_internal <= IR(6 downto 0);
 	func3_internal <= IR(14 downto 12); --default position of func3
 	func7_internal <= IR(31 downto 25); --default position of func7
+	shamt_internal <= IR(24 downto 20);
 	
 	process(IR)
 	begin
-		shamt <= (others => '0');
 		JALRFlag <= '0'; --only true if JALR executed, default to false
 		case IR(6 downto 0) is
 			when "0110111" => --LUI rd, imm
@@ -53,13 +54,6 @@ begin
 				instructionType <= "010";
 			when "0010011" => --arithmetic operations with immediates
 				instructionType <= "001";
-				case func3_internal is
-					when "001" => --SLLI rd, rs1, shamt
-						shamt <= IR(24 downto 20);
-					when "101" => --right shift instructions
-						shamt <= IR(24 downto 20);
-					when others =>
-				end case;
 			when "0110011" => --arithmetic with 2 registers 
 				instructionType <= "000";
 			when "1110011" => --other instructions, to add later
@@ -69,4 +63,5 @@ begin
 	opcode <= opcode_internal;
 	func3 <= func3_internal;
 	func7 <= func7_internal;
+	shamt <= shamt_internal;
 end behavior;
