@@ -1,0 +1,104 @@
+--decode module
+--move JALR flag to execute for uniformity
+--add control flags later
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity decode is
+	port(
+		IR, PC : in std_logic_vector(31 downto 0);
+		clk, reset : in std_logic;
+		opcode : out std_logic_vector(6 downto 0);
+		instructionType : out std_logic_vector(2 downto 0);
+		func3 : out std_logic_vector(2 downto 0);
+		func7 : out std_logic_vector(6 downto 0);
+		shamt : out std_logic_vector(4 downto 0);
+		rs1_index, rs2_index, rd_index : out std_logic_vector(4 downto 0);
+		immediate, PC_out : out std_logic_vector(31 downto 0)
+	);
+end decode;
+
+architecture behavior of decode
+signal opcode_internal 
+signal instructionType
+
+component instructionDecoder
+	port(
+		IR : in std_logic_vector(31 downto 0); --instruction, comes from instruction register
+		JALRFlag : out std_logic; --only 1 if instruction executed is JALR
+		instructionType : out std_logic_vector(2 downto 0);
+		--000 = R, 001 = I, 010 = S, 011 = SB, 100 = U, 101 = UJ
+		opcode : out std_logic_vector(6 downto 0);
+		func3 : out std_logic_vector(2 downto 0);
+		func7 : out std_logic_vector(6 downto 0);
+		shamt : out std_logic_vector(4 downto 0);
+		rs1_index, rs2_index, rd_index : out std_logic_vector(4 downto 0);
+		);
+end component;
+
+component immediateCalc
+	port(
+		IR : in std_logic_vector(31 downto 0);
+		instructionType : in std_logic_vector(2 downto 0);
+		immediate : out std_logic_vector(31 downto 0);
+end component;
+signal JALRFlag_internal : std_logic;
+signal instructionType_internal, func3_internal : std_logic_vector(2 downto 0);
+signal shamt_internal, rs1_index_internal, rs2_index_internal, rd_index_internal : std_logic_vector(4 downto 0);
+signal func7_internal, opcode_internal : std_logic_vector(6 downto 0);
+signal immediate_internal : std_logic_vector(31 downto 0);
+signal JALRFlag_reg : std_logic;
+signal instructionType_reg, func3_reg : std_logic_vector(2 downto 0);
+signal shamt_reg, rs1_index_reg, rs2_index_reg, rd_index_reg : std_logic_vector(4 downto 0);
+signal func7_reg, opcode_reg : std_logic_vector(6 downto 0);
+signal immediate_reg, PC_internal, PC_reg : std_logic_vector(31 downto 0);
+begin
+	decoder_inst : instructionDecoder port map(IR => IR, JALRFlag => JALRFlag_internal, instructionType => instructionType_internal, opcode => 
+	opcode_internal, func3 =>func3_internal, func7 => func7_internal, shamt => shamt_internal, rs1_index => rs1_index_internal, rs2_index => rs2_index_internal,
+	rd_index => rd_index_internal);
+	
+	immediateCalc_inst : immediateCalc port map(IR => IR_internal, instructionType => instructionType_internal, immediate => immediate_internal);
+	begin
+	PC_internal <= PC;
+	process(reset, clk)
+	begin
+		if reset = '1' then
+			JALRFlag_internal <= (others => '0');
+			instructionType_internal <= (others => '0');
+			func3_internal <= (others => '0');
+			shamt_internal <= (others => '0');
+			rs1_index_internal <= (others => '0');
+			rs2_index_internal <= (others => '0');
+			rd_index_internal <= (others => '0');
+			func7_internal <= (others => '0');
+			opcode_internal <= (others => '0');
+			immediate_internal <= (others => '0');
+			PC_internal <= (others => '0');
+		elsif rising_edge(clk) then
+			JALRFlag_reg <= JALRFlag_internal;
+			instructionType_reg <= instructionType_internal;
+			func3_reg <= func3_internal;
+			shamt_reg <= shamt_internal;
+			rs1_index_reg <= rs1_index_internal;
+			rs2_index_reg <= rs2_index_internal;
+			rd_index_reg <= rd_index_internal;
+			func7_reg <= func7_internal;
+			opcode_reg <= opcode_internal;
+			immediate_reg <= immediate_internal;
+			PC_reg <= PC_internal;
+		end if;
+	end process;
+	JALRFlag <= JALRFlag_reg;
+	instructionType <= instructionType_reg;
+	func3 <= func3_reg;
+	shamt <= shamt_reg;
+	rs1_index <= rs1_index_reg;
+	rs2_index <= rs2_index_reg;
+	rd_index <= rd_index_reg;
+	func7 <= func7_reg;
+	opcode <= opcode_reg;
+	immediate <= immediate_reg;
+	PC_out <= PC_reg;
+end behavior;

@@ -16,20 +16,12 @@ entity instructionDecoder is
 		opcode : out std_logic_vector(6 downto 0);
 		func3 : out std_logic_vector(2 downto 0);
 		func7 : out std_logic_vector(6 downto 0);
-		shamt : out std_logic_vector(4 downto 0));
+		shamt : out std_logic_vector(4 downto 0)
+		rs1_index, rs2_index, rd_index : out std_logic_vector(4 downto 0));
 end instructionDecoder;
 
 architecture behavior of instructionDecoder is
-signal opcode_internal : std_logic_vector(6 downto 0);
-signal func3_internal : std_logic_vector(2 downto 0);
-signal func7_internal : std_logic_vector(6 downto 0);
-signal shamt_internal :std_logic_vector(4 downto 0);
 begin
-	opcode_internal <= IR(6 downto 0);
-	func3_internal <= IR(14 downto 12); --default position of func3
-	func7_internal <= IR(31 downto 25); --default position of func7
-	shamt_internal <= IR(24 downto 20);
-	
 	process(IR)
 	begin
 		JALRFlag <= '0'; --only true if JALR executed, default to false
@@ -60,8 +52,11 @@ begin
 			when others =>
 		end case;
 	end process;
-	opcode <= opcode_internal;
-	func3 <= func3_internal;
-	func7 <= func7_internal;
-	shamt <= shamt_internal;
+	opcode <= IR(6 downto 0);
+	func3 <= IR(14 downto 12);
+	func7 <= IR(24 downto 20);
+	shamt <= IR(24 downto 20);
+	rs1_index <= IR(19 downto 15);
+	rs2_index <= IR(24 downto 20);
+	rd_index <= IR(11 downto 7);
 end behavior;
