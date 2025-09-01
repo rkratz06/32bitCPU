@@ -9,51 +9,13 @@ end CPU32bit_tb;
 architecture behavior of CPU32bit_tb is
 signal clk_tb : std_logic := '0';
 signal reset_tb : std_logic := '1';
-signal PC_tb, IR_tb, reg1_tb, reg2_tb, writeData_tb, ALU_input1_tb, ALU_input2_tb, ALU_output_tb, immediate_tb, RAMin_tb, RAMout_tb, RAMAddressOut_tb, newWritebackData_tb : std_logic_vector(31 downto 0);
-signal opcode_tb, func7_tb : std_logic_vector(6 downto 0);
-signal func3_tb, instructionType_tb, Q_tb : std_logic_vector(2 downto 0);
-signal readReg1_tb, readReg2_tb, writeReg_tb, shamt_tb : std_logic_vector(4 downto 0);
-signal S_tb : std_logic_vector(3 downto 0);
-signal IR_LD_tb, PC_LD_tb, RegWE_tb, RAMwe_tb, ALUZero_tb, ALULT_tb, ALULTU_tb, updateWritebackReg_tb : std_logic;
 begin
 
     dut: entity work.CPU32bit
         port map(
             clk => clk_tb,
-            reset => reset_tb,
-            PC => PC_tb,
-            IR => IR_tb,
-            reg1 => reg1_tb,
-            reg2 => reg2_tb,
-            writeData => writeData_tb,
-            ALU_input1 => ALU_input1_tb,
-            ALU_input2 => ALU_input2_tb,
-            ALU_output => ALU_output_tb,
-            immediate => immediate_tb,
-            RAMin => RAMin_tb,
-            RAMout => RAMout_tb,
-            RAMAddressOut => RAMAddressOut_tb,
-            opcode => opcode_tb,
-            func7 => func7_tb,
-            func3 => func3_tb,
-            readReg1 => readReg1_tb,
-            readReg2 => readReg2_tb,
-            writeReg => writeReg_tb,
-            Q => Q_tb,
-            IR_LD => IR_LD_tb,
-            PC_LD => PC_LD_tb,
-            RegWE => RegWE_tb,
-            RAMwe => RAMwe_tb,
-            ALUZero => ALUZero_tb,
-            ALULT => ALULT_tb,
-            ALULTU => ALULTU_tb,
-				S => S_tb,
-				updateWritebackReg => updateWritebackReg_tb,
-				newWritebackData => newWritebackData_tb,
-				instructionType => instructionType_tb,
-				shamt => shamt_tb
+            reset => reset_tb
         );
-
 		  clk_tb <= not clk_tb after 1ns;
 		  reset_tb <= '1', '0' after 5ns;
 end architecture;

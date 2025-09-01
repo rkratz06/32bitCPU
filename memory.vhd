@@ -9,10 +9,9 @@ entity memory is
 		writeData, rs1, rs2 : in std_logic_vector(31 downto 0);
 		rd_index : in std_logic_vector(4 downto 0);
 		func3 : in std_logic_vector(2 downto 0);
-		RAMAddress : in std_logic_vector(31 downto 0);
-		writeData_out : std_logic_vector(31 downto 0);
-		REGwe_out : std_logic;
-		rd_index_out : std_logic_vector(4 downto 0);
+		writeData_out : out std_logic_vector(31 downto 0);
+		REGwe_out : out std_logic;
+		rd_index_out : out std_logic_vector(4 downto 0)
 	);
 end memory;
 
@@ -48,11 +47,9 @@ begin
 						RAMbyteEN_internal <= "1111";
 					when others =>
 				end case;
-				RAM : CPURAM port map (address => RAMAddress, byteena => RAMbyteEN, clock => clk, data => rs2, wren => RAMwe, q => RAMData); 
 			else
 				REGwe_internal <= '1';
 				RAMbyteEN_internal <= "1111";
-				RAM : CPURAM port map (address => RAMAddress, byteena => "1111", clock => clk, data => rs2, wren => RAMwe, q => RAMData); --likely wont work, move to execute ?
 				case func3 is
 					when "000" => --load byte
 						writeData_internal <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
@@ -68,13 +65,14 @@ begin
 				end case;
 			end if;
 		end if;
-	end process
+	end process;
+	RAM : CPURAM port map(address => writeData(13 downto 0), byteena => RAMbyteEN_internal, clock => clk, data => rs2, wren => RAMwe, q => RAMData); 
 	process(clk, reset)
 	begin
 		if reset = '1' then
-			rd_index_internal <= (others => '0');
-			writeData_internal <= (others => '0');
-			REGwe_internal <= (others => '0');
+			rd_index_reg <= (others => '0');
+			writeData_reg <= (others => '0');
+			REGwe_reg <= '0';
 		elsif rising_edge(clk) then
 			rd_index_reg <= rd_index_internal;
 			writeData_reg <= writeData_internal;

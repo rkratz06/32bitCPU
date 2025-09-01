@@ -1,4 +1,5 @@
 --Handles state machine for controller
+--WILL BE OBSOLETE AFTER PIPELINING COMPLETE
 
 library ieee;
 use ieee.std_logic_1164.all;

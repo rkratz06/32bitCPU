@@ -16,7 +16,7 @@ entity instructionDecoder is
 		opcode : out std_logic_vector(6 downto 0);
 		func3 : out std_logic_vector(2 downto 0);
 		func7 : out std_logic_vector(6 downto 0);
-		shamt : out std_logic_vector(4 downto 0)
+		shamt : out std_logic_vector(4 downto 0);
 		rs1_index, rs2_index, rd_index : out std_logic_vector(4 downto 0));
 end instructionDecoder;
 
@@ -54,7 +54,7 @@ begin
 	end process;
 	opcode <= IR(6 downto 0);
 	func3 <= IR(14 downto 12);
-	func7 <= IR(24 downto 20);
+	func7 <= IR(31 downto 25);
 	shamt <= IR(24 downto 20);
 	rs1_index <= IR(19 downto 15);
 	rs2_index <= IR(24 downto 20);
