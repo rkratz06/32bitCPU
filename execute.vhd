@@ -1,6 +1,4 @@
 --execute module
---todo: add JAL, JALR, and branch handling
---add flag for writing to registers
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -21,7 +19,6 @@ entity execute is
 	);
 end execute;
 --internal shamt signal, overwrite with reg value if reg instead of immediate
---register file -> used to READ rs1 and rs2
 
 architecture behavior of execute is
 
@@ -71,6 +68,7 @@ begin
 	rs2_internal <= rs2;
 	process(immediate, rs1_internal, rs2_internal, PC, opcode, func3, func7, shamt) --this initial process will produce the inputs to be fed into the ALU. ANother process is required to handle branching
 	begin
+		REGwe_internal <= '0';
 		case opcode is
 			when "0110111" => --LUI
 				--immediate to ALU output to be registered in writeback register

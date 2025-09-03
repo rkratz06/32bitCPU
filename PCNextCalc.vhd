@@ -27,7 +27,7 @@ begin
 		elsif PCOffsetFlag = '1' then
 			PC_next <= std_logic_vector(unsigned(PC) + unsigned(immediate));
 		else
-			PC_next <= std_logic_vector(unsigned(PC) + 4);
+			PC_next <= (others => '0');
 		end if;
 	end process;
 end behavior;

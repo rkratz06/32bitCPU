@@ -15,9 +15,9 @@ entity writeback is
 end writeback;
 
 architecture behavior of writeback is
-signal REGwe_internal, REGwe_reg : std_logic;
-signal rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0);
-signal writeData_internal, writeData_reg : std_logic_vector(31 downto 0);
+signal REGwe_internal, REGwe_reg : std_logic := '0';
+signal rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0) := (others => '0');
+signal writeData_internal, writeData_reg : std_logic_vector(31 downto 0) := (others => '0');
 begin
 	REGwe_internal <= REGwe;
 	rd_index_internal <= rd_index;
