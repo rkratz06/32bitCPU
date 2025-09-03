@@ -17,10 +17,10 @@ end memory;
 
 architecture behavior of memory is
 
-signal REGwe_internal, REGwe_reg : std_logic;
-signal RAMbyteEN_internal : std_logic_vector(3 downto 0);
-signal writeData_internal, writeData_reg, RAMData : std_logic_vector(31 downto 0);
-signal rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0);
+signal REGwe_internal, REGwe_reg : std_logic := '0';
+signal RAMbyteEN_internal : std_logic_vector(3 downto 0) := (others => '0');
+signal writeData_internal, writeData_reg, RAMData : std_logic_vector(31 downto 0) := (others => '0');
+signal rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0) := (others => '0');
 
 component CPURAM
 	port(

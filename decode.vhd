@@ -42,14 +42,14 @@ component immediateCalc
 		immediate : out std_logic_vector(31 downto 0));
 end component;
 
-signal instructionType_internal, func3_internal : std_logic_vector(2 downto 0);
-signal shamt_internal, rs1_index_internal, rs2_index_internal, rd_index_internal : std_logic_vector(4 downto 0);
-signal func7_internal, opcode_internal : std_logic_vector(6 downto 0);
-signal immediate_internal: std_logic_vector(31 downto 0);
-signal instructionType_reg, func3_reg : std_logic_vector(2 downto 0);
-signal shamt_reg, rs1_index_reg, rs2_index_reg, rd_index_reg : std_logic_vector(4 downto 0);
-signal func7_reg, opcode_reg : std_logic_vector(6 downto 0);
-signal immediate_reg, PC_internal, PC_reg : std_logic_vector(31 downto 0);
+signal instructionType_internal, func3_internal : std_logic_vector(2 downto 0) := (others => '0');
+signal shamt_internal, rs1_index_internal, rs2_index_internal, rd_index_internal : std_logic_vector(4 downto 0) := (others => '0');
+signal func7_internal, opcode_internal : std_logic_vector(6 downto 0) := (others => '0');
+signal immediate_internal: std_logic_vector(31 downto 0) := (others => '0');
+signal instructionType_reg, func3_reg : std_logic_vector(2 downto 0) := (others => '0');
+signal shamt_reg, rs1_index_reg, rs2_index_reg, rd_index_reg : std_logic_vector(4 downto 0) := (others => '0');
+signal func7_reg, opcode_reg : std_logic_vector(6 downto 0) := (others => '0');
+signal immediate_reg, PC_internal, PC_reg : std_logic_vector(31 downto 0) := (others => '0');
 begin
 	decoder_inst : instructionDecoder port map(IR => IR, instructionType => instructionType_internal, opcode => 
 	opcode_internal, func3 =>func3_internal, func7 => func7_internal, shamt => shamt_internal, rs1_index => rs1_index_internal, rs2_index => rs2_index_internal,

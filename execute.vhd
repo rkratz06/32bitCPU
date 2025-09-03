@@ -12,10 +12,10 @@ entity execute is
 	clk, reset : in std_logic;
 	opcode, func7 : in std_logic_vector(6 downto 0);
 	instructionType, func3 : in std_logic_vector(2 downto 0);
-	immediate : in std_logic_vector(31 downto 0);
+	immediate, rs1, rs2 : in std_logic_vector(31 downto 0);
 	PC : in std_logic_vector(31 downto 0);
-	writeData, rs1, rs2 : out std_logic_vector(31 downto 0);
-	RAMen, RAMwe, REGwe:  out std_logic;
+	writeData, newAddress, rs1_out, rs2_out : out std_logic_vector(31 downto 0);
+	RAMen, RAMwe, REGwe, jump_or_branch_flag:  out std_logic;
 	rd_index_out : out std_logic_vector(4 downto 0);
 	func3_out : out std_logic_vector(2 downto 0)
 	);
@@ -46,17 +46,30 @@ component registerFile
 		readData1 : out std_logic_vector(31 downto 0); --data contained in chosen register 1
 		readData2 : out std_logic_vector(31 downto 0)); --data contained in chosen register 2
 end component;
-signal rs1_internal, rs2_internal, ALU_input1_internal, ALU_input2_internal, writeData_internal, writeData_reg, rs1_reg, rs2_reg, RAMAddress_internal, RAMAddress_reg : std_logic_vector(31 downto 0);
-signal RAMwe_internal, RAMwe_reg, RAMen_internal, RAMen_reg, ALUZero_internal, ALULT_internal, ALULTU_internal, REGwe_internal, REGwe_reg : std_logic;
-signal S_internal : std_logic_vector(3 downto 0);
-signal shamt_internal, rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0);
-signal func3_internal, func3_reg : std_logic_vector(2 downto 0);
+
+component PCNextCalc
+	port(
+		PC : in std_logic_vector(31 downto 0);
+		PCOffsetFlag : in std_logic; --if true, branch was taken, PC_next <- PC + immediate, otherwise PC_next <- PC + 4
+		JALRFlag : in std_logic; --if flag = '1', JALR was executed
+		Immediate : in std_logic_vector(31 downto 0); --byte aligned immediate
+		reg1 : in std_logic_vector(31 downto 0); --used for JALR instruction
+		PC_next : out std_logic_vector(31 downto 0)
+	);
+end component;
+
+signal rs1_internal, rs2_internal, ALU_input1_internal, ALU_input2_internal, writeData_internal, writeData_reg, rs1_reg, rs2_reg, RAMAddress_internal, RAMAddress_reg, newAddress_internal, newAddress_reg : std_logic_vector(31 downto 0) := (others => '0');
+signal RAMwe_internal, RAMwe_reg, RAMen_internal, RAMen_reg, ALUZero_internal, ALULT_internal, ALULTU_internal, REGwe_internal, REGwe_reg, jump_or_branch_flag_internal, jump_or_branch_flag_reg, PCOffsetFlag, JALRFlag : std_logic := '0';
+signal S_internal : std_logic_vector(3 downto 0) := (others => '0');
+signal shamt_internal, rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0) := (others => '0');
+signal func3_internal, func3_reg : std_logic_vector(2 downto 0) := (others => '0');
 
 begin
 	rd_index_internal <= rd_index;
 	func3_internal <= func3;
-	registerFile_inst : registerFile port map (clk => clk, we =>'0', writeReg => rd_index, readReg1 => rs1_index, readReg2 => rs2_index, writeData => (others => '0'), readData1 => rs1_internal, readData2 => rs2_internal);
-	process(immediate, rs1_internal, rs2_internal, PC, opcode, func3, func7, shamt)
+	rs1_internal <= rs1;
+	rs2_internal <= rs2;
+	process(immediate, rs1_internal, rs2_internal, PC, opcode, func3, func7, shamt) --this initial process will produce the inputs to be fed into the ALU. ANother process is required to handle branching
 	begin
 		case opcode is
 			when "0110111" => --LUI
@@ -172,6 +185,54 @@ begin
 		end case;
 	end process;
 	ALU_inst : alu32bit port map(reg1 => ALU_input1_internal, reg2 => ALU_input2_internal, S => S_internal, shamt => shamt_internal, ALUZero => ALUZero_internal, ALULT => ALULT_internal, ALULTU => ALULTU_internal, output => writeData_internal);
+	process(writeData_internal, ALUZero_internal, ALULT_internal, ALULTU_internal)
+	begin
+		jump_or_branch_flag_internal <= '0';
+		PCOffsetFlag <= '0';
+		JALRFlag <= '0';
+		if opcode = "1101111" then
+			jump_or_branch_flag_internal <= '1';
+			PCOffsetFlag <= '1';
+		elsif opcode = "1100111" then
+			jump_or_branch_flag_internal <= '1';
+			JALRFlag <= '1';
+		elsif opcode = "1100011" then --branch instructions, use ALU flags to determine if branch is taken. ALU output not used, only flags
+			case func3 is
+					when "000" => --BEQ
+						if ALUZero_internal = '1' then
+							jump_or_branch_flag_internal <= '1'; 
+							PCOffsetFlag <= '1';
+					end if;
+					when "001" => --BNE
+						if ALUZero_internal = '0' then
+							jump_or_branch_flag_internal <= '1';
+							PCOffsetFlag <= '1';
+						end if;
+					when "100" => --BLT
+						if ALULT_internal = '1' then
+							jump_or_branch_flag_internal <= '1';
+							PCOffsetFlag <= '1';
+						end if;
+					when "101" => --BGE
+						if ALULT_internal = '0' then
+							jump_or_branch_flag_internal <= '1';
+							PCOffsetFlag <= '1';
+						end if;
+					when "110" => --BLTU
+						if ALULTU_internal = '1' then
+							jump_or_branch_flag_internal <= '1';
+							PCOffsetFlag <= '1';
+						end if;
+					when "111" => --BGEU
+						if ALULTU_internal = '0' then
+							jump_or_branch_flag_internal <= '1';
+							PCOffsetFlag <= '1';
+						end if;
+					when others =>
+				end case;
+			end if;
+	end process;
+	PCNextCalc_inst : PCNextCalc port map(PC => PC, PCOffsetFlag => PCOffsetFlag, JALRFlag => JALRFlag, Immediate => immediate, reg1 => rs1_internal, PC_next => newAddress_internal);
 	process(clk, reset)
 	begin
 		if reset = '1' then
@@ -183,6 +244,8 @@ begin
 			REGwe_reg <= '0';
 			rd_index_reg <= (others => '0');
 			func3_reg <= (others => '0');
+			newAddress_reg <= (others => '0');
+			jump_or_branch_flag_reg <= '0';
 		elsif rising_edge(clk) then
 			writeData_reg <= writeData_internal;
 			rs1_reg <= rs1_internal;
@@ -192,14 +255,18 @@ begin
 			REGwe_reg <= REGwe_internal;
 			rd_index_reg <= rd_index_internal;
 			func3_reg <= func3_internal;
+			newAddress_reg <= newAddress_internal;
+			jump_or_branch_flag_reg <= jump_or_branch_flag_internal;
 		end if;
 	end process;
 	writeData <= writeData_reg;
-	rs1 <= rs1_reg;
-	rs2 <= rs2_reg;
+	rs1_out <= rs1_reg;
+	rs2_out <= rs2_reg;
 	RAMen <= RAMen_reg;
 	RAMwe <= RAMwe_reg;
 	REGwe <= REGwe_reg;
 	rd_index_out <= rd_index_reg;
 	func3_out <= func3_reg;
+	newAddress <= newAddress_reg;
+	jump_or_branch_flag <= jump_or_branch_flag_reg;
 end behavior;
