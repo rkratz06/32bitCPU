@@ -54,22 +54,6 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
-set_global_assignment -name VHDL_FILE alu32bit.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
-set_global_assignment -name VHDL_FILE registerFile.vhd
-set_global_assignment -name VHDL_FILE instructionRegister.vhd
-set_global_assignment -name VHDL_FILE programCounter.vhd
-set_global_assignment -name VHDL_FILE CPU32bit.vhd
-set_global_assignment -name MIF_FILE CPUMIF.mif
-set_global_assignment -name QIP_FILE CPUROM.qip
-set_global_assignment -name VHDL_FILE PCNextCalc.vhd
-set_global_assignment -name VHDL_FILE immediateCalc.vhd
-set_global_assignment -name VHDL_FILE stateMachine.vhd
-set_global_assignment -name VHDL_FILE instructionDecoder.vhd
-set_global_assignment -name QIP_FILE CPURAM.qip
-set_global_assignment -name VHDL_FILE RAMAddress.vhd
-set_global_assignment -name VHDL_FILE stateRegister.vhd
-set_global_assignment -name VHDL_FILE CPU32bit_tb.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -121,6 +105,23 @@ set_global_assignment -name EDA_TEST_BENCH_FILE stateMachine.vhd.bak -section_id
 set_global_assignment -name EDA_TEST_BENCH_FILE stateRegister.vhd -section_id CPU32bit_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE stateRegister.vhd.bak -section_id CPU32bit_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE Waveform.vwf -section_id CPU32bit_tb
+set_global_assignment -name VHDL_FILE decode_to_execute_register.vhd
+set_global_assignment -name VHDL_FILE alu32bit.vhd
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
+set_global_assignment -name VHDL_FILE registerFile.vhd
+set_global_assignment -name VHDL_FILE instructionRegister.vhd
+set_global_assignment -name VHDL_FILE programCounter.vhd
+set_global_assignment -name VHDL_FILE CPU32bit.vhd
+set_global_assignment -name MIF_FILE CPUMIF.mif
+set_global_assignment -name QIP_FILE CPUROM.qip
+set_global_assignment -name VHDL_FILE PCNextCalc.vhd
+set_global_assignment -name VHDL_FILE immediateCalc.vhd
+set_global_assignment -name VHDL_FILE stateMachine.vhd
+set_global_assignment -name VHDL_FILE instructionDecoder.vhd
+set_global_assignment -name QIP_FILE CPURAM.qip
+set_global_assignment -name VHDL_FILE RAMAddress.vhd
+set_global_assignment -name VHDL_FILE stateRegister.vhd
+set_global_assignment -name VHDL_FILE CPU32bit_tb.vhd
 set_global_assignment -name VHDL_FILE writebackRegister.vhd
 set_global_assignment -name MIF_FILE RAMMIF.mif
 set_global_assignment -name VHDL_FILE fetch.vhd

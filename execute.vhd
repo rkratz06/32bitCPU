@@ -69,6 +69,8 @@ begin
 	process(immediate, rs1_internal, rs2_internal, PC, opcode, func3, func7, shamt) --this initial process will produce the inputs to be fed into the ALU. ANother process is required to handle branching
 	begin
 		REGwe_internal <= '0';
+		RAMen_internal <= '0';
+		RAMwe_internal <= '0';
 		case opcode is
 			when "0110111" => --LUI
 				--immediate to ALU output to be registered in writeback register
@@ -110,6 +112,7 @@ begin
 				ALU_input2_internal <= immediate;
 				S_internal <= "0100";
 				RAMen_internal <= '1';
+				RAMwe_internal <= '1';
 			when "0010011" => --arithmetic with immediate
 				ALU_input1_internal <= rs1_internal;
 				ALU_input2_internal <= immediate;

@@ -19,7 +19,7 @@ architecture behavior of memory is
 
 signal REGwe_internal, REGwe_reg : std_logic := '0';
 signal RAMbyteEN_internal : std_logic_vector(3 downto 0) := (others => '0');
-signal writeData_internal, writeData_reg, RAMData : std_logic_vector(31 downto 0) := (others => '0');
+signal writeData_internal, writeData_reg, RAMData, RAMAddress: std_logic_vector(31 downto 0) := (others => '0');
 signal rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0) := (others => '0');
 
 component CPURAM
@@ -33,23 +33,29 @@ component CPURAM
 end component;
 
 begin
+	REGwe_internal <= REGwe;
 	rd_index_internal <= rd_index;
+	RAMAddress <= writeData;
 	process(RAMen, RAMwe, func3)
 	begin
-		if RAMen = '1' then --load instruction
-			if RAMwe = '1' then
-				case func3 is
-					when "000" => --store byte
-						RAMbyteEN_internal <= "0001";
-					when "001" => --store half word
-						RAMbyteEN_internal <= "0011";
-					when "010" => --store word
-						RAMbyteEN_internal <= "1111";
-					when others =>
-				end case;
-			else
-				REGwe_internal <= '1';
-				RAMbyteEN_internal <= "1111";
+		RAMbyteEN_internal <= "1111";
+		if RAMen = '1'  and RAMwe = '1' then
+			case func3 is
+				when "000" => --store byte
+					RAMbyteEN_internal <= "0001";
+				when "001" => --store half word
+					RAMbyteEN_internal <= "0011";
+				when "010" => --store word
+					RAMbyteEN_internal <= "1111";
+				when others =>
+			end case;
+		end if;
+	end process;
+	RAM : CPURAM port map(address => RAMAddress(13 downto 0), byteena => RAMbyteEN_internal, clock => clk, data => rs2, wren => RAMwe, q => RAMData); 
+	process(RAMen, RAMwe, func3)
+	begin
+		writeData_internal <= writeData;
+		if RAMen = '1' and RAMwe = '0' then
 				case func3 is
 					when "000" => --load byte
 						writeData_internal <= std_logic_vector(resize(signed(RAMData(7 downto 0)), 32));
@@ -64,9 +70,7 @@ begin
 					when others =>
 				end case;
 			end if;
-		end if;
 	end process;
-	RAM : CPURAM port map(address => writeData(13 downto 0), byteena => RAMbyteEN_internal, clock => clk, data => rs2, wren => RAMwe, q => RAMData); 
 	process(clk, reset)
 	begin
 		if reset = '1' then

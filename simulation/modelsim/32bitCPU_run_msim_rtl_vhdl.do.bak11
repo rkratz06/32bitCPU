@@ -50,6 +50,7 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
+vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/decode_to_execute_register.vhd}
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/alu32bit.vhd}
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/registerFile.vhd}
 vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPU32bit.vhd}

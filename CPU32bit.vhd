@@ -92,9 +92,17 @@ architecture structure of CPU32bit is
 		clock		: IN STD_LOGIC  := '1';
 		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0));
 	end component;
+	
+	component decode_to_execute_register is
+	port(
+		clk, reset : in std_logic;
+		rs1, rs2 : in std_logic_vector(31 downto 0);
+		rs1_out, rs2_out : out std_logic_vector(31 downto 0));
+	end component;
 
 	signal PC_fetch_out, PC_decode_out, IR_fetch_out, immediate_decode_out, writeData_execute_out, rs1_execute_out, rs2_execute_out, 
-	rd_execute_out, writeData_mem_out, newAddress_execute_out, rs1_execute_in, rs2_execute_in, writeData_wb_out: std_logic_vector(31 downto 0) := (others => '0');
+	rd_execute_out, writeData_mem_out, newAddress_execute_out, rs1_execute_in, rs2_execute_in, writeData_wb_out,
+	rs1_decode_out, rs2_decode_out: std_logic_vector(31 downto 0) := (others => '0');
 	signal opcode_decode_out, func7_decode_out : std_logic_vector(6 downto 0) := (others => '0');
 	signal instructionType_decode_out, func3_decode_out, func3_execute_out: std_logic_vector(2 downto 0) := (others => '0');
 	signal rs1_index_decode_out, rs2_index_decode_out, rd_index_decode_out, shamt_decode_out, rd_index_execute_out,
@@ -126,14 +134,17 @@ architecture structure of CPU32bit is
 		writeData_out => writeData_wb_out, REGwe_out => REGwe_wb_out, rd_index_out => rd_index_wb_out);
 		
 		registerFile_inst : registerFile port map(clk => clk, we => REGwe_wb_out, writeReg => rd_index_wb_out, readReg1 => rs1_index_decode_out, 
-		readReg2 => rs2_index_decode_out, writeData => writeData_wb_out, readData1 => rs1_execute_in, readData2 => rs2_execute_in);
+		readReg2 => rs2_index_decode_out, writeData => writeData_wb_out, readData1 => rs1_decode_out, readData2 => rs2_decode_out);
 		
 		CPUROM_inst : CPUROM port map(address => PC_fetch_out(15 downto 2), clock => clk, q => IR_fetch_out);
+		
+		decode_to_execute_register_inst : decode_to_execute_register port map(clk => clk, reset => reset,
+		rs1 =>rs1_decode_out, rs2 => rs2_decode_out, rs1_out => rs1_execute_in, rs2_out => rs2_execute_in);
 		
 		PC <= PC_fetch_out;
 		rs1 <= rs1_execute_in;
 		rs2 <= rs2_execute_in;
-		writeData <= writeData_execute_out;
+		writeData <= writeData_wb_out;
 		IR <= IR_fetch_out;
 		immediate <= immediate_decode_out;
 		rs1_index <= rs1_index_decode_out;
