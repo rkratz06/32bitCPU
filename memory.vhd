@@ -52,7 +52,7 @@ begin
 		end if;
 	end process;
 	RAM : CPURAM port map(address => RAMAddress(13 downto 0), byteena => RAMbyteEN_internal, clock => clk, data => rs2, wren => RAMwe, q => RAMData); 
-	process(RAMen, RAMwe, func3)
+	process(RAMen, RAMwe, func3, writeData)
 	begin
 		writeData_internal <= writeData;
 		if RAMen = '1' and RAMwe = '0' then
@@ -82,8 +82,8 @@ begin
 			writeData_reg <= writeData_internal;
 			REGwe_reg <= REGwe_internal;
 		end if;
-		rd_index_out <= rd_index_reg;
-		writeData_out <= writeData_reg;
-		REGwe_out <= REGwe_reg;
 	end process;
+	rd_index_out <= rd_index_reg;
+	writeData_out <= writeData_reg;
+	REGwe_out <= REGwe_reg;
 end behavior;

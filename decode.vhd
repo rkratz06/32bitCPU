@@ -9,7 +9,7 @@ use ieee.numeric_std.all;
 entity decode is
 	port(
 		IR, PC : in std_logic_vector(31 downto 0);
-		clk, reset : in std_logic;
+		clk, reset, jump_or_branch_flag : in std_logic;
 		opcode : out std_logic_vector(6 downto 0);
 		instructionType : out std_logic_vector(2 downto 0);
 		func3 : out std_logic_vector(2 downto 0);
@@ -70,16 +70,29 @@ begin
 			immediate_reg <= (others => '0');
 			PC_reg <= (others => '0');
 		elsif rising_edge(clk) then
-			instructionType_reg <= instructionType_internal;
-			func3_reg <= func3_internal;
-			shamt_reg <= shamt_internal;
-			rs1_index_reg <= rs1_index_internal;
-			rs2_index_reg <= rs2_index_internal;
-			rd_index_reg <= rd_index_internal;
-			func7_reg <= func7_internal;
-			opcode_reg <= opcode_internal;
-			immediate_reg <= immediate_internal;
-			PC_reg <= PC_internal;
+			if jump_or_branch_flag = '1' then
+				instructionType_reg <= (others => '0');
+				func3_reg <= (others => '0');
+				shamt_reg <= (others => '0');
+				rs1_index_reg <= (others => '0');
+				rs2_index_reg <= (others => '0');
+				rd_index_reg <= (others => '0');
+				func7_reg <= (others => '0');
+				opcode_reg <= (others => '0');
+				immediate_reg <= (others => '0');
+				PC_reg <= (others => '0');
+			else
+				instructionType_reg <= instructionType_internal;
+				func3_reg <= func3_internal;
+				shamt_reg <= shamt_internal;
+				rs1_index_reg <= rs1_index_internal;
+				rs2_index_reg <= rs2_index_internal;
+				rd_index_reg <= rd_index_internal;
+				func7_reg <= func7_internal;
+				opcode_reg <= opcode_internal;
+				immediate_reg <= immediate_internal;
+				PC_reg <= PC_internal;
+			end if;
 		end if;
 	end process;
 	instructionType <= instructionType_reg;

@@ -50,35 +50,34 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/decode_to_execute_register.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/alu32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/registerFile.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPU32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPUROM.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/PCNextCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/immediateCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/instructionDecoder.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPURAM.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/fetch.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/decode.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/execute.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/memory.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/writeback.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd}
 
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPU32bit_tb.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/alu32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPU32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPURAM.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/CPUROM.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/immediateCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/instructionDecoder.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/instructionRegister.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/PCNextCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/programCounter.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/RAMAddress.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/registerFile.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/stateMachine.vhd}
-vcom -93 -work work {C:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/stateRegister.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd}
+vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd}
 
 vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs="+acc"  CPU32bit_tb
 

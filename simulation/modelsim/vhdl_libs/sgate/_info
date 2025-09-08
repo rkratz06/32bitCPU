@@ -9,10 +9,10 @@ z2
 cModel Technology
 dC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/32bitCPU/simulation/modelsim
 Eio_buf_opdrn
-Z0 w1666771457
+Z0 w1676452232
 Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z3 dC:/Users/rakra/Desktop/Quartus_Files/32bitCPU/pipeline_dev/simulation/modelsim
+Z3 dC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/simulation/modelsim
 Z4 8c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate.vhd
 Z5 Fc:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate.vhd
 l0
@@ -21,9 +21,9 @@ VnBgM7DhIziA[DQhID<D<93
 !s100 MEZXb?NKA_Yi6aNN[@b7D3
 Z6 OV;C;10.5b;63
 31
-Z7 !s110 1756953874
+Z7 !s110 1757300729
 !i10b 1
-Z8 !s108 1756953874.000000
+Z8 !s108 1757300729.000000
 Z9 !s90 -reportprogress|300|-93|-work|sgate|c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate.vhd|
 Z10 !s107 c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate.vhd|
 !i113 1

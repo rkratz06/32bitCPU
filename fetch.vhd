@@ -27,6 +27,7 @@ begin
 	process(clk, reset)
 	begin
 		if reset = '1' then
+			PC_internal <= (others => '0');
 			PC_reg <= (others => '0');
 		elsif rising_edge(clk) then
 			if jump_or_branch_flag = '1' then

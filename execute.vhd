@@ -7,12 +7,12 @@ use ieee.numeric_std.all;
 entity execute is
 	port(
 	shamt, rs1_index, rs2_index, rd_index : in std_logic_vector(4 downto 0);
-	clk, reset : in std_logic;
+	clk, reset: in std_logic;
 	opcode, func7 : in std_logic_vector(6 downto 0);
 	instructionType, func3 : in std_logic_vector(2 downto 0);
 	immediate, rs1, rs2 : in std_logic_vector(31 downto 0);
 	PC : in std_logic_vector(31 downto 0);
-	writeData, newAddress, rs1_out, rs2_out : out std_logic_vector(31 downto 0);
+	writeData, newAddress, rs1_out, rs2_out: out std_logic_vector(31 downto 0); --ALU inputs only used for testing
 	RAMen, RAMwe, REGwe, jump_or_branch_flag:  out std_logic;
 	rd_index_out : out std_logic_vector(4 downto 0);
 	func3_out : out std_logic_vector(2 downto 0)
@@ -55,8 +55,10 @@ component PCNextCalc
 	);
 end component;
 
-signal rs1_internal, rs2_internal, ALU_input1_internal, ALU_input2_internal, writeData_internal, writeData_reg, rs1_reg, rs2_reg, RAMAddress_internal, RAMAddress_reg, newAddress_internal, newAddress_reg : std_logic_vector(31 downto 0) := (others => '0');
-signal RAMwe_internal, RAMwe_reg, RAMen_internal, RAMen_reg, ALUZero_internal, ALULT_internal, ALULTU_internal, REGwe_internal, REGwe_reg, jump_or_branch_flag_internal, jump_or_branch_flag_reg, PCOffsetFlag, JALRFlag : std_logic := '0';
+signal rs1_internal, rs2_internal, ALU_input1_internal, ALU_input2_internal, writeData_internal, writeData_reg, rs1_reg, rs2_reg, 
+RAMAddress_internal, RAMAddress_reg, newAddress_internal, newAddress_reg : std_logic_vector(31 downto 0) := (others => '0');
+signal RAMwe_internal, RAMwe_reg, RAMen_internal, RAMen_reg, ALUZero_internal, ALULT_internal, ALULTU_internal, REGwe_internal, 
+REGwe_reg, jump_or_branch_flag_internal, jump_or_branch_flag_reg, PCOffsetFlag, JALRFlag, jump_branch_flag_next : std_logic := '0';
 signal S_internal : std_logic_vector(3 downto 0) := (others => '0');
 signal shamt_internal, rd_index_internal, rd_index_reg : std_logic_vector(4 downto 0) := (others => '0');
 signal func3_internal, func3_reg : std_logic_vector(2 downto 0) := (others => '0');
@@ -71,6 +73,10 @@ begin
 		REGwe_internal <= '0';
 		RAMen_internal <= '0';
 		RAMwe_internal <= '0';
+		ALU_input1_internal <= (others => '0');
+		ALU_input2_internal <= (others => '0');
+		S_internal <= (others => '0');
+		shamt_internal <= (others => '0');
 		case opcode is
 			when "0110111" => --LUI
 				--immediate to ALU output to be registered in writeback register
@@ -84,21 +90,18 @@ begin
 				S_internal <= "0100";
 				REGwe_internal <= '1';
 			when "1101111" => --JAL
-				--NEED TO HANDLE IN PIPELINING
 				--saves PC + 4 to rd by calculating using ALU and registering output
 				ALU_input1_internal <= PC;
 				ALU_input2_internal <= x"00000004";
 				S_internal <= "0100";
 				REGwe_internal <= '1';
 			when "1100111" => --JALR
-				--NEED TO HANDLE IN PIPELINING
 				--saves PC + 4 to rd by calculating using ALU and registering output
 				ALU_input1_internal <= PC;
 				ALU_input2_internal <= x"00000004";
 				S_internal <= "0100";
 				REGwe_internal <= '1';
 			when "1100011" => --branch instructions, use ALU flags to determine if branch is taken. ALU output not used, only flags
-				--NEED TO HANDLE IN PIPELINING
 				ALU_input1_internal <= rs1_internal;
 				ALU_input2_internal <= rs2_internal;
 			when "0000011" => --load instructions, calculate RAM address
@@ -247,17 +250,33 @@ begin
 			func3_reg <= (others => '0');
 			newAddress_reg <= (others => '0');
 			jump_or_branch_flag_reg <= '0';
+			jump_branch_flag_next <= '0';
 		elsif rising_edge(clk) then
-			writeData_reg <= writeData_internal;
-			rs1_reg <= rs1_internal;
-			rs2_reg <= rs2_internal;
-			RAMen_reg <= RAMen_internal;
-			RAMwe_reg <= RAMwe_internal;
-			REGwe_reg <= REGwe_internal;
-			rd_index_reg <= rd_index_internal;
-			func3_reg <= func3_internal;
-			newAddress_reg <= newAddress_internal;
-			jump_or_branch_flag_reg <= jump_or_branch_flag_internal;
+			if jump_branch_flag_next = '1' then
+				writeData_reg <= (others => '0');
+				rs1_reg <= (others => '0');
+				rs2_reg <= (others => '0');
+				RAMen_reg <= '0';
+				RAMwe_reg <= '0';
+				REGwe_reg <= '0';
+				rd_index_reg <= (others => '0');
+				func3_reg <= (others => '0');
+				newAddress_reg <= (others => '0');
+				jump_or_branch_flag_reg <= '0';
+				jump_branch_flag_next <= '0';
+			else
+				writeData_reg <= writeData_internal;
+				rs1_reg <= rs1_internal;
+				rs2_reg <= rs2_internal;
+				RAMen_reg <= RAMen_internal;
+				RAMwe_reg <= RAMwe_internal;
+				REGwe_reg <= REGwe_internal;
+				rd_index_reg <= rd_index_internal;
+				func3_reg <= func3_internal;
+				newAddress_reg <= newAddress_internal;
+				jump_or_branch_flag_reg <= jump_or_branch_flag_internal;
+			end if;
+			jump_branch_flag_next <= jump_or_branch_flag_reg;
 		end if;
 	end process;
 	writeData <= writeData_reg;
