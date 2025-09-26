@@ -22,9 +22,9 @@ VlgEBCg3]VRK<G>^;FAUWB3
 !s100 ?^@3V@gl1=IYbERJI86m72
 Z7 OV;C;10.5b;63
 31
-Z8 !s110 1757300735
+Z8 !s110 1757835518
 !i10b 1
-Z9 !s108 1757300735.000000
+Z9 !s108 1757835518.000000
 Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd|
 Z11 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd|
 !i113 1
@@ -255,7 +255,7 @@ R38
 R12
 R13
 Eexecute
-Z39 w1757298352
+Z39 w1757835481
 R2
 R3
 R4
@@ -283,8 +283,8 @@ R4
 DEx4 work 7 execute 0 22 ?BgQ1h23HD;@G@<o3kkaU2
 l66
 L23
-VACEbfic7@eCV3d`4LV:bE0
-!s100 fnGBAEVUS1FeR_5a>khfc2
+Vk`6^_cY?a;ZC><iK9YU=a1
+!s100 eFOEQ[P>fQEKARJ=TQiBO0
 R7
 31
 R8
@@ -296,7 +296,7 @@ R43
 R12
 R13
 Efetch
-Z44 w1757300639
+Z44 w1757301026
 R2
 R3
 R4
@@ -324,8 +324,8 @@ R4
 DEx4 work 5 fetch 0 22 [AdimiTkGZI7`=mOkG<C<0
 l26
 L15
-VYK`<c_3KYRn]H1Hh]PoNf3
-!s100 GLf]PF]7MM<bn1ld]Ro[D0
+V77hRH`K^Qz52WdJTX3aCX3
+!s100 1VaRg0OIhHe]`bf>g?ajF1
 R7
 31
 R8
@@ -594,11 +594,11 @@ VjYa9DD_1kP:@h=9KU10F50
 !s100 31OJH4BB2=;:V@=^nzD6f2
 R7
 31
-Z78 !s110 1757300736
+R8
 !i10b 1
 R9
-Z79 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd|
-Z80 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd|
+Z78 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd|
+Z79 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd|
 !i113 1
 R12
 R13
@@ -613,33 +613,33 @@ VHeaQoMd3h?JmP``z49XO<3
 !s100 ai>PdEQgO_Z<=QjLb`kcI1
 R7
 31
-R78
+R8
 !i10b 1
 R9
+R78
 R79
-R80
 !i113 1
 R12
 R13
 Eregisterfile
-Z81 w1756963237
+Z80 w1756963237
 R2
 R3
 R4
 R0
-Z82 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd
-Z83 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd
+Z81 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd
+Z82 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd
 l0
 L7
 VEIVA2RU^f3zK2KlTiRSYg0
 !s100 RZi@>13ieY@];Rl_i_GAK1
 R7
 31
-R78
+R8
 !i10b 1
-Z84 !s108 1757300736.000000
-Z85 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd|
-Z86 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd|
+R9
+Z83 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd|
+Z84 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd|
 !i113 1
 R12
 R13
@@ -654,11 +654,11 @@ VMGKc]CYYkJ=33=gl96NPc3
 !s100 Bnio<ncF83_UAjLjiml=53
 R7
 31
-R78
+R8
 !i10b 1
+R9
+R83
 R84
-R85
-R86
 !i113 1
 R12
 R13
@@ -668,19 +668,19 @@ R2
 R3
 R4
 R0
-Z87 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd
-Z88 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd
+Z85 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd
+Z86 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd
 l0
 L8
 VI2lP:ZMLY]67P6cilXR>82
 !s100 QKUKB?U7Y@XO5Qfn@[h8K0
 R7
 31
-R78
+R8
 !i10b 1
-R84
-Z89 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd|
-Z90 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd|
+R9
+Z87 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd|
+Z88 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd|
 !i113 1
 R12
 R13
@@ -695,11 +695,11 @@ VUcE^o_D^YeMIHeHW@Uc6F2
 !s100 azd<:o<fD5Fk3CKe41YQA1
 R7
 31
-R78
+R8
 !i10b 1
-R84
-R89
-R90
+R9
+R87
+R88
 !i113 1
 R12
 R13
@@ -708,19 +708,19 @@ R53
 R3
 R4
 R0
-Z91 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd
-Z92 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd
+Z89 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd
+Z90 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd
 l0
 L8
 VmHV>:UQLO^U2JLc2]j16>1
 !s100 Ke8cLPU4`g=lFF6deh`Ta0
 R7
 31
-R78
+R8
 !i10b 1
-R84
-Z93 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd|
-Z94 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd|
+R9
+Z91 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd|
+Z92 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd|
 !i113 1
 R12
 R13
@@ -734,11 +734,11 @@ V8UEh8YPjMYY>@KhNo^iC>2
 !s100 m^_Y;;40<W`meXR?DgEg12
 R7
 31
-R78
+R8
 !i10b 1
-R84
-R93
-R94
+R9
+R91
+R92
 !i113 1
 R12
 R13
@@ -748,8 +748,8 @@ R2
 R3
 R4
 R0
-Z95 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd
-Z96 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd
+Z93 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd
+Z94 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd
 l0
 L6
 VCn_Si4MRnMbRM1e66:WD_3
@@ -759,8 +759,8 @@ R7
 R8
 !i10b 1
 R9
-Z97 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd|
-Z98 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd|
+Z95 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd|
+Z96 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd|
 !i113 1
 R12
 R13
@@ -778,8 +778,8 @@ R7
 R8
 !i10b 1
 R9
-R97
-R98
+R95
+R96
 !i113 1
 R12
 R13
