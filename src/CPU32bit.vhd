@@ -3,8 +3,11 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-
+use work.regfile_pkg.all;
 entity CPU32bit is
+	generic(
+		init_file : string := "CPUMIF.mif"
+	);
 	port(
 		clk : in std_logic;
 		reset : in std_logic;
@@ -16,12 +19,12 @@ entity CPU32bit is
 		instructionType_decode_out_o, func3_decode_out_o, func3_execute_out_o : out std_logic_vector(2 downto 0);
 		rs1_index_decode_out_o, rs2_index_decode_out_o, rd_index_decode_out_o, shamt_decode_out_o, rd_index_execute_out_o,
 		rd_index_mem_out_o, rd_index_wb_out_o : out std_logic_vector(4 downto 0);
-		RAMen_execute_out_o, RAMwe_execute_out_o, REGwe_execute_out_o, REGwe_mem_out_o, jump_or_branch_flag_execute_out_o, REGwe_wb_out_o : out std_logic
+		RAMen_execute_out_o, RAMwe_execute_out_o, REGwe_execute_out_o, REGwe_mem_out_o, jump_or_branch_flag_execute_out_o, REGwe_wb_out_o : out std_logic;
+		regs_o : out regfile_array
 		);
 end CPU32bit;
 
 architecture structure of CPU32bit is
-	
 	component fetch
 		port(
 			clk, reset, jump_or_branch_flag : in std_logic;
@@ -81,15 +84,19 @@ architecture structure of CPU32bit is
 		port(
 		clk : in std_logic;
 		we : in std_logic; --write enable, writes when true, reads when false
-		writeReg : in std_logic_vector(4 downto 0);
-		readReg1 : in std_logic_vector(4 downto 0); 
-		readReg2 : in std_logic_vector(4 downto 0); 
+		writeReg : in std_logic_vector(4 downto 0) := (others => '0');
+		readReg1 : in std_logic_vector(4 downto 0) := (others => '0'); 
+		readReg2 : in std_logic_vector(4 downto 0) := (others => '0'); 
 		writeData : in std_logic_vector(31 downto 0); --data to write to register
 		readData1 : out std_logic_vector(31 downto 0); --data contained in chosen register 1
-		readData2 : out std_logic_vector(31 downto 0)); --data contained in chosen register 2
+		readData2 : out std_logic_vector(31 downto 0); --data contained in chosen register 2
+		regs_out : out regfile_array); --used in testbenches. disconnect when programming to de10
 	end component;
 	
 	component CPUROM
+	generic(
+		init_file : in string := "CPUMIF.mif"
+	);
 	port(
 		address		: IN STD_LOGIC_VECTOR (13 DOWNTO 0);
 		clock		: IN STD_LOGIC  := '1';
@@ -104,7 +111,7 @@ architecture structure of CPU32bit is
 	signal rs1_index_decode_out, rs2_index_decode_out, rd_index_decode_out, shamt_decode_out, rd_index_execute_out,
 	rd_index_mem_out, rd_index_wb_out: std_logic_vector(4 downto 0) := (others => '0');
 	signal RAMen_execute_out, RAMwe_execute_out, REGwe_execute_out, REGwe_mem_out, jump_or_branch_flag_execute_out, REGwe_wb_out : std_logic := '0';
-
+	signal regs_internal : regfile_array;
 	
 	begin
 		fetch_inst : fetch port map (clk => clk, reset => reset, PC_out => PC_fetch_out, 
@@ -133,7 +140,7 @@ architecture structure of CPU32bit is
 		registerFile_inst : registerFile port map(clk => clk, we => REGwe_wb_out, writeReg => rd_index_wb_out, readReg1 => rs1_index_decode_out, 
 		readReg2 => rs2_index_decode_out, writeData => writeData_wb_out, readData1 => rs1_decode_out, readData2 => rs2_decode_out);
 		
-		CPUROM_inst : CPUROM port map(address => PC_fetch_out(15 downto 2), clock => clk, q => IR_fetch_out);
+		CPUROM_inst : CPUROM generic map(init_file => init_file) port map(address => PC_fetch_out(15 downto 2), clock => clk, q => IR_fetch_out);
 		
 		PC_fetch_out_o <= PC_fetch_out;
 		PC_decode_out_o <= PC_decode_out;
@@ -166,5 +173,6 @@ architecture structure of CPU32bit is
 		REGwe_mem_out_o <= REGwe_mem_out;
 		jump_or_branch_flag_execute_out_o <= jump_or_branch_flag_execute_out;
 		REGwe_wb_out_o <= REGwe_wb_out;
+		regs_o <= regs_internal;
 		
 end structure;
