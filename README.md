@@ -19,7 +19,7 @@ Arithmetic: ADD, SUJB, SLL, SLT, SLTU, XOR, SRL, SRA, OR, AND
 ## Testing:  
 Testbenches in /test use programs stored in /programs to test various functionalities  
 Automated test cases are checked when different testbenches ran  
-Waveforms of programs included in /docs for further verification  
+Waveforms of programs included in /docs for further verification as well as proof of passed test cases 
 
 ## Documentation:  
 Waveforms (add link to image gallery)  

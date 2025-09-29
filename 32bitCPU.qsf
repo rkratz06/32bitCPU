@@ -60,52 +60,12 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH CPU32bit_tb -section_id eda_simulation
-set_global_assignment -name EDA_TEST_BENCH_NAME CPU32bit_tb -section_id eda_simulation
-set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME CPU32bit_tb -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit_tb.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE .gitignore -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE 32bitCPU.qpf -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE 32bitCPU.qsf -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE 32bitCPU_nativelink_simulation.rpt -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE alu32bit.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE alu32bit.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE c5_pin_model_dump.txt -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPU32bit_tb.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPUMIF.mif -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPUMIF.mif.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.bsf -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.cmp -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.qip -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPURAM.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.bsf -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.cmp -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.qip -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE CPUROM.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE immediateCalc.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE immediateCalc.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE instructionDecoder.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE instructionDecoder.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE instructionRegister.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE instructionRegister.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE PCNextCalc.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE PCNextCalc.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE programCounter.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE programCounter.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE RAMAddress.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE RAMAddress.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE README.md -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE registerFile.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE registerFile.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE stateMachine.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE stateMachine.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE stateRegister.vhd -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE stateRegister.vhd.bak -section_id CPU32bit_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE Waveform.vwf -section_id CPU32bit_tb
-set_global_assignment -name VHDL_FILE test/CPU32bit_tb.vhd
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH arithmetic_immediate_tb -section_id eda_simulation
+set_global_assignment -name MIF_FILE programs/load_and_store_test.mif
+set_global_assignment -name MIF_FILE programs/jump_test.mif
+set_global_assignment -name MIF_FILE programs/branch_test.mif
+set_global_assignment -name MIF_FILE programs/arithmetic_test.mif
+set_global_assignment -name MIF_FILE programs/arithmetic_immediate_test.mif
 set_global_assignment -name VHDL_FILE src/writeback.vhd
 set_global_assignment -name VHDL_FILE src/registerFile.vhd
 set_global_assignment -name VHDL_FILE src/PCNextCalc.vhd
@@ -130,4 +90,43 @@ set_global_assignment -name VHDL_FILE test/branch_tb.vhd
 set_global_assignment -name VHDL_FILE test/jump_tb.vhd
 set_global_assignment -name VHDL_FILE test/load_and_store_tb.vhd
 set_global_assignment -name VHDL_FILE src/regfile_pkg.vhd
+set_global_assignment -name EDA_TEST_BENCH_NAME arithmetic_immediate_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME arithmetic_immediate_tb -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/alu32bit.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/c5_pin_model_dump.txt -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPU32bit.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPU32bit.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPUMIF.mif -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPURAM.bsf -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPURAM.cmp -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPURAM.qip -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPURAM.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPUROM.bsf -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPUROM.cmp -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPUROM.qip -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPUROM.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/CPUROM.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/decode.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/decode.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/execute.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/execute.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/fetch.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/fetch.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/immediateCalc.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/instructionDecoder.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/instructionRegister.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/memory.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/memory.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/PCNextCalc.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/RAMMIF.mif -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/regfile_pkg.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/registerFile.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/registerFile.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/writeback.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE src/writeback.vhd.bak -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE test/arithmetic_immediate_tb.vhd -section_id arithmetic_immediate_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE programs/arithmetic_immediate_test.mif -section_id arithmetic_immediate_tb
+set_global_assignment -name VHDL_INPUT_VERSION VHDL_2008
+set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

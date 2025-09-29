@@ -9,38 +9,38 @@ z2
 cModel Technology
 Z0 dC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/simulation/modelsim
 Ealu32bit
-Z1 w1756875390
+Z1 w1758850908
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z5 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd
-Z6 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd
+Z5 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd
+Z6 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd
 l0
 L22
-VlgEBCg3]VRK<G>^;FAUWB3
+V1dRNdZ[faJz]1[V<7ZL;?2
 !s100 ?^@3V@gl1=IYbERJI86m72
 Z7 OV;C;10.5b;63
-31
-Z8 !s110 1757835518
+33
+Z8 !s110 1759114044
 !i10b 1
-Z9 !s108 1757835518.000000
-Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd|
-Z11 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd|
+Z9 !s108 1759114044.000000
+Z10 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd|
+Z11 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd|
 !i113 1
-Z12 o-93 -work work
+Z12 o-2008 -work work
 Z13 tExplicit 1 CvgOpt 0
 Abehavior
 R2
 R3
 R4
-DEx4 work 8 alu32bit 0 22 lgEBCg3]VRK<G>^;FAUWB3
+DEx4 work 8 alu32bit 0 22 1dRNdZ[faJz]1[V<7ZL;?2
 l36
 L32
-V38>:eNZR>2UE^`eTBO8]B1
+VRhZX29m=9BR>[z15KM:>G1
 !s100 >5mZd=7E3o>kFTO4O=a`J2
 R7
-31
+33
 R8
 !i10b 1
 R9
@@ -49,189 +49,194 @@ R11
 !i113 1
 R12
 R13
-Ecpu32bit
-Z14 w1757297657
+Earithmetic_immediate_tb
+Z14 w1759114019
+Z15 DPx4 work 11 regfile_pkg 0 22 F?CiH6aA3L=jOVhXj8`M82
 R2
 R3
 R4
 R0
-Z15 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd
-Z16 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd
+Z16 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd
+Z17 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd
 l0
-L7
-Vl7K<9Tkf:ORXN^jNK?>fH3
-!s100 LdBizAJI5W8S5OoDm;INW2
+L5
+VW^F2Nmd3a7K4a8i[kNSQ10
+!s100 Dn98zZ5ddVij_=X01jVDR3
 R7
-31
-R8
+33
+Z18 !s110 1759114045
 !i10b 1
-R9
-Z17 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd|
-Z18 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd|
-!i113 1
-R12
-R13
-Astructure
-R2
-R3
-R4
-Z19 DEx4 work 8 cpu32bit 0 22 l7K<9Tkf:ORXN^jNK?>fH3
-l109
-L23
-V6GL@_aKiLJ<AP<<O8>^z73
-!s100 URRLQ8IWIEd[K2RS_D?4W3
-R7
-31
-R8
-!i10b 1
-R9
-R17
-R18
-!i113 1
-R12
-R13
-Ecpu32bit_tb
-Z20 w1757297849
-R3
-R4
-R0
-Z21 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd
-Z22 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd
-l0
-L6
-V;FHeSB:_]VHzPRPEZ_`<;1
-!s100 27CcoJBOciXXcgThf2S4=0
-R7
-31
-R8
-!i10b 1
-R9
-Z23 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd|
-Z24 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd|
+Z19 !s108 1759114045.000000
+Z20 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd|
+Z21 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd|
 !i113 1
 R12
 R13
 Abehavior
+Z22 DEx4 work 8 cpu32bit 0 22 U<`P0YlM1D]HdOU22bYWV2
+R15
 R2
-R19
 R3
 R4
-DEx4 work 11 cpu32bit_tb 0 22 ;FHeSB:_]VHzPRPEZ_`<;1
-l20
-L9
-V^9DDWfPCXbXFzZ3MW^GfF2
-!s100 Cz;FKRdezWb82id2O[MRd1
+DEx4 work 23 arithmetic_immediate_tb 0 22 W^F2Nmd3a7K4a8i[kNSQ10
+l23
+L8
+VRS@f22W;68V<m]d]z5:LH2
+!s100 b3iNhK?aA4[ERdSXmBn0F1
 R7
-31
+33
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R12
+R13
+Ecpu32bit
+Z23 w1759112298
+R15
+R2
+R3
+R4
+R0
+Z24 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd
+Z25 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd
+l0
+L7
+VU<`P0YlM1D]HdOU22bYWV2
+!s100 D3f^7_aj:RWX92c;ZI;JB1
+R7
+33
 R8
 !i10b 1
 R9
-R23
-R24
+Z26 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd|
+Z27 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd|
+!i113 1
+R12
+R13
+Astructure
+R15
+R2
+R3
+R4
+R22
+l116
+L27
+Via<G^d;W;`iUXM3d@kXSb2
+!s100 WAzFgoeaJiLl<N2fH1f5>2
+R7
+33
+R8
+!i10b 1
+R9
+R26
+R27
 !i113 1
 R12
 R13
 Ecpuram
 R1
-Z25 DPx9 altera_mf 20 altera_mf_components 0 22 GX]PGX0dkGdbU698H0h^l0
+Z28 DPx9 altera_mf 20 altera_mf_components 0 22 GX]PGX0dkGdbU698H0h^l0
 R3
 R4
 R0
-Z26 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd
-Z27 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd
+Z29 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd
+Z30 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd
 l0
 L43
-VBY:1l2a]4PWcab[m9TR:O1
+V1154XiVbcc19;6SgIg<a73
 !s100 k8P^JkVcNh_VBU0k[SiEj0
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z28 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd|
-Z29 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd|
+Z31 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd|
+Z32 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd|
 !i113 1
 R12
 R13
 Asyn
-R25
+R28
 R3
 R4
-DEx4 work 6 cpuram 0 22 BY:1l2a]4PWcab[m9TR:O1
+DEx4 work 6 cpuram 0 22 1154XiVbcc19;6SgIg<a73
 l60
 L56
-VHbVf8960bEWUkjQW@3XWD3
+V0[=B];KYF6:cbSn9obdh32
 !s100 ;EgQ`>Y[GWdYzmbO_?9ae1
 R7
-31
+33
 R8
 !i10b 1
 R9
-R28
-R29
+R31
+R32
 !i113 1
 R12
 R13
 Ecpurom
-R1
-R25
+Z33 w1758851396
+R28
 R3
 R4
 R0
-Z30 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd
-Z31 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd
+Z34 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd
+Z35 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd
 l0
 L43
-V@98AH4Y88W^FIoUA^m=2c2
-!s100 SUaZe3C]4Y`HT3`IS@maN2
+VlacEM_Cj8kI>b0`0^2e223
+!s100 93BW:e;H@^2F[bRSMESod3
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z32 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd|
-Z33 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd|
+Z36 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd|
+Z37 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd|
 !i113 1
 R12
 R13
 Asyn
-R25
+R28
 R3
 R4
-DEx4 work 6 cpurom 0 22 @98AH4Y88W^FIoUA^m=2c2
-l57
-L53
-VcS:Jhb_jmjmn=j:n=mEmi3
-!s100 WBY_5_a:l?ADY??5me_`l2
+DEx4 work 6 cpurom 0 22 lacEM_Cj8kI>b0`0^2e223
+l60
+L56
+VGIeg3mH`_U;XhmMcL5gW^0
+!s100 jWQQdiVnRnUfZS3^4f<MW0
 R7
-31
+33
 R8
 !i10b 1
 R9
-R32
-R33
+R36
+R37
 !i113 1
 R12
 R13
 Edecode
-Z34 w1757299078
+R1
 R2
 R3
 R4
 R0
-Z35 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd
-Z36 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd
+Z38 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd
+Z39 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd
 l0
 L9
-VfTkbnEXE82;jVjb^YYLWf2
+VNLiCz4PdUmC6E34zhA=8^1
 !s100 =91R3]cFJ[g=onTa>PmeI3
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z37 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd|
-Z38 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd|
+Z40 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd|
+Z41 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd|
 !i113 1
 R12
 R13
@@ -239,40 +244,40 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 6 decode 0 22 fTkbnEXE82;jVjb^YYLWf2
+DEx4 work 6 decode 0 22 NLiCz4PdUmC6E34zhA=8^1
 l53
 L23
-V<C6eDiIQcf`aeEVd7iPS92
+V9hc44aZdS`F?K_O1PC3zX2
 !s100 3bF]5W2;7;D<ElRT_`5aj3
 R7
-31
+33
 R8
 !i10b 1
 R9
-R37
-R38
+R40
+R41
 !i113 1
 R12
 R13
 Eexecute
-Z39 w1757835481
+R1
 R2
 R3
 R4
 R0
-Z40 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd
-Z41 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd
+Z42 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd
+Z43 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd
 l0
 L7
-V?BgQ1h23HD;@G@<o3kkaU2
+ViLM3Y^A4CH0I`9JK[`f2f2
 !s100 3mIWKdBBNM;@2Mbi>jQ>z0
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z42 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd|
-Z43 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd|
+Z44 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd|
+Z45 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd|
 !i113 1
 R12
 R13
@@ -280,40 +285,40 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 7 execute 0 22 ?BgQ1h23HD;@G@<o3kkaU2
+DEx4 work 7 execute 0 22 iLM3Y^A4CH0I`9JK[`f2f2
 l66
 L23
-Vk`6^_cY?a;ZC><iK9YU=a1
+VCMeZ@M64:53?1D`0YLK:@1
 !s100 eFOEQ[P>fQEKARJ=TQiBO0
 R7
-31
+33
 R8
 !i10b 1
 R9
-R42
-R43
+R44
+R45
 !i113 1
 R12
 R13
 Efetch
-Z44 w1757301026
+R1
 R2
 R3
 R4
 R0
-Z45 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd
-Z46 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd
+Z46 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd
+Z47 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd
 l0
 L7
-V[AdimiTkGZI7`=mOkG<C<0
+Vm@`@G4OWWYaOFTM9fLkYN1
 !s100 2H`G]i@?W__1_U=<1D3NL1
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z47 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd|
-Z48 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd|
+Z48 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd|
+Z49 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd|
 !i113 1
 R12
 R13
@@ -321,18 +326,18 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 5 fetch 0 22 [AdimiTkGZI7`=mOkG<C<0
+DEx4 work 5 fetch 0 22 m@`@G4OWWYaOFTM9fLkYN1
 l26
 L15
-V77hRH`K^Qz52WdJTX3aCX3
+VZlnbC1;026aYgY7bRFUlD3
 !s100 1VaRg0OIhHe]`bf>g?ajF1
 R7
-31
+33
 R8
 !i10b 1
 R9
-R47
 R48
+R49
 !i113 1
 R12
 R13
@@ -342,19 +347,19 @@ R2
 R3
 R4
 R0
-Z49 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd
-Z50 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd
+Z50 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd
+Z51 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd
 l0
 L9
-VFAf?C^MdFUn`bd3T0of[J2
+V>=Hj`Q<JXAj7@z;@N`Eo51
 !s100 N_i9O=MnFRj@gJbNLLm0X2
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z51 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd|
-Z52 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd|
+Z52 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd|
+Z53 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd|
 !i113 1
 R12
 R13
@@ -362,40 +367,40 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 13 immediatecalc 0 22 FAf?C^MdFUn`bd3T0of[J2
+DEx4 work 13 immediatecalc 0 22 >=Hj`Q<JXAj7@z;@N`Eo51
 l19
 L17
-Vff>l^3ZND8A4kk1RTX`AG2
+VEO[_U6oTJ>UV3kKYQROCO3
 !s100 lKFU]37LG_?j@EUIZ5_4;3
 R7
-31
+33
 R8
 !i10b 1
 R9
-R51
 R52
+R53
 !i113 1
 R12
 R13
 Einstructiondecoder
-Z53 w1756875433
+R1
 R2
 R3
 R4
 R0
-Z54 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd
-Z55 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd
+Z54 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd
+Z55 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd
 l0
 L10
-V>O9H0<HG2z<U03O6NVWPT3
+Va<DGd84]SQlezzSkH8Q@12
 !s100 `hf4d7Df]fGYfZClTN?P61
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z56 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd|
-Z57 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd|
+Z56 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd|
+Z57 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd|
 !i113 1
 R12
 R13
@@ -403,13 +408,13 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 18 instructiondecoder 0 22 >O9H0<HG2z<U03O6NVWPT3
+DEx4 work 18 instructiondecoder 0 22 a<DGd84]SQlezzSkH8Q@12
 l24
 L23
-VmiJ;kAoLXDf6TP2Q2^gl52
+VSzNKK^iNTKMh1R8]XoSlP3
 !s100 m`InS91W<0W;?`Z4;SK=h2
 R7
-31
+33
 R8
 !i10b 1
 R9
@@ -419,36 +424,36 @@ R57
 R12
 R13
 Einstructionregister
-R53
+R1
 R3
 R4
 R0
-Z58 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd
-Z59 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd
+Z58 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd
+Z59 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd
 l0
 L8
-V4;Pn807cdI<bz<;oJ0DFY2
+V5C454JO:3oJPEASWjJ7OB3
 !s100 :O^mfZIUdX2X3LGF4cn6Y1
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z60 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd|
-Z61 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd|
+Z60 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd|
+Z61 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd|
 !i113 1
 R12
 R13
 Abehavior
 R3
 R4
-DEx4 work 19 instructionregister 0 22 4;Pn807cdI<bz<;oJ0DFY2
+DEx4 work 19 instructionregister 0 22 5C454JO:3oJPEASWjJ7OB3
 l19
 L17
-V^:9nDKJ:ZB@eHY=iUjQBI0
+V:DNJeCaeVj1TWhE>lkoeX2
 !s100 ^h9RGPZN@TZEk9e6ooeU=1
 R7
-31
+33
 R8
 !i10b 1
 R9
@@ -458,24 +463,24 @@ R61
 R12
 R13
 Ememory
-Z62 w1757296620
+R1
 R2
 R3
 R4
 R0
-Z63 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd
-Z64 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd
+Z62 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd
+Z63 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd
 l0
 L6
-V_5feG`Th45H7m?lcT>Hcn2
+V2VefKSK:[nIL3VO_c;hBX1
 !s100 @fMoIbH:KaGGWG;<XRc3D2
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z65 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd|
-Z66 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd|
+Z64 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd|
+Z65 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd|
 !i113 1
 R12
 R13
@@ -483,40 +488,40 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 6 memory 0 22 _5feG`Th45H7m?lcT>Hcn2
+DEx4 work 6 memory 0 22 2VefKSK:[nIL3VO_c;hBX1
 l35
 L18
-VUk0HOLfL56i`MXZk`YPT51
+VKm6Z288`b7zeWDC_UnE6N2
 !s100 F?>dQ^J:9CC6E;jj0zz930
 R7
-31
+33
 R8
 !i10b 1
 R9
+R64
 R65
-R66
 !i113 1
 R12
 R13
 Epcnextcalc
-Z67 w1756955593
+R1
 R2
 R3
 R4
 R0
-Z68 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd
-Z69 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd
+Z66 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd
+Z67 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd
 l0
 L10
-V:635Cz2IfIoY@TiA?C1dA1
+Vm19[7YH1;0B8m?nPGZm9Z0
 !s100 R9H0SiZeEfY4>J@CJDcCl0
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z70 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd|
-Z71 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd|
+Z68 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd|
+Z69 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd|
 !i113 1
 R12
 R13
@@ -524,95 +529,97 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 10 pcnextcalc 0 22 :635Cz2IfIoY@TiA?C1dA1
+DEx4 work 10 pcnextcalc 0 22 m19[7YH1;0B8m?nPGZm9Z0
 l22
 L20
-VHVAz=Cc:mF1`5cbiGFcOJ3
+V2z^H=oGW8znhF9SS_l>P_3
 !s100 eW45RW24b:d=BVBFMhbG:2
 R7
-31
+33
 R8
 !i10b 1
 R9
-R70
-R71
+R68
+R69
 !i113 1
 R12
 R13
-Eprogramcounter
-R1
+Pregfile_pkg
+R2
+R3
+R4
+Z70 w1758855972
+R0
+Z71 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd
+Z72 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd
+l0
+L6
+VF?CiH6aA3L=jOVhXj8`M82
+!s100 lm21?k13bhIVEajF=`NDi3
+R7
+33
+R8
+!i10b 1
+R9
+Z73 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd|
+Z74 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd|
+!i113 1
+R12
+R13
+Bbody
+R15
+R2
+R3
+R4
+l0
+L10
+VH>df1:Z_e=C2TdoOm<_;V1
+!s100 5[0J?nLMjcN;K7JWI6LC51
+R7
+33
+R8
+!i10b 1
+R9
+R73
+R74
+!i113 1
+R12
+R13
+Eregisterfile
+Z75 w1759112270
+R15
 R2
 R3
 R4
 R0
-Z72 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd
-Z73 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd
+Z76 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd
+Z77 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd
 l0
 L8
-V4IOYjYdVKTL;QJD4LPB^K1
-!s100 3FJ`URB@>06RFVL5J9_ed1
+VcUZRAWQhBM:VoWBm^UXS01
+!s100 QBAdi[7DIA`RR;jTG3F:W3
 R7
-31
+33
 R8
 !i10b 1
 R9
-Z74 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd|
-Z75 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd|
+Z78 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd|
+Z79 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd|
 !i113 1
 R12
 R13
 Abehavior
+R15
 R2
 R3
 R4
-DEx4 work 14 programcounter 0 22 4IOYjYdVKTL;QJD4LPB^K1
-l19
-L17
-VZ4jc:?3K6iWLUi8azJ;gH2
-!s100 ^k_Q?lNYaZTeVaQ_RFJga0
+DEx4 work 12 registerfile 0 22 cUZRAWQhBM:VoWBm^UXS01
+l25
+L21
+V_^T@LXm`HKd_0TfFAZOSY3
+!s100 [S;Yf3=izZ=YjW<LMdB3f0
 R7
-31
-R8
-!i10b 1
-R9
-R74
-R75
-!i113 1
-R12
-R13
-Eramaddress
-R1
-R2
-R3
-R4
-R0
-Z76 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd
-Z77 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd
-l0
-L7
-VjYa9DD_1kP:@h=9KU10F50
-!s100 31OJH4BB2=;:V@=^nzD6f2
-R7
-31
-R8
-!i10b 1
-R9
-Z78 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd|
-Z79 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd|
-!i113 1
-R12
-R13
-Abehavior
-R2
-R3
-R4
-DEx4 work 10 ramaddress 0 22 jYa9DD_1kP:@h=9KU10F50
-l18
-L16
-VHeaQoMd3h?JmP``z49XO<3
-!s100 ai>PdEQgO_Z<=QjLb`kcI1
-R7
-31
+33
 R8
 !i10b 1
 R9
@@ -621,146 +628,25 @@ R79
 !i113 1
 R12
 R13
-Eregisterfile
-Z80 w1756963237
-R2
-R3
-R4
-R0
-Z81 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd
-Z82 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd
-l0
-L7
-VEIVA2RU^f3zK2KlTiRSYg0
-!s100 RZi@>13ieY@];Rl_i_GAK1
-R7
-31
-R8
-!i10b 1
-R9
-Z83 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd|
-Z84 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd|
-!i113 1
-R12
-R13
-Abehavior
-R2
-R3
-R4
-DEx4 work 12 registerfile 0 22 EIVA2RU^f3zK2KlTiRSYg0
-l23
-L19
-VMGKc]CYYkJ=33=gl96NPc3
-!s100 Bnio<ncF83_UAjLjiml=53
-R7
-31
-R8
-!i10b 1
-R9
-R83
-R84
-!i113 1
-R12
-R13
-Estatemachine
-R53
-R2
-R3
-R4
-R0
-Z85 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd
-Z86 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd
-l0
-L8
-VI2lP:ZMLY]67P6cilXR>82
-!s100 QKUKB?U7Y@XO5Qfn@[h8K0
-R7
-31
-R8
-!i10b 1
-R9
-Z87 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd|
-Z88 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd|
-!i113 1
-R12
-R13
-Abehavior
-R2
-R3
-R4
-DEx4 work 12 statemachine 0 22 I2lP:ZMLY]67P6cilXR>82
-l47
-L39
-VUcE^o_D^YeMIHeHW@Uc6F2
-!s100 azd<:o<fD5Fk3CKe41YQA1
-R7
-31
-R8
-!i10b 1
-R9
-R87
-R88
-!i113 1
-R12
-R13
-Estateregister
-R53
-R3
-R4
-R0
-Z89 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd
-Z90 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd
-l0
-L8
-VmHV>:UQLO^U2JLc2]j16>1
-!s100 Ke8cLPU4`g=lFF6deh`Ta0
-R7
-31
-R8
-!i10b 1
-R9
-Z91 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd|
-Z92 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd|
-!i113 1
-R12
-R13
-Abehavior
-R3
-R4
-DEx4 work 13 stateregister 0 22 mHV>:UQLO^U2JLc2]j16>1
-l18
-L16
-V8UEh8YPjMYY>@KhNo^iC>2
-!s100 m^_Y;;40<W`meXR?DgEg12
-R7
-31
-R8
-!i10b 1
-R9
-R91
-R92
-!i113 1
-R12
-R13
 Ewriteback
-R67
+R1
 R2
 R3
 R4
 R0
-Z93 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd
-Z94 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd
+Z80 8C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd
+Z81 FC:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd
 l0
 L6
-VCn_Si4MRnMbRM1e66:WD_3
+VBFnT[o?;a5HADa_BUHf393
 !s100 2X[]W_dfX=nX_:0T:kGOB0
 R7
-31
-R8
+33
+R18
 !i10b 1
 R9
-Z95 !s90 -reportprogress|300|-93|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd|
-Z96 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd|
+Z82 !s90 -reportprogress|300|-2008|-work|work|C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd|
+Z83 !s107 C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd|
 !i113 1
 R12
 R13
@@ -768,18 +654,18 @@ Abehavior
 R2
 R3
 R4
-DEx4 work 9 writeback 0 22 Cn_Si4MRnMbRM1e66:WD_3
+DEx4 work 9 writeback 0 22 BFnT[o?;a5HADa_BUHf393
 l21
 L17
-VWflU9c_;hQ[ZdbR[?>LO>0
+V6Cb[GM59M^;gBL;joORWS3
 !s100 @DO_B7mLIaY?VI7ggJObg1
 R7
-31
-R8
+33
+R18
 !i10b 1
 R9
-R95
-R96
+R82
+R83
 !i113 1
 R12
 R13

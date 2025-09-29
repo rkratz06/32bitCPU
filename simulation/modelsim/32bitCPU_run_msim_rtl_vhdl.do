@@ -50,36 +50,39 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd}
 
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd}
-vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd}
+vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd}
 
-vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs="+acc"  CPU32bit_tb
+vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs="+acc"  arithmetic_immediate_tb
 
 add wave *
 view structure

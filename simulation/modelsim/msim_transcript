@@ -13,25 +13,25 @@
 # Modifying modelsim.ini
 # vcom -93 -work altera {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_syn_attributes.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_syn_attributes.vhd 
 # -- Loading package STANDARD
 # -- Compiling package altera_syn_attributes
-# End time: 03:38:31 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:17 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_standard_functions.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_standard_functions.vhd 
 # -- Loading package STANDARD
 # -- Compiling package altera_standard_functions
 # -- Compiling package body altera_standard_functions
 # -- Loading package altera_standard_functions
-# End time: 03:38:31 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:17 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/alt_dspbuilder_package.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/alt_dspbuilder_package.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -40,11 +40,11 @@
 # -- Compiling package alt_dspbuilder_package
 # -- Compiling package body alt_dspbuilder_package
 # -- Loading package alt_dspbuilder_package
-# End time: 03:38:31 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:17 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_europa_support_lib.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_europa_support_lib.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -55,11 +55,11 @@
 # -- Compiling package altera_europa_support_lib
 # -- Compiling package body altera_europa_support_lib
 # -- Loading package altera_europa_support_lib
-# End time: 03:38:31 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:17 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_primitives_components.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_primitives_components.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -69,11 +69,11 @@
 # -- Compiling package dffeas_pack
 # -- Loading package dffeas_pack
 # -- Compiling package altera_primitives_components
-# End time: 03:38:31 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:17 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_primitives.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_primitives.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -161,7 +161,7 @@
 # -- Compiling architecture BEHAVIOR of alt_bidir_diff
 # -- Compiling entity alt_bidir_buf
 # -- Compiling architecture BEHAVIOR of alt_bidir_buf
-# End time: 03:38:31 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:17 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib vhdl_libs/lpm
@@ -172,17 +172,17 @@
 # Modifying modelsim.ini
 # vcom -93 -work lpm {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/220pack.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:31 on Sep 14,2025
+# Start time: 22:47:17 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work lpm c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/220pack.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling package LPM_COMPONENTS
-# End time: 03:38:32 on Sep 14,2025, Elapsed time: 0:00:01
+# End time: 22:47:18 on Sep 28,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vcom -93 -work lpm {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/220model.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:32 on Sep 14,2025
+# Start time: 22:47:18 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work lpm c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/220model.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -278,7 +278,7 @@
 # -- Compiling architecture LPM_SYN of LPM_OUTpad
 # -- Compiling entity LPM_BIpad
 # -- Compiling architecture LPM_SYN of LPM_BIpad
-# End time: 03:38:32 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:18 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib vhdl_libs/sgate
@@ -289,7 +289,7 @@
 # Modifying modelsim.ini
 # vcom -93 -work sgate {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate_pack.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:32 on Sep 14,2025
+# Start time: 22:47:18 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work sgate c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate_pack.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -297,11 +297,11 @@
 # -- Compiling package sgate_pack
 # -- Compiling package body sgate_pack
 # -- Loading package sgate_pack
-# End time: 03:38:32 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:18 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work sgate {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:32 on Sep 14,2025
+# Start time: 22:47:18 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work sgate c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/sgate.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -351,7 +351,7 @@
 # -- Compiling architecture sim_arch of oper_bus_mux
 # -- Compiling entity oper_latch
 # -- Compiling architecture sim_arch of oper_latch
-# End time: 03:38:32 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:18 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib vhdl_libs/altera_mf
@@ -362,17 +362,17 @@
 # Modifying modelsim.ini
 # vcom -93 -work altera_mf {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_mf_components.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:32 on Sep 14,2025
+# Start time: 22:47:18 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera_mf c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_mf_components.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling package altera_mf_components
-# End time: 03:38:32 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:18 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera_mf {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_mf.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:32 on Sep 14,2025
+# Start time: 22:47:18 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera_mf c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_mf.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -611,7 +611,7 @@
 # -- Compiling architecture sim_sld_virtual_jtag_basic of sld_virtual_jtag_basic
 # -- Compiling entity altsource_probe
 # -- Compiling architecture sim_altsource_probe of altsource_probe
-# End time: 03:38:33 on Sep 14,2025, Elapsed time: 0:00:01
+# End time: 22:47:19 on Sep 28,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib vhdl_libs/altera_lnsim
@@ -622,21 +622,21 @@
 # Modifying modelsim.ini
 # vlog -sv -work altera_lnsim {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/mentor/altera_lnsim_for_vhdl.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:33 on Sep 14,2025
+# Start time: 22:47:19 on Sep 28,2025
 # vlog -reportprogress 300 -sv -work altera_lnsim c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/mentor/altera_lnsim_for_vhdl.sv 
 # 
 # Top level modules:
-# End time: 03:38:33 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:20 on Sep 28,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vcom -93 -work altera_lnsim {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_lnsim_components.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:33 on Sep 14,2025
+# Start time: 22:47:20 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work altera_lnsim c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/altera_lnsim_components.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Compiling package altera_lnsim_components
-# End time: 03:38:34 on Sep 14,2025, Elapsed time: 0:00:01
+# End time: 22:47:20 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib vhdl_libs/cyclonev
@@ -647,7 +647,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work cyclonev {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/mentor/cyclonev_atoms_ncrypt.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:34 on Sep 14,2025
+# Start time: 22:47:20 on Sep 28,2025
 # vlog -reportprogress 300 -vlog01compat -work cyclonev c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/mentor/cyclonev_atoms_ncrypt.v 
 # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
 # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
@@ -661,11 +661,11 @@
 # ** Warning: (vlog-2083) <protected>(<protected>): Carriage return (0x0D) is not followed by a newline (0x0A).
 # 
 # Top level modules:
-# End time: 03:38:35 on Sep 14,2025, Elapsed time: 0:00:01
+# End time: 22:47:21 on Sep 28,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 20
 # vcom -93 -work cyclonev {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_atoms.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:35 on Sep 14,2025
+# Start time: 22:47:21 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work cyclonev c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_atoms.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -805,11 +805,11 @@
 # -- Compiling architecture behavior of cyclonev_ir_fifo_userdes
 # -- Compiling entity cyclonev_oscillator
 # -- Compiling architecture behavior of cyclonev_oscillator
-# End time: 03:38:36 on Sep 14,2025, Elapsed time: 0:00:01
+# End time: 22:47:22 on Sep 28,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 # vcom -93 -work cyclonev {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_components.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:36 on Sep 14,2025
+# Start time: 22:47:22 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work cyclonev c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_components.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -818,7 +818,7 @@
 # -- Loading package VITAL_Primitives
 # -- Loading package cyclonev_atom_pack
 # -- Compiling package cyclonev_components
-# End time: 03:38:36 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:22 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib vhdl_libs/cyclonev_hssi
@@ -829,7 +829,7 @@
 # Modifying modelsim.ini
 # vcom -93 -work cyclonev_hssi {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_hssi_components.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:36 on Sep 14,2025
+# Start time: 22:47:22 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work cyclonev_hssi c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_hssi_components.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -837,19 +837,19 @@
 # -- Compiling package CYCLONEV_HSSI_COMPONENTS
 # -- Compiling package body CYCLONEV_HSSI_COMPONENTS
 # -- Loading package CYCLONEV_HSSI_COMPONENTS
-# End time: 03:38:36 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:22 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work cyclonev_hssi {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/mentor/cyclonev_hssi_atoms_ncrypt.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:36 on Sep 14,2025
+# Start time: 22:47:22 on Sep 28,2025
 # vlog -reportprogress 300 -vlog01compat -work cyclonev_hssi c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/mentor/cyclonev_hssi_atoms_ncrypt.v 
 # 
 # Top level modules:
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:01
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vcom -93 -work cyclonev_hssi {c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_hssi_atoms.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
+# Start time: 22:47:23 on Sep 28,2025
 # vcom -reportprogress 300 -93 -work cyclonev_hssi c:/intelfpga_lite/22.1std/quartus/eda/sim_lib/cyclonev_hssi_atoms.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -903,7 +903,7 @@
 # -- Compiling architecture behavior of cyclonev_hssi_pma_hi_pmaif
 # -- Compiling entity cyclonev_hssi_pma_hi_xcvrif
 # -- Compiling architecture behavior of cyclonev_hssi_pma_hi_xcvrif
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # if {[file exists rtl_work]} {
@@ -915,341 +915,394 @@
 # vmap work rtl_work 
 # Modifying modelsim.ini
 # 
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd}
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity alu32bit
-# -- Compiling architecture behavior of alu32bit
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity registerFile
-# -- Compiling architecture behavior of registerFile
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity CPU32bit
-# -- Compiling architecture structure of CPU32bit
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package altera_mf_components
-# -- Compiling entity CPUROM
-# -- Compiling architecture SYN of cpurom
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity PCNextCalc
-# -- Compiling architecture behavior of PCNextCalc
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity immediateCalc
-# -- Compiling architecture behavior of immediateCalc
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity instructionDecoder
-# -- Compiling architecture behavior of instructionDecoder
-# End time: 03:38:37 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:37 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package altera_mf_components
-# -- Compiling entity CPURAM
-# -- Compiling architecture SYN of cpuram
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/fetch.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity fetch
-# -- Compiling architecture behavior of fetch
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/decode.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity decode
-# -- Compiling architecture behavior of decode
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/execute.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity execute
-# -- Compiling architecture behavior of execute
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/memory.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity memory
-# -- Compiling architecture behavior of memory
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/writeback.vhd 
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
 # -- Compiling entity writeback
 # -- Compiling architecture behavior of writeback
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# 
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd}
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Compiling entity CPU32bit_tb
-# -- Compiling architecture behavior of CPU32bit_tb
-# -- Loading package NUMERIC_STD
-# -- Loading entity CPU32bit
-# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd(58): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit_tb.vhd(59): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 2
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/alu32bit.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity alu32bit
-# -- Compiling architecture behavior of alu32bit
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPU32bit.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity CPU32bit
-# -- Compiling architecture structure of CPU32bit
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPURAM.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package altera_mf_components
-# -- Compiling entity CPURAM
-# -- Compiling architecture SYN of cpuram
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/CPUROM.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package altera_mf_components
-# -- Compiling entity CPUROM
-# -- Compiling architecture SYN of cpurom
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/immediateCalc.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity immediateCalc
-# -- Compiling architecture behavior of immediateCalc
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionDecoder.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity instructionDecoder
-# -- Compiling architecture behavior of instructionDecoder
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/instructionRegister.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Compiling entity instructionRegister
-# -- Compiling architecture behavior of instructionRegister
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd}
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/PCNextCalc.vhd 
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
 # -- Compiling entity PCNextCalc
 # -- Compiling architecture behavior of PCNextCalc
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd}
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/programCounter.vhd 
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity programCounter
-# -- Compiling architecture behavior of programCounter
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# -- Compiling entity memory
+# -- Compiling architecture behavior of memory
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd}
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/RAMAddress.vhd 
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity RAMAddress
-# -- Compiling architecture behavior of RAMAddress
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# -- Compiling entity instructionDecoder
+# -- Compiling architecture behavior of instructionDecoder
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd}
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/registerFile.vhd 
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
+# -- Compiling entity immediateCalc
+# -- Compiling architecture behavior of immediateCalc
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd(32): (vcom-1514) Range choice direction (downto) does not determine aggregate index range direction (to).
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fetch
+# -- Compiling architecture behavior of fetch
+# End time: 22:47:23 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:23 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity execute
+# -- Compiling architecture behavior of execute
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity decode
+# -- Compiling architecture behavior of decode
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity CPUROM
+# -- Compiling architecture SYN of cpurom
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity CPURAM
+# -- Compiling architecture SYN of cpuram
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity alu32bit
+# -- Compiling architecture behavior of alu32bit
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package regfile_pkg
+# -- Compiling package body regfile_pkg
+# -- Loading package regfile_pkg
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package regfile_pkg
 # -- Compiling entity registerFile
 # -- Compiling architecture behavior of registerFile
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd}
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateMachine.vhd 
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity stateMachine
-# -- Compiling architecture behavior of stateMachine
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# -- Loading package regfile_pkg
+# -- Compiling entity CPU32bit
+# -- Compiling architecture structure of CPU32bit
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vcom -93 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd}
+# 
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 03:38:38 on Sep 14,2025
-# vcom -reportprogress 300 -93 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/stateRegister.vhd 
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/alu32bit.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
-# -- Compiling entity stateRegister
-# -- Compiling architecture behavior of stateRegister
-# End time: 03:38:38 on Sep 14,2025, Elapsed time: 0:00:00
+# -- Loading package NUMERIC_STD
+# -- Compiling entity alu32bit
+# -- Compiling architecture behavior of alu32bit
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPU32bit.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package regfile_pkg
+# -- Compiling entity CPU32bit
+# -- Compiling architecture structure of CPU32bit
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPURAM.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity CPURAM
+# -- Compiling architecture SYN of cpuram
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/CPUROM.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_mf_components
+# -- Compiling entity CPUROM
+# -- Compiling architecture SYN of cpurom
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/decode.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity decode
+# -- Compiling architecture behavior of decode
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/execute.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity execute
+# -- Compiling architecture behavior of execute
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/fetch.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity fetch
+# -- Compiling architecture behavior of fetch
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity immediateCalc
+# -- Compiling architecture behavior of immediateCalc
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/immediateCalc.vhd(32): (vcom-1514) Range choice direction (downto) does not determine aggregate index range direction (to).
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionDecoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity instructionDecoder
+# -- Compiling architecture behavior of instructionDecoder
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/instructionRegister.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity instructionRegister
+# -- Compiling architecture behavior of instructionRegister
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/memory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity memory
+# -- Compiling architecture behavior of memory
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/PCNextCalc.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity PCNextCalc
+# -- Compiling architecture behavior of PCNextCalc
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/regfile_pkg.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling package regfile_pkg
+# -- Compiling package body regfile_pkg
+# -- Loading package regfile_pkg
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/registerFile.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package regfile_pkg
+# -- Compiling entity registerFile
+# -- Compiling architecture behavior of registerFile
+# End time: 22:47:24 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:24 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/src/writeback.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity writeback
+# -- Compiling architecture behavior of writeback
+# End time: 22:47:25 on Sep 28,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:47:25 on Sep 28,2025
+# vcom -reportprogress 300 -2008 -work work C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package regfile_pkg
+# -- Compiling entity arithmetic_immediate_tb
+# -- Compiling architecture behavior of arithmetic_immediate_tb
+# -- Loading entity CPU32bit
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(64): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(74): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(75): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(83): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(87): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(91): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: C:/Users/rakra/OneDrive/Desktop/Quartus_Files/32bitCPU/PIPELINE_DEV/test/arithmetic_immediate_tb.vhd(95): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 22:47:25 on Sep 28,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 8
 # 
-# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs="+acc"  CPU32bit_tb
-# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs=""+acc"" CPU32bit_tb 
-# Start time: 03:38:38 on Sep 14,2025
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs="+acc"  arithmetic_immediate_tb
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L cyclonev_hssi -L rtl_work -L work -voptargs=""+acc"" arithmetic_immediate_tb 
+# Start time: 22:47:25 on Sep 28,2025
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
-# Loading work.cpu32bit_tb(behavior)
+# Loading work.regfile_pkg(body)
+# Loading work.arithmetic_immediate_tb(behavior)
 # Loading work.cpu32bit(structure)
 # Loading work.fetch(behavior)
 # Loading work.decode(behavior)
@@ -1273,24 +1326,47 @@
 # add wave *
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: rakra  Hostname: RYAN_LAPTOP  ProcessID: 14960
-#           Attempting to use alternate WLF file "./wlftqnz658".
+#           Attempting to use alternate WLF file "./wlftmik8g8".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftqnz658
+#           Using alternate file: ./wlftmik8g8
 # view structure
 # .main_pane.structure.interior.cs.body.struct
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /cpu32bit_tb/dut/registerFile_inst
+#    Time: 0 ps  Iteration: 0  Instance: /arithmetic_immediate_tb/dut/registerFile_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /cpu32bit_tb/dut/registerFile_inst
+#    Time: 0 ps  Iteration: 0  Instance: /arithmetic_immediate_tb/dut/registerFile_inst
+# ** Note: addi instruction passed
+#    Time: 18 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: addi instruction passed
+#    Time: 32 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: ori instruction passed
+#    Time: 42 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: andi instruction passed
+#    Time: 52 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: slli instruction passed
+#    Time: 62 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: srli instruction passed
+#    Time: 72 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
 restart -f
 run 100ns
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /cpu32bit_tb/dut/registerFile_inst
+#    Time: 0 ps  Iteration: 0  Instance: /arithmetic_immediate_tb/dut/registerFile_inst
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /cpu32bit_tb/dut/registerFile_inst
-run 100ns
-# End time: 03:42:18 on Sep 14,2025, Elapsed time: 0:03:40
+#    Time: 0 ps  Iteration: 0  Instance: /arithmetic_immediate_tb/dut/registerFile_inst
+# ** Note: addi instruction passed
+#    Time: 18 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: addi instruction passed
+#    Time: 32 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: ori instruction passed
+#    Time: 42 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: andi instruction passed
+#    Time: 52 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: slli instruction passed
+#    Time: 62 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# ** Note: srli instruction passed
+#    Time: 72 ns  Iteration: 0  Instance: /arithmetic_immediate_tb
+# End time: 22:50:02 on Sep 28,2025, Elapsed time: 0:02:37
 # Errors: 0, Warnings: 6

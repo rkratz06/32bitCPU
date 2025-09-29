@@ -82,7 +82,7 @@ architecture structure of CPU32bit is
 	
 	component registerFile
 		port(
-		clk : in std_logic;
+		clk, reset : in std_logic;
 		we : in std_logic; --write enable, writes when true, reads when false
 		writeReg : in std_logic_vector(4 downto 0) := (others => '0');
 		readReg1 : in std_logic_vector(4 downto 0) := (others => '0'); 
@@ -137,8 +137,8 @@ architecture structure of CPU32bit is
 		writeback_inst : writeback port map(clk => clk, reset => reset, writeData => writeData_mem_out, REGwe => REGwe_mem_out, rd_index => rd_index_mem_out, 
 		writeData_out => writeData_wb_out, REGwe_out => REGwe_wb_out, rd_index_out => rd_index_wb_out);
 		
-		registerFile_inst : registerFile port map(clk => clk, we => REGwe_wb_out, writeReg => rd_index_wb_out, readReg1 => rs1_index_decode_out, 
-		readReg2 => rs2_index_decode_out, writeData => writeData_wb_out, readData1 => rs1_decode_out, readData2 => rs2_decode_out);
+		registerFile_inst : registerFile port map(clk => clk, reset => reset, we => REGwe_wb_out, writeReg => rd_index_wb_out, readReg1 => rs1_index_decode_out, 
+		readReg2 => rs2_index_decode_out, writeData => writeData_wb_out, readData1 => rs1_decode_out, readData2 => rs2_decode_out, regs_out => regs_internal);
 		
 		CPUROM_inst : CPUROM generic map(init_file => init_file) port map(address => PC_fetch_out(15 downto 2), clock => clk, q => IR_fetch_out);
 		
